@@ -29,6 +29,24 @@ sample.txt
 11. copy pasting some examples on aop and unit testing ...
 using spring boot.
 
+---------------------------------------------------
+
+phase 2.
+
+spring boot based web servcies code for 
+home loan and archcode.. using RestTemplate
+or RestClient and WebClient for calling
+the application.
+
+
+doing unit testing code for junit and mockito
+for archcode.
+
+spring boot based security for archcode.
+
+--------------------------------------------
+
+
 
 
 
