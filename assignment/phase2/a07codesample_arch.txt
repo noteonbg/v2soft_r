@@ -1,0 +1,326 @@
+src/main/java/com/finserve/banking/
+    ├── BankingApplication.java
+    ├── controller/
+    │   ├── AccountController.java
+    │   └── TransactionController.java
+    ├── model/
+    │   ├── Account.java
+    │   └── Transaction.java
+    ├── repository/
+    │   ├── AccountRepository.java
+    │   └── TransactionRepository.java
+    └── service/
+        ├── AccountService.java
+        └── TransactionService.java
+
+
+
+package com.finserve.banking;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class BankingApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(BankingApplication.class, args);
+    }
+}
+
+package com.finserve.banking.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Account {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String accountNumber;
+    private String accountHolderName;
+    private double balance;
+
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getAccountHolderName() {
+        return accountHolderName;
+    }
+
+    public void setAccountHolderName(String accountHolderName) {
+        this.accountHolderName = accountHolderName;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+}
+
+package com.finserve.banking.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.time.LocalDateTime;
+
+@Entity
+public class Transaction {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long accountId;
+    private String type; // "DEPOSIT" or "WITHDRAWAL"
+    private double amount;
+    private LocalDateTime timestamp;
+
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+}
+
+package com.finserve.banking.repository;
+
+import com.finserve.banking.model.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AccountRepository extends JpaRepository<Account, Long> {
+    Account findByAccountNumber(String accountNumber);
+}
+
+
+
+package com.finserve.banking.repository;
+
+import com.finserve.banking.model.Transaction;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TransactionRepository extends JpaRepository<Transaction, Long> {
+}
+
+package com.finserve.banking.service;
+
+import com.finserve.banking.model.Account;
+import com.finserve.banking.repository.AccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class AccountService {
+    @Autowired
+    private AccountRepository accountRepository;
+
+    public Account createAccount(Account account) {
+        return accountRepository.save(account);
+    }
+
+    public Optional<Account> getAccount(Long id) {
+        return accountRepository.findById(id);
+    }
+
+    public Account getAccountByNumber(String accountNumber) {
+        return accountRepository.findByAccountNumber(accountNumber);
+    }
+
+    public Account updateAccount(Account account) {
+        return accountRepository.save(account);
+    }
+
+    public void deleteAccount(Long id) {
+        accountRepository.deleteById(id);
+    }
+}
+
+package com.finserve.banking.service;
+
+import com.finserve.banking.model.Account;
+import com.finserve.banking.model.Transaction;
+import com.finserve.banking.repository.AccountRepository;
+import com.finserve.banking.repository.TransactionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+@Service
+public class TransactionService {
+    @Autowired
+    private TransactionRepository transactionRepository;
+
+    @Autowired
+    private AccountRepository accountRepository;
+
+    public Transaction deposit(Long accountId, double amount) {
+        Optional<Account> accountOpt = accountRepository.findById(accountId);
+        if (accountOpt.isPresent()) {
+            Account account = accountOpt.get();
+            account.setBalance(account.getBalance() + amount);
+            accountRepository.save(account);
+
+            Transaction transaction = new Transaction();
+            transaction.setAccountId(accountId);
+            transaction.setType("DEPOSIT");
+            transaction.setAmount(amount);
+            transaction.setTimestamp(LocalDateTime.now());
+            return transactionRepository.save(transaction);
+        }
+        throw new RuntimeException("Account not found");
+    }
+
+    public Transaction withdraw(Long accountId, double amount) {
+        Optional<Account> accountOpt = accountRepository.findById(accountId);
+        if (accountOpt.isPresent()) {
+            Account account = accountOpt.get();
+            if (account.getBalance() >= amount) {
+                account.setBalance(account.getBalance() - amount);
+                accountRepository.save(account);
+
+                Transaction transaction = new Transaction();
+                transaction.setAccountId(accountId);
+                transaction.setType("WITHDRAWAL");
+                transaction.setAmount(amount);
+                transaction.setTimestamp(LocalDateTime.now());
+                return transactionRepository.save(transaction);
+            }
+            throw new RuntimeException("Insufficient funds");
+        }
+        throw new RuntimeException("Account not found");
+    }
+}
+
+package com.finserve.banking.controller;
+
+import com.finserve.banking.model.Account;
+import com.finserve.banking.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/accounts")
+public class AccountController {
+    @Autowired
+    private AccountService accountService;
+
+    @PostMapping
+    public Account createAccount(@RequestBody Account account) {
+        return accountService.createAccount(account);
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Account> getAccount(@PathVariable Long id) {
+        return accountService.getAccount(id);
+    }
+
+    @GetMapping("/number/{accountNumber}")
+    public Account getAccountByNumber(@PathVariable String accountNumber) {
+        return accountService.getAccountByNumber(accountNumber);
+    }
+
+    @PutMapping
+    public Account updateAccount(@RequestBody Account account) {
+        return accountService.updateAccount(account);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteAccount(@PathVariable Long id) {
+        accountService.deleteAccount(id);
+    }
+}
+
+package com.finserve.banking.controller;
+
+import com.finserve.banking.model.Transaction;
+import com.finserve.banking.service.TransactionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/transactions")
+public class TransactionController {
+    @Autowired
+    private TransactionService transactionService;
+
+    @PostMapping("/deposit/{accountId}")
+    public Transaction deposit(@PathVariable Long accountId, @RequestParam double amount) {
+        return transactionService.deposit(accountId, amount);
+    }
+
+    @PostMapping("/withdraw/{accountId}")
+    public Transaction withdraw(@PathVariable Long accountId, @RequestParam double amount) {
+        return transactionService.withdraw(accountId, amount);
+    }
+}
+
+properties.. think wht to do with this.
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.h2.console.enabled=true
+
+
+

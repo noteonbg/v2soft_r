@@ -1,0 +1,269 @@
+Sure! Below is an example of a Spring Boot CRUD application in the banking domain, where we manage `Account` entities. The `Account` can be created, read, updated, and deleted using an in-memory `Map` for data storage, similar to the previous example.
+ Example: Banking System with `Account` Entity (using `Map` for storage)
+ 1. Create the `Account` Entity:
+
+This entity represents a bank account with properties like `id`, `accountNumber`, `balance`, and `accountHolderName`.
+java
+package com.example.bank.domain;
+
+public class Account {
+
+    private Long id;
+    private String accountNumber;
+    private Double balance;
+    private String accountHolderName;
+
+    // Constructors
+    public Account() {
+    }
+
+    public Account(Long id, String accountNumber, Double balance, String accountHolderName) {
+        this.id = id;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.accountHolderName = accountHolderName;
+    }
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    public String getAccountHolderName() {
+        return accountHolderName;
+    }
+
+    public void setAccountHolderName(String accountHolderName) {
+        this.accountHolderName = accountHolderName;
+    }
+}
+ 2. AccountService:
+
+In this service, we manage accounts using a `Map<Long, Account>`, which stores accounts in memory.
+java
+package com.example.bank.service;
+
+import com.example.bank.domain.Account;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
+
+@Service
+public class AccountService {
+
+    private final Map<Long, Account> accountMap = new HashMap<>();
+    private long currentId = 1L;
+
+    // Create or Update an Account
+    public Account saveAccount(Account account) {
+        if (account.getId() == null) {
+            account.setId(currentId++);
+        }
+        accountMap.put(account.getId(), account);
+        return account;
+    }
+
+    // Get all Accounts
+    public List<Account> getAllAccounts() {
+        return new ArrayList<>(accountMap.values());
+    }
+
+    // Get Account by ID
+    public Optional<Account> getAccountById(Long id) {
+        return Optional.ofNullable(accountMap.get(id));
+    }
+
+    // Update Account Balance (e.g., deposit or withdraw)
+    public Optional<Account> updateAccountBalance(Long id, Double amount) {
+        Account account = accountMap.get(id);
+        if (account != null) {
+            account.setBalance(account.getBalance() + amount);
+            accountMap.put(id, account);
+            return Optional.of(account);
+        }
+        return Optional.empty();
+    }
+
+    // Delete Account by ID
+    public void deleteAccount(Long id) {
+        accountMap.remove(id);
+    }
+}
+ 3. AccountController:
+
+This REST controller exposes endpoints for the CRUD operations on the `Account` entity.
+java
+package com.example.bank.controller;
+
+import com.example.bank.domain.Account;
+import com.example.bank.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/accounts")
+public class AccountController {
+
+    @Autowired
+    private AccountService accountService;
+
+    // Create or Update an Account
+    @PostMapping
+    public Account createAccount(@RequestBody Account account) {
+        return accountService.saveAccount(account);
+    }
+
+    // Get all Accounts
+    @GetMapping
+    public List<Account> getAllAccounts() {
+        return accountService.getAllAccounts();
+    }
+
+    // Get Account by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Account> getAccountById(@PathVariable Long id) {
+        Optional<Account> account = accountService.getAccountById(id);
+        return account.map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Deposit or Withdraw from Account
+    @PutMapping("/{id}/balance")
+    public ResponseEntity<Account> updateAccountBalance(@PathVariable Long id, @RequestParam Double amount) {
+        Optional<Account> updatedAccount = accountService.updateAccountBalance(id, amount);
+        return updatedAccount.map(ResponseEntity::ok)
+                             .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Delete Account by ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAccount(@PathVariable Long id) {
+        accountService.deleteAccount(id);
+        return ResponseEntity.noContent().build();
+    }
+}
+ 4. Application Class:
+
+The `DebitApplication` class serves as the entry point to run the Spring Boot application.
+java
+package com.example.bank;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class BankApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(BankApplication.class, args);
+    }
+}
+ 5. application.properties:
+
+Since we are using in-memory data storage (via `Map`), no database connection is needed, and thus this file can be left empty, or you can configure basic settings like:
+properties
+server.port=8080
+ 
+ 
+
+1. In-memory Storage: The `AccountService` uses a `Map<Long, Account>` to store the accounts. Each `Account` has a unique `id` that helps with CRUD operations.
+2. CRUD Operations:
+   - Create/Update: Use the `POST /api/accounts` endpoint to create a new account or update an existing one (if an account with the same `id` already exists).
+   - Read: Use the `GET /api/accounts` endpoint to fetch all accounts, or use `GET /api/accounts/{id}` to fetch an account by `id`.
+   - Update Balance: Use `PUT /api/accounts/{id}/balance?amount=100` to deposit or withdraw a given `amount` from an account.
+   - Delete: Use `DELETE /api/accounts/{id}` to delete an account by `id`.
+3. Account Operations: We also include a feature to update the balance, which could simulate deposits and withdrawals (by adding or subtracting from the balance).
+ Example Usage:
+
+1. Create an Account (POST `/api/accounts`):
+   
+   Request Body:
+   json
+   {
+     "accountNumber": "12345",
+     "balance": 1000.0,
+     "accountHolderName": "John Doe"
+   }
+   
+
+   Response Body:
+   json
+   {
+     "id": 1,
+     "accountNumber": "12345",
+     "balance": 1000.0,
+     "accountHolderName": "John Doe"
+   }
+   
+
+2. Get All Accounts (GET `/api/accounts`):
+
+   Response:
+   json
+   [
+     {
+       "id": 1,
+       "accountNumber": "12345",
+       "balance": 1000.0,
+       "accountHolderName": "John Doe"
+     }
+   ]
+   
+
+3. Get Account by ID (GET `/api/accounts/1`):
+
+   Response:
+   json
+   {
+     "id": 1,
+     "accountNumber": "12345",
+     "balance": 1000.0,
+     "accountHolderName": "John Doe"
+   }
+   
+
+4. Update Account Balance (PUT `/api/accounts/1/balance?amount=500`):
+
+   Response:
+   json
+   {
+     "id": 1,
+     "accountNumber": "12345",
+     "balance": 1500.0,
+     "accountHolderName": "John Doe"
+   }
+   
+
+5. Delete Account (DELETE `/api/accounts/1`):
+
+   Response: Status `204 No Content` (no body).
+   
+   now change this code to include ... a databse.
+   
+
+
+

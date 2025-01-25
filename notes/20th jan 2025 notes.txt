@@ -1,0 +1,282 @@
+open api yaml.
+mime types  -- file uploadss
+Mockito..
+
+assuming we know how to write rest based api using
+jpa at the dao layer.
+service layer..
+controller..
+
+approach...jpa and service both can be done at core java level ..
+spring boot application.
+
+spring advantages.
+1. loose coupling ( dependency injection and inversion of control)
+2. x+ spring = x becomes easier..
+3. aop...( transactions, security...)
+4. unit testing in spring works...( quick intro example...)
+5. some theory on the cloud...( RestTemplate, RestClient, reactive programming)--
+Event Driven programming.. concept first and then come Mono....
+
+all the three think in terms of JDBCTemplate(made jdbc calls easier)
+
+(it will help you in calling web services functions)
+we can make a http request, get the response from the controller function
+and pick up the data handle exceptions..
+RestTemplate 
+RestClient
+WEbClient
+
+Unit testing..
+1. it should be fast..
+2. any layer which is slow should be mocked..(how you mock depends on framework)
+3. you know what is input, what is expected output, what is got output and you
+assert that..
+
+we have Restcontroller functions...are called by the system, why..
+event listener functions, event listener functions are called by the system..
+how do you do exception handling in the event driven functions..
+
+why i should know aop
+1. exception handling story becomes easier to digest.
+2. security topic..  (JWT and Oauth... esier to understand)
+
+Expand AOP  Aspect Oriented programming..
+what is AOP
+
+we have some group of code...
+we want to apply some logic on subset of this group of code.
+how we do it is called AOP
+
+we have cross cutting concern in our project..
+
+
+cross cutting concern  == Y
+
+code on which cross cutting concern needs to applied == X == target..
+
+criteria on which Y needs to be applied  == pointcut or joinpoint..
+
+
+logic building is more of a project needs, it depends on mood of the project
+what logic building we have to do, conept s independent of logic..
+
+generalize learning... proxy design pattern at work...
+
+intent of this design pattern..
+
+proxy design pattern, is commonly used for pre and post processing of requests..
+proxy.. I think X is doing the job it is not X, it will Y which will doing
+the job and I know about Y..
+
+we want to learn design patterns to we generalize our understanding
+of the framework andnot to tell other people I know design patterns..
+
+we tell spring
+1. hey create the object.
+2 hey wire it.
+3. hey give me the object...   factory... you will get some family of related
+objects.. 
+
+IPAddress x = SomeClass.getIPAddress("some url");
+factory.. factory will judge ip is 6 or 4.. and give you a corresponding object..
+
+1. singleton
+2. Factory
+3. proxy
+4. template.
+5. strategy
+6. observer.
+
+we should always one person is not doing everything..
+
+
+
+cloud =event hanlding + containerization..
+
+
+
+@component is a super set... 
+@Service is used to tell create the object it is a service layer object.
+@Repository is used to tell lcreate an object it is  dao layer stuff.
+@RestController.. here we are supposed ok create an object
+this is a controller , REST.. web services..
+
+old story.. we are in spring or spring boot... architecture is the boss.
+Controller -- MVC (Model View and Controller)
+
+Model = photo
+View == photoframe
+controller == screw 
+
+if controller returns Model + view == makeup web application .. html, css
+List of Resources + page name is hello.html
+
+if controller returns only MOdel +no view... web application for web services.
+List of Resources..
+
+I dont know meaning of annotation, that is a simple problem..
+
+1. who created it what benefit and when...
+
+@component..
+@Aspect...
+
+
+when we get struck looking at the project code
+can we write a "small example" which will clarify our syntax or concept doubt..
+
+
+ whether we in cloud or whatever. who cares once we tell spring
+we should be conscious which objets spring has got with it.
+
+@autowired... that object must be there 100% with spring..
+
+
+spring advantages. ( 99.99%)
+1. loose coupling (it can create objects and wire it)
+2. template pattern X+spring = x becomes easier..
+3. AOP
+
+.11 % what is it, life cycle of a spring , Scope of spring bean..
+
+
+
+
+
+
+
+
+
+
+Unit Testing (take it like a story, dont byheart any api.. why... with
+each framework syntax will change..)
+
+
+
+
+
+
+
+until we open other person code there is no proof that we know something
+in coding ...
+
+
+
+
+
+
+
+
+
+when we do unit testing.. 
+check along with junit what else they are using..
+it will be some mocking framework  + some other things also.( Spring boot
+related things)
+
+@Bean..
+programmer creates the object
+and spring uses it for wiring..
+
+actual running of server and stopping can consume lot of time
+how to ensure that server is not running rather we mock it..
+
+generalized concept.. in unit testing whichever part is slow should be mocked.
+
+mocking you should ask what you are mocking..
+here we are mocking only the server part.. mvc..
+
+
+
+three cases.
+1. HttpReqeustTest...  ran the actual container and checked whether controller
+is working or not.
+
+2. SmokeTest whether controller is ready wired...
+
+3.TestingWebApplicationTest , we are still using our controller but server
+part is mocked... assuming server takes lot of time to load..
+
+
+aop
+mocking
+all examples of proxy pattern ..
+
+
+
+how to understand this code...
+
+GreetingControleller
+this is wired with GreetingService.. which is slow..
+what we have done is.. we have decided not to use real GreetingSErvice 
+rather decided to mock it..
+
+1. tell GreetingSEvice should be mocked.
+2. teach it the behavior..
+
+in earlier program webmvc was mocked..
+in this program servie is mocked because it is taking lot of time..
+
+
+unit testing.
+1. identify thigns which are slow
+2. mock it...
+3. you identify in your projects what all things needs mocking...
+
+
+today topics.
+1. aop
+2. unit testing..
+2.1 we will not use just junit + X.. find out what all is X in your project...
+X = spring boot related things..
+
+ok..
+1.https://github.com/spring-guides/gs-testing-web
+make it work.
+calculator program.. , figure how to write a unit test for it.
+
+2. copy some random examples on aop and relate to the paintbrush...
+
+3. calculator program split 
+the adding thing to separate spring boot web services application
+subtraction to separate spring boot application services  application
+
+1. we have deploy our web services as microservice applition... cloud..
+2. jdk versions.. how thinks have evolved.
+3. junit a little bit more mocking..
+
+Thank you..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

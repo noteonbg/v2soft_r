@@ -1,0 +1,294 @@
+expectation
+we know how to write a complete spring boot program with web servies
+write unit testing for the same and deploy it in the cloud.
+
+today
+
+1. spring boot application
+2. application of our event handling story
+3. database interaction in java..
+
+Monday
+4. web services front.
+Tuesday
+5. Wednesday.. junit...
+
+biggest challenge in any decision making is how you look at decision
+over a period of time..
+
+
+spring or spring boot advantages.
+
+1. loose coupling ( dependency injection and inversion of control)
+dao layer in first phase using raw jdbc
+second phase using spring based jdbc.. jdbc template
+third phase no question of using jdbc directly using orm.
+
+2.  x+ spring  = x become easier..
+
+3. aspect oreitned programming.. ( security, transactions...)
+
+what is process we are taking to write code..
+
+spring boot..
+1. how do you recognize a spring boot application.
+look at pom.xml file and look at the pacakges which you are importing..
+
+spring boot usage does not mean I wont use spring..
+rather it means along with spring i will spring boot related stuff.
+advantage..
+
+never insult an architecture by linking  it only with some technology..
+
+always read from official things.. first 
+
+any product tells please get addicted to me...
+as a user we decide the tradeoff as to how much get addicted to it..
+
+spring is a product or spring is a standard?
+
+standard means I dont like this, ok you use another one.
+RDBMS is a standard.. i dont like MySQL ok uuse sql server
+
+it is a product..I dont like this, dont use this..
+
+
+
+spring is not a replacement for anything
+it is use it with anything.
+
+you were earlier using x now use it with spring to x becomes easier 
+this is English.. this we have to realize thru code..
+
+Spring boot is spring made easier.
+
+we are using annotation given by X
+we know the benefit...
+most important our code should interact with that given by X.
+
+if you remember day 1... we talked about something called classpath.
+spring boot is not doing any miracle it is looking in the classpath
+what all classes are present, and based on that it will autoconfigure..
+
+any setting which is one time we should relax how to do that settings..
+
+
+
+welcome to spring boot.
+sprng boot will see what all libraries are there in the classpath
+and it will configure the libraries accordingly..
+
+
+whenever it is other person design, in that case If i start doing
+"thinking" without "finding out".. just a way to waste time..
+
+in spring boot application if you put something in the dependency
+based on the thing you put it will be autoconfigured..
+example if I put web dependency, web server will be autoconfigured.
+if i put a databse dependency, databse thing will be autoconfigured..
+dont trust on this.. we will see thru code..
+
+if we tell science, hell or heaven does not matter ,repeatability does..
+
+quick summary
+1. spring boot.. just tell spring simplified. how.. you can reduce configuration..
+2. ok all this English is good how are you going to prove me this..
+2.1 take two spring boot projects.
+one without web dependency  -- run and terminate..
+one with web dependency  --continue to run, web server is running..
+3. ok what are you going to spring boot..
+same old thing i did with spring..
+
+create objects
+wire it
+and tell hey give me the object.
+
+never trust anybody who tells I understood the problem.
+
+those who remember spring theory..
+
+1. create the object.
+2. wire it
+3. get the object from spring..-- ac.getBean...
+
+event driven way...
+
+we are telling spring hey look after you created the event let me know..  ==event
+
+a person who is defining the function does not know who is going to call
+the function should not define the function.
+
+ok core java will take revenge on me..
+
+class A implements i1
+{
+public void f1() //100% sure if i define f1, i wont be teh caller of f1.
+{
+
+}
+
+}
+
+those who are not clear about architecture, enjoy entertainment everyday,..
+
+
+in spring boot.. what we should do... follow some conventions...
+create  package called x
+you put a class which contains main function...
+ensure that annotation uses @springBootapplication, uses the spring class
+SpringApplication.run(give classname which uses @springBootApplication annotation)
+
+in the package called x
+create two classes X and Y.
+use @component , use @autowired...
+
+
+relax and just focus on are you sure which object spring has got with it..
+we know
+A object
+B object
+is there.
+we know architecture so we tell B is wired inside A..
+ok...
+
+how do we get the A object and call its function or B object call its function..
+in spring boot.
+
+
+use this interface called commandline runner.. what does it do...
+you are telling spring boot hey spring boot after you created the object
+and wired, do something for me... you mention this something inside
+the run method..
+
+in the class @Autowired which ever object you want to use
+and use that object inside the run method..
+
+first thing.
+we did sprng boot application without talking about any http..
+
+simple checklist.
+
+1. spring application, did we create two clases wire it and get the object.
+1.1 xml
+1.2 annotations..
+
+2. do the same with spring boot application
+get the object,,, try using commandline runner and get it.. dont try
+the old style.
+
+
+
+
+
+
+
+
+
+
+
+
+telescope point.
+when an architecture is there, people who write poems... will create misery..
+
+irritating thing when a person tells i need a leg only then I can make a shoes..
+insult of architecture..
+
+old story
+kids are afraid of attending interviews
+adults are afraid of conducting interviews..
+
+when confused stick with basics..
+
+
+I want object from spring.. which object you want...
+
+I want presentation. i want service ok i want dao ok..
+
+Database...
+why use database? instead of a file..
+
+answer is database gives us physical and logical independence of data..
+which a file does not..
+
+database ,, unit of storage is table.. codd rule..
+when the table is changed, altered..old data is not lost...
+
+database..
+database server
+database.
+table
+dml command
+select commands
+trigger
+sequence
+dinosaur should know... stored procedure or stored function..
+views
+
+why database... physical and logical independence of data..
+you have table with emp, with empno, empname and email
+we put 100 rows into it.
+one day project changed and told emp should have phoneno also
+ok great we altered table put phone no.old rows will still be tehre...
+
+database server.. ip address.
+databse name ... multiple databses can run on the database server..
+table.. basic unit of storage..
+1. insert 
+2. update
+3. select 
+4. courageously delete 
+5. constraints, primary key, foreign key...
+
+coming to java and learning database concept is expensive.
+we should know database concepts before..
+
+commit
+and then immediately I rollback..
+
+
+if i dropped the table. if i want the table back, what command should i use
+commit or rollback drop a table...ddl command..commit and rollback will not
+work on ddl commands.. dml commands... 
+
+insert a row into the table... when it will fail..
+kids answer, table is not found, column name mismatch... kids answers.
+adults answer should be only one.. constraint violation...
+
+update command and delte command.
+constraint violation, where condition failure has to be checked.
+
+quick summary
+1. spring boot also learn to write core java code first..
+
+take a break 11.16 AM
+
+
+
+
+1. try the projects from  from v2soft\pleaseworkij folder
+2. try the project springbootexample and see whether it work.
+3. convert the calculator program and loan app into a spring boot program
+and see whether it works..
+4. install MySQL and see whether you are able to see the command prompt
+of MySQL and see some databases and some tables in the database.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

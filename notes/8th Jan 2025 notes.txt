@@ -1,0 +1,361 @@
+1. classpath. is used by jvm to locate the classes.
+2. architecture...( multiple files)
+why multiple files has to be justified..
+sign of a dead project in java is no interfaces..
+why interface == loose coupling..
+X and Y are interacting
+Y is chaning and X should not get impacted means
+you need put an interface in between.
+
+
+
+
+
+
+zoom in summary.. syntax... 
+
+1. value collaboration... I wont understand things technically.
+
+to understand throws...
+person X has written a function, in that function
+some exception occurs, he does want to handle it.
+he wants caller of the function which is person Y to decide
+what to do with the exception..
+
+2. reflection..
+there is some Z which person X has written
+there is person called Y
+Y cannot see Z directly...
+Y wants to know something about Z.
+so what Y does.
+takes Z shows it to the mirror.
+and asks the quetions about Z with the mirror.
+based on the feedback Y will take some action.
+
+"In depth" .. this word is used frequently..
+using this word is great.. if we can show thru code
+how it helps.. if we cannot show thru code how knowing
+something "in depth" helps better stay away from that word..
+
+why I should know interface
+
+why I should know reflection
+1. how annotations are implemented in java
+2.  Java   Beans
+
+Annotations..
+think of annotations like license, passport. 
+think of license and passport, .... it is a system and not some
+person...
+
+license or a passport.
+
+1. what is benefit i get because of using it.
+2. who gives it
+3. when does the benefit come..
+
+annotation what we we.
+user
+creator..
+
+I am the creator of the annotation. ok it means I am not the user.
+I am user of the annotation, ok then I am not the creator..
+
+if you write  a class implements X. the functon inside the class
+due to X is not called by us it is only defined by us.
+
+//person P
+class X implements Y
+{
+public void forced()
+{
+}
+
+}
+
+//person Q  == he is using the product because he likes the standard
+Y obj =new X();
+obj.forced();
+
+
+
+annotation how to undertand.
+
+what are we doing with annotation.
+
+1. creating it
+1.1 what is benefit you will give.
+1.2 when will you give.
+1.3 on what should the annotation be used on. ( class, variable, function)
+
+license, passport... this is given for person and not for some 
+non living thing..
+
+rc book. vehicle and not for the person..
+
+
+2. using it
+2.1 what benefit he gets and when ..
+2.2. good to know who has given it.
+2.3 on what it should be used function or class or variable..
+
+we will write one kids annotation..
+kids annotation, kids favourite word "I"
+stupid 
+who crated the annotation I
+who is giving the benefit I
+who is using the annotation I
+
+if we are using an annotation given by spring framework.
+in our code.
+our code should interact with some spring framework function..
+only then the benefit will come..
+
+X gives annotation
+Y uses it.
+Y code interacts with X code.
+only then benefit will come.
+
+what does spring use... spring uses lot of reflecton. because
+of annotation usage and java bean usage..
+
+we should learn how to copy paste syntax and make it work..
+concept most of times even in google era can be messy.
+because lot of noise..
+
+anybody who starts with syntax it is understood they will never
+reach concept..
+
+if we are using a class
+or a function or a annotation frequenly
+not opening the documentation and reading it.
+is a sin...
+without that we will have assumptions which usually is wrong..
+
+
+Retention policy == source.
+annotation is avaiablle only in .java files.. 
+and never in .class files..
+
+quick summary
+
+1. if somebody tells "X" is in depth. then you should tell
+ok I know "X" in depth, tell me how does it help in coding..
+there is no time to byheart jargons in a project..
+
+2. I am doing everything.. means I am in a hospital, value collaboration...
+
+3. annotation.. ok do you know reflection , NO i dont know learn it
+first..
+
+most of times we are users of annotation.
+1. ask what is benefit you are getting.. NO I dont know ok dont use
+annotation..
+2. when the benefit will come...
+3. if X has given the annotation, and you are using it in your code
+and your code should interact with some code of X.. only then benefit
+will come.
+
+Spring framework Spring boot framework ( let us algebra .. X)
+
+X is a framework.. how to learn frameworks..
+
+1. remember boss in a project is architecture...how does X fit in.
+2. which layer does X fit in.
+3. which language does it support.
+4. what benefits we get..
+
+which layer does spring fit in..
+1. service layer, dao layer and presentation layer.
+but remember we are in 2025 ever since 2011 java is dead in presentation
+layer.. hence spring is dead in presentation layer.
+
+2. spring means i will write java code only using spring related
+classes, interfaces and annotations.
+
+3. what is benefit we get because of spring.
+3.1 loose coupling. ( there are stupid programmer who after using
+spring also can build tightly coupled applications becuse there
+core java is in earth quake mode)
+3.2 x+spring = x becomes easier.
+x =database
+x= web
+x=messaging
+x= orm
+x= batch processing.
+3.3 aspect oriented programming...(relax we will come it )
+
+spring boot..
+kids world question, which is good spring or spring boot.
+
+spring boot is spring simplified.
+how to give a complicated answer.
+spring boot is an abstraction over spring
+
+I know spring, ok... all the concepts you know in spring
+are useful in spring boot also...
+only time saver is in spring we spend lot of time configuring
+in spring boot we dont need to configure, it autoconfigures
+based on what is present in classpath.
+
+1. annotations.
+2. spring.. how to understand.. loose coupling, x+spring = x becomes easier., aspect
+oriented programming.
+3. spring boot. save time configuring.. still spring code...
+
+
+
+freak point, I will floating like a  ghost, moment you ask me details
+I will run away.. no doubt a ghost..
+
+sim and mobile = loosely coupled.
+pencap and pen == tight coupling.. 
+mobilebattery and mobile == tight coupling.
+battery in a clock == loose coupling
+battery is AA, or AAA ..standard.
+
+
+
+100% tight coupling = bad.
+100% loose coupling = bad
+now welcome to "intelligence"
+
+To accept tradeoffs, we need intelligence..
+
+
+spring boot programming...
+1. if we dont clarify on the architecture, no spring...or spring boot
+2. ask yourself where you want loose coupling, where you want tight coupling.. (hard question)
+
+if you want loose coupling ask spring to create an object
+if you want tight coupling, you create the object.
+
+1. concept
+2. give an example
+3. talk about syntax.
+4. talk about best practices
+5. logic building.
+mix 1 to 5 together non stop entertainment will come..
+
+do we put dao object in business class.  --1
+or business object inside dao class --2
+
+only thing needed in the project can be useful in the project
+and not what certifiates people are giving us int eh project
+that we are brialliant we are stupid... does not matter..
+
+ok all these things are fine.. how to write a spring project.
+hello world
+or spring boot project hello world... relax...
+
+1. just create a class and show spring can create the object of
+that class.
+2. show you can get that from spring.
+if we can do 1 and 2, it is called as hello world spring.
+
+spring framework
+1.  ok java based business layer and dao layer..
+2. why.. loose coupling, x+spring = x becomes easier..
+3. ok i want to code.
+3.1 do you know where you want loose coupling, where you want tight
+coupling..
+3.2 hello world spring.. ask spring to create the object of your class.
+and then get that object from spring..
+
+1. annotation how it works..
+2. spring framework some story telling,.. spring boot is a wrapper on
+spring framework
+
+
+copy pasting... 
+
+1.2 programs on annotations.
+2. 2 programs on observer design pattern.
+3. 2 programs on factory design pattern.
+4. 2 programs on proxy design pattern.
+
+you have to code..
+5. Task.. taskid int,taskname string,status Boolean, memory consumed int, 
+archcode..
+taskscenario package name.
+
+1. adding of task.
+2. viewing all tasks based on status.
+3. updating task.. status, memory consumed.
+4. view all tasks.
+
+please ensure you are comfortable writing code
+in 3 tier architecture, focus on archcode
+and task scenario implementation given in chat window
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

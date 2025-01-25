@@ -1,0 +1,353 @@
+I dont know architecture then dont code..
+no i want to be busy.. ok be on hacker earth.... keep on practing Armstrong
+but dont expect salary because of this..
+
+
+intent.. loyalty towards project..
+
+
+
+yesterday summary
+
+1. loyalty towards project by respecting architecture.
+I dont know any architecture then dont code..
+
+2. tolerate uncertainty.. we will get struck at multiple times.. then
+can we write a small program that will clarify the syntax or the concept..
+
+3. generalize our learning  ( we can remember less)
+
+4. a programmer who is not good at variables and functions is unfit to be a programmer.
+
+1. we should know architecture.. else dont touch spring boot or spring... for any framework because it is waste of time
+
+ghost tells things are changing, somebody should ask the ghost hey tell me
+what has not changed in computer science for last 40 years let me learn that..
+
+event hanlding.
+distributed computing
+3 tier architecture.
+
+
+2. what do you mean by architecture...
+
+layers.. since dinosaurs were coding 3 tier architecture is popular and even today
+it is popular only...
+
+welcome to IT industry where the same terminology can be called by different people
+in different names...
+
+intent matters.. do you believe in process or do you believe in heroism..
+those who believe heroism .. hell is very near.. it just a matter of time..
+process .. repeatability is given irrespective of my mood.
+
+
+
+presentation layer..
+service layer ..business layer..
+dao layer... ( database layer...) code which interacts with the database..
+
+secret song all projects sing... I will change..
+what is interface..
+
+X and Y are interacting 
+X is using Y features.
+when Y is changing I dont want  X to change.
+that means put an interface between X and Y.
+
+X  == service or business
+Y= databse layer or dao layer.
+X is calling functions of database.
+databes layer changes. X should not change.
+ok between X and Y put an interface called DAo interface.
+how many .java files will you create to demonstrate a hello world program according
+to architecture...
+
+1. fate .. .java ( public static void main , other person design )
+2. model or entity ...
+3. presentation .java 
+4. service interface... 
+5. service implementation
+6. dao interface. 
+7. dao implementation..
+
+how do you recognize some java project is dead..there wont be any interface used..
+
+
+we are call presentation function from business functions ...x
+we are going to call business functions from presentation ...y
+
+from presentation
+you will call the service function..
+
+
+inside presentation we have an object of service, why...
+inside functions of presentation we are going to call the service functions..
+
+
+what do we do.  -- MVC
+put photo inside the photoframe  --P  -- we put model inside view..
+or put photoframe inside the photo --Q
+instead  of respecting architecture first being busy with unnecessary logic building
+is totally a waste of time..
+
+x .. fate
+x.service ... servie interface, service implemenetation classes
+x.dao... dao interface and dao implementations
+x.entity or x.model ... entity classes or models
+cherry dressing
+x.exceptions.. exception related classes.
+x.configu.. configuration related things.. what we will think later on.
+x.security...
+
+every two years once IT industyr people will like some jargon and run around
+that jargon... Fullstack..
+
+what can a fullstack programmer not do..?
+
+best way to tell I wont do anything.. tell i will do everything..
+
+what is meaning of full stack.. we cannot zero in anything.. but at same time
+we cannot be 5/5 in everything.
+
+servie. 5/5
+dao.. 5/5
+unit testing 3/5
+presentation (2/5)
+cloud.. (1/5) devops..
+
+can people write code in three tier architecture..
+
+when we tell I know architecture it means we can write each layer independenly..
+
+to tell we are using a framework called X.
+we should use data types of X and functions of X... 
+if we dont use data types of X and functions of X it means we are not using X
+
+X= spring framework.
+data type= class
+
+what is CUser
+1. architecture point of view .. Model.
+2. coding point of view.. data type.. project specific data type..
+
+data type =content +operations.
+
+int i;
+i =3;//content
+i*4 = we// this is operation..
+
+CUser object .. non static variables..
+CUser operations.. non static functions..
+
+after you create an object, what do we do, call non static functions..
+
+I am using String class... i will call some functions of the String class.
+
+
+
+
+
+
+
+
+disaster happens in projects due to programmers who are secretly "poets"
+
+what do you know about unit testing..
+will anybody tell we will not do unit testing no..
+but what is skill tell we will do unit testing and not do it..
+
+
+keep on writing lines of code without thinking whther it works or does not work...
+
+1. write core java code in three tier architecture...
+2. change the service layer and dao layer to spring boot.
+3. write the web services layer or api layer.. independently and check whether it works.
+4. link 3 and 2.
+5. think of security if any...
+6. convert 3 and 4 into microservcies -- docker, cloud....
+7. finish unit testing cases if any... 7 can be moved after 2 also if need be.
+
+how to ensure things never get completed, tell i will do everything 1 to 7 at once..
+
+usually when we get struck in 1 and 2. tell spring boot is not working..that's style
+what people follow.
+
+servie layer and dao layer is core java code even if you use spring boot.
+
+
+what is difference between class and interface. best answer
+is
+class starts with c
+and interface starts with i.
+
+non static variables.
+
+class is used like a product  
+interface is used like a standard.. == you use a standard by using a product
+which implements the standard..
+
+how do i use an interface by creating an object of a class which implements
+the interface..
+
+
+importance of valuing collaboration to understand things technically.
+what do you know about inheritance.. we can tell lot of things..
+
+super class is written by X
+subclass is written by Y.
+in most circumstances this will be true..
+
+interface.
+who created interface --X
+who created implementation class --Y
+who is using the interface ie create a reference, assing an object and call the function..-Z
+
+X and Y can be the same person... but mature circumstances usually means X Y and Z
+are three different people..
+
+constructor.
+person X has created the class.
+person Y is using the class . X is putting some condition on Y while creating the object.
+for doing this you need constructor.
+
+
+
+prove that we know core java..
+
+1. interface
+2. throws
+3. annotation.
+
+quick summary
+1. architecture... hopefully understood
+2. value collaboration to understand things technically.
+
+Reflection..
+two people are there. X and Y.
+there is a thing called Z which is created by X.
+Y cannot see Z directly... Y does not have access to the Z.java has got only
+access to Z.class
+Y wants to know something about Z.
+so what Y does is takes Z to a mirror and asks the questions
+about Z with the mirror.
+based on what mirror tells Y will decide to something..
+
+
+ something.ok(Cuser.class)... showing the pencil to the mirror.
+pencil here is Cuser...
+one stupid example why stupid...
+
+who is X .. I
+who is Y ... I
+so it is stupid..
+
+how do you recognize stupid interface example
+who created interface I
+who created implementation class I
+who is using the interface I..
+
+ok certified stupid example..
+
+
+if your program is supposed to use an annotation..
+@
+
+if you forget to write it.. what does it result in
+compilation or logical error.
+
+
+spend time understanding the archcode code sample
+and see whether how it is working
+
+loan application poc which is present in assignment folder.
+
+we are not using a database we are using datastructure like List or Map
+to store things..
+
+what to do.
+1. understand the archcode.. and see are you able to understand all the functions.
+2. loan management poc attempt in 3 tier code.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

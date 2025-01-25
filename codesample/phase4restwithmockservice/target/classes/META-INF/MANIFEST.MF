@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: vasul
+Build-Jdk: 17.0.5
+Implementation-Title: phase4restwithmockservice
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: pocisimportant
+Implementation-URL: https://spring.io/projects/spring-boot/phase4restwit
+ hmockservice
+Created-By: Maven Integration for Eclipse
+

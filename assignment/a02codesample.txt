@@ -1,0 +1,239 @@
+
+
+ Steps to create the project:
+
+1. Set up the Spring Boot application:
+   You can create a Spring Boot project using [Spring Initializr](https://start.spring.io/) or manually set up the `pom.xml` file.
+   
+2. Add necessary dependencies in `pom.xml`:
+   
+xml
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+</dependencies>
+
+
+3. Configure `application.properties` for the H2 Database (or any other database):
+   
+properties
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto=update
+spring.h2.console.enabled=true
+
+
+4. Create the `Debit` Entity class:
+   
+java
+package com.example.debit.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
+public class Debit {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Double amount;
+    private String description;
+
+    // Constructors
+    public Debit() {
+    }
+
+    public Debit(Long id, Double amount, String description) {
+        this.id = id;
+        this.amount = amount;
+        this.description = description;
+    }
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+}
+
+
+5. Create the `DebitRepository` interface:
+   
+java
+package com.example.debit.repository;
+
+import com.example.debit.domain.Debit;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DebitRepository extends JpaRepository<Debit, Long> {
+}
+
+
+6. Create the `DebitService` class:
+   
+java
+package com.example.debit.service;
+
+import com.example.debit.domain.Debit;
+import com.example.debit.repository.DebitRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class DebitService {
+
+    @Autowired
+    private DebitRepository debitRepository;
+
+    // Create or Update a Debit
+    public Debit saveDebit(Debit debit) {
+        return debitRepository.save(debit);
+    }
+
+    // Get all Debits
+    public List<Debit> getAllDebits() {
+        return debitRepository.findAll();
+    }
+
+    // Get Debit by ID
+    public Optional<Debit> getDebitById(Long id) {
+        return debitRepository.findById(id);
+    }
+
+    // Delete Debit by ID
+    public void deleteDebit(Long id) {
+        debitRepository.deleteById(id);
+    }
+}
+
+
+7. Create the `DebitController` class:
+   
+java
+package com.example.debit.controller;
+
+import com.example.debit.domain.Debit;
+import com.example.debit.service.DebitService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/debits")
+public class DebitController {
+
+    @Autowired
+    private DebitService debitService;
+
+    // Create or Update Debit
+    @PostMapping
+    public Debit createDebit(@RequestBody Debit debit) {
+        return debitService.saveDebit(debit);
+    }
+
+    // Get all Debits
+    @GetMapping
+    public List<Debit> getAllDebits() {
+        return debitService.getAllDebits();
+    }
+
+    // Get Debit by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Debit> getDebitById(@PathVariable Long id) {
+        Optional<Debit> debit = debitService.getDebitById(id);
+        return debit.map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Delete Debit by ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteDebit(@PathVariable Long id) {
+        debitService.deleteDebit(id);
+        return ResponseEntity.noContent().build();
+    }
+}
+
+
+8. Run the Application:
+   
+Create a `main` method in the `Application.java` file if not created automatically:
+   
+java
+package com.example.debit;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DebitApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(DebitApplication.class, args);
+    }
+}
+
+
+ 
+
+- Debit Entity: Represents a debit record in the database with `id`, `amount`, and `description` as fields.
+- DebitRepository: Extends `JpaRepository` to provide CRUD operations for the `Debit` entity.
+- DebitService: Contains business logic for CRUD operations related to debits.
+- DebitController: A REST controller that exposes endpoints for creating, retrieving, and deleting debits.
+
+ Testing the CRUD functionality:
+
+- POST: `POST /api/debits` to create a debit.
+- GET: `GET /api/debits` to get all debits.
+- GET: `GET /api/debits/{id}` to get a debit by ID.
+- DELETE: `DELETE /api/debits/{id}` to delete a debit by ID.
+
+

@@ -1,0 +1,37 @@
+practically.
+
+1. calculator... objective ... business logic and presentation separate.
+2. home loan program... ( we can have two kind of stupid people.. 
+2.1 I hate all rules..(flavor of stupidity)
+2.2 i am fan of rules ( flavor of stupidity)
+3. understanding the archcode example..
+4. Task... 
+5. copy paste programs on some design patterns..
+6. spring framework code using xml and using annotations. 
+6.1 calculator.
+6.2 loan
+6.3 archcode
+
+7. spring and spring boot based program
+archcode
+homeloan calculator.
+
+8 . spring and spring boot code using jdbc.
+task
+archcode
+homeloan calculator.
+
+9. coding the code sample given in a02codesample.txt and a03code
+sample.txt
+
+10. converting archcode into spring boot code..
+
+11. copy pasting some examples on aop and unit testing ...
+using spring boot.
+
+
+
+
+
+
+

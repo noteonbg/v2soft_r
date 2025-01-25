@@ -1,0 +1,301 @@
+day 1 till last day , if you feel something is complicated let me know
+
+1. intent first language next..
+intent should be to use things in a project rather than tell other people i know something..
+
+2. anything complicated means we cannot apply...
+
+3. rules..
+3.1 loyalty is towards the project and not the technology.. respect
+architecture first..
+3.2 tolerate uncertainty... and willingness to write a small program when doubt comes.
+3.3 generalize your learning.. 
+
+if people cannot do 3.3 .. then the sentence called " I have lot of things to learn". will come
+because 3.3 is missing..
+science means generalizing the thing kids think everything is unique .. if you know cocept
+things become generic..
+
+
+
+onClick
+trigger.
+get, post
+== Event handling..
+
+
+good programmer. immune to technology changes. framework changes..
+
+
+microscope..
+if any person tells I am a programmer. he should be 5/5 in variables and functions.
+
+what do you mean by good at functions and variables.
+
+variables.
+1. he knows the data type
+2. he knows the scope of the variable.
+
+functions.
+1. define  function
+1.1 who is going to call it,
+1.2 what is input it takes
+1.3 how will it take the caller function failed function succeeded..
+
+2. call a function
+2.1 open documentation and see what the function does..
+2.2 what does input indicate
+2.3 what does it return , how will i know failure and success.
+
+3. assign a function..
+usually means that we define a function and we pass this function to some other
+function and that function will call our function.
+it means we
+1. define the function
+2. we dont call it.
+3. we pass the function as input argument to some other function.
+
+who is a programmer
+can I convert some English given by somebody into functions and variables fitting into an architecture.
+
+
+
+
+
+
+
+
+project success = process *technology * tools * culture.
+
+java project..
+which is current version of java available.
+
+latest feature of java i want to know...
+jdk8 feature dinosaurs also should know..
+jdk11 features
+jdk17 features..
+jdk 21 good to know but we should knows projects are still not there on this..
+
+but for a person who is bad at variables and functions none of the versions matter.
+because he will containue to write "comma " state code...
+
+comma state code == code which lead to logical problems..
+
+
+in a place where local variable is there, if person creates a global variable.
+
+kids favourite activity compare things which cannot be compared..
+
+we will keep base as jdk1.8 and then take it forward..
+spring framework..
+spring boot ...
+
+I assume that most projects are using spring 3.x 
+
+database you are using I assume is oracle..
+
+projects fail due to zoom out problems and not because of zoom in problems..
+
+i have to come repair tv at home, house is on fire, but i am busy repairing the tv
+separate skill.  -- do zoom out, than unnecessary zoom ins..
+
+which is build tool your project is using
+maven,  --good going...
+graddle
+ivy ..
+
+
+1. we will start with jdk1.8 and move till jdk17 and last talk about some features
+of jdk21, 24..
+2. spring boot we will talk about version 3.x version..
+3. as a build tool we will stick with maven..
+4. database point of view we will look at things dynamically.. little bias towards oracle..
+
+
+when you look at any code...
+code that will be present in a folder..
+most important thing is if somebody tells I am in project he must know the folder
+structure..
+
+which tool are you using to code the java .
+eclipse
+IntelliJ   -- you preference..
+
+kids world only one file will be there and inside that file only one function
+will be there.. that function name be main inside that whole universe will run..
+but adults world all these things will collapse..
+
+we are seeing multiple files..you should not open any file...
+if you see multiple files.. it usually means there is some architecture used.
+and until you know architecture we will not know which file to open..
+
+
+while working on tools for any programmer.
+1. first comes patience and then comes intelligence...
+
+design
+intelligence first, patience next. why to accept tradeoffs, we need intelligence...
+
+
+what is intent of IntelliJ, guy or eclipse guy or visual code guy..(company)
+
+secret intent all of us should get addicted to their product and use their product only..
+by adding lot of features which work only in their product and nobody else.. that is
+good intent for that company, but for us it is bad intent..
+
+i "know" the language minimum
+
+
+1. documentation standard for the language (1/5)
+2. we should be good variables data types, scopes, casting rules (5/5)
+3. handle runtime errors and quantify them (5/5)
+4. string and date handling (2/5)
+5. data structure usage of list, map.... ( 3/5)
+6. editor, unit testing, how to profile, how to package code.. how to use libraries (0.000/5)
+
+
+kids thrill of looking at output
+
+
+first practical assignment..
+
+. just write hello world and be conscious where the file is present.
+open command prompt and run the program in the command prompt..
+
+jvm will understand from package folders only..
+
+
+code in eclipse or IntelliJ or visual code
+run it in command prompt , why that is way how things run in the cloud or in the client place..
+
+
+we want to run it in command prompt..
+1. know which version of java did you compile..
+we have compiled it in 19
+
+
+kids like output.heroism does not..
+
+adults like process. why process gives repeatability
+
+I compiled with version X  ( jdk19)
+and i an running with version X- it wont run...  ( jdk17)
+
+once a class is present in package read the classname pacakgename.classname.
+
+a java programmer who does not know how to use classpath is not a java programmer..
+
+classpth is used by jvm and we tell the jvm hey look at this place... for the classes.
+in the classpath exclude the package folder..
+
+8.00Am we start
+9.30 to 9.45AM we will have break
+9.45 to 11.00AM ..
+
+
+1. you have create a hello world project in IntelliJ 
+2. compile and run in the tool.
+3. come to command prompt and try to run the program and not compile
+
+set classpath=folder which contains the package folder.
+
+
+4. https://github.com/noteonbg/v2soft.git
+	5. in the v2soft\codesample folder archcode is available.
+	that is a package folder, copy that into your src and understand the code..
+	when you run the code. it will give a null pointer exception try to fix it..
+5. calculator program in java, how will you write it, write a code and show it.
+
+
+you wrote a calculator program.
+how many files did you create
+2 or 3 or 5
+only 1 sinner..
+
+main function ... 1 java..
+presentation..  1 java   -- 
+sysout.. displaying the result. calling the logic 
+logic -- 1 java..  --service --
+functions
+
+most we jump into spring boot ... can we write code according to architecture..
+3 tier architecture..
+
+presentation
+service
+dao layer..
+models or entities..
+
+Thanks a lot.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if we tell we are going to call the function
+some where in teh code..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

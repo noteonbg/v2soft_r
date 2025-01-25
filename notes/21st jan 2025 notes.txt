@@ -1,0 +1,188 @@
+1. some more unit testing..
+2. story telling on cloud we get some context.. ( generalize) --tonnes of configuration... worth not byhearting..
+3. how do you call web services... (RestTemplate, rest client..)
+4. case studies...
+
+quick summary of yesterday.
+1. hopefully people understand aop... x, y and z..( as with important things..people should value collaboration)
+2. unit testing... ok i unit test.. unit test should be fast.. if there is anything in the code which is slow
+then mock it...  starting the server can be slow process. ok can we do mockmvc..  service layer is slow.. ok mock
+the service layer.. (syntax craziness will be there.. it is just a function of time what we want to get comfortable with)
+
+some story telling on performance... cloud related things and unit testing rest template usage...
+
+always look with suspicion when some body tells I understood the problem-- we should waste time solving the wrong problem.
+
+intent ... if we solve a problem thru a process, there is high probability that we would have understood the problem
+correctly rather than solving it thru instinct.. opinion..
+
+GHOST WORD -- BEST PRACTICES..
+
+ZOOM IN.. focus on functions which are called by the system... and ensure these functions are fast...
+why...most of them may be event driven.. event driven functions are slow....then whole thing will be slow..
+
+Event handling.. which datastructure comes to your mind... -->Queue...
+
+
+web --http or its cousins
+cloud...  availability of resource on demand..
+
+zoom out context.
+
+zoom in context...
+
+if we are building appliations as a microservices.. 
+
+adding of number as  separate spring boot application  -- deploy this independently and provide cloud advantage
+subtraction of number as a separate spring boot application
+
+everycompany wants to build platforms...
+docker is containerization platform for the cloud..
+
+hello world java program
+spring boot java program
+
+docker image.. for an appliation
+
+
+many ways of converting the application into a docker image...other person design... so how will I do it..
+open docuemtnation nd see it, most important find out int he company how theya re doing it...
+build tool maven.. that also helps in creating docker iamges..
+
+as you increase the number of components which are running, how to collaborate between the components
+how to deal with failures.. all this will kick in.. knowing how to deal with the circuit breaker pattern
+
+
+how do you deal with a class "X" which is needed in our project..
+class X .. JDBCTemplate.. you should what it is doing.. and then start using its method after creating an object
+how to create an object only documentation will tell.
+
+input argument is a Rectangle object.
+return type is PA object.
+
+typical one should get comfortable passing objects as input argument 
+and returning objects as output argument..
+
+Employee
+1. login
+
+2. postlogin
+
+2.1 upload a csv file which will go into the database.
+2.2 search for employee based on various criterias..
+2.2.3 export the result to a csv file or pdf..
+
+
+when somebody uses the word Modern.. it is not technical word..
+RestTemplate dont use it, prefer using a Modern thing like RestClient.. ln
+
+when i look at a new data type which is what any class is ..
+ask yourself what are its contents, what are the operations it will give.
+if we like the operations we will use the data type...
+
+
+class operations.. non static functions...
+
+after I create an object what do i do, call non static functions
+
+X is a class, jdbctempalte, http client....
+
+WebClient
+RestClient --Spring guy is telling use this when compared to Resttemplate
+RestTemplate
+
+why all this things... any product company fate is to add new versions of existing libraries...
+
+
+all the 3 are useful to make http requests to call our webservice...
+all the 3 are not our own classes. other person design.. unitl we open documentation we will not know what it does..
+
+
+in all rest based calls no matter whatever class you use.
+
+0. you must mention request mode
+1. you must mention uri.
+2. you must mention inputs
+3. we must know the input and return type given by the web service function.
+4. on need basis playing around with http headers..
+
+
+welcome to opinions of how to do things..as  technical person no need to care for this
+focus on the objective... i want to call a rest based functdion... i have to make a http request..
+
+
+let me show you another opinion... what is not opinion, mocking is needed so that unit testing
+is faster, syntax used for mocking is just opinion..
+
+lot of adjective usage is a first sign that somebody is not a technical person..
+
+
+however you do mock.. in the code look for only two things.
+
+1. what are you mocking.
+2. where it is used...
+3. figure out where are you teaching for a particular function what should the mock do
+
+
+practicals what to do
+
+1. archcode..
+1.1 how to write unit test using Junit
+1.2 how to write unit test using Mockito
+
+2. in your web services project. which ever is working
+create a new package.. called  clientcallingpoc
+write  controller function whose input is Rectangle object with length and breadth
+and return type is PerimeterArea with two variables perimetr, area..
+object and mode of request is post.
+run this program and test it with postman
+create a new called clientcallingpoc.rc
+create a new class call this rest controller function by using
+Rest Template
+RestClient
+WebClient..
+
+unit testing
+
+JUnit
+Mockito
+PowerMock.. is plugin for Mockito..
+what all plugins they are using
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

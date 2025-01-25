@@ -1,0 +1,230 @@
+1. restcontroller how are we are able to read inputs from the body.. of http request.
+2. where are we headed
+3. quick intro to Junit..
+4. code sample and try to make it work...
+
+yesterday hopefully all of you know to write a web services api using spring boot..
+
+key things to observe.
+
+0. provided we register for the http request events ( mode of request, URI)
+1. how are we picking up input from http request.
+2. how are we trying to send response (data +http response status)
+
+service is already working and then we will attempt the restcontroller code ( web services code)
+
+when people are talking about performance, simple thing.
+1. measure.. not assume..
+2. concentrate on functions which system calls and ensure those functions are not slow..( if event driven functions are slow.. whole system
+perceived to be slow)
+
+
+what is big advantage with json..
+json is a standard..
+
+when somebody is new to web services..but how to read whatever input we need from the http request.
+there every framework will have an opinion...we have to learn that opinion now..
+
+sales pitch can we generalize our learning.. so that we don't get killed by opinions of frameworks
+
+if three bits of information is logically related, group them and send it as one part ...
+
+good low design means good function design..
+
+
+
+get
+post
+put
+delete
+
+all are events in http request, what you should do with them. whatever you feel like...
+convention is..
+
+1. get is used for querying.
+2. post is used for adding.
+3. put is used for updating
+4. delete is used for removing..
+convention..
+
+
+web services means function call...
+a person should know what function is expecting..
+and person should also know what standard input is expected in.. json..
+
+minimum expectation
+
+some input is taken by a web services function,can we know how to pass things
+1. path variable
+2. request param
+3. request body.
+
+response..
+1. data 
+2. response status code.
+
+
+misery comes because of telescope and not microscope..
+
+0. Rest TEmpalte and RestClient... -- microservices architecture.. -- cloud..
+1. unit testing.. 
+2. security... process issue, each programmer if he thinks of security, company will disappear..  ( JWT and OAuth.. http basic authentication)
+
+what is a cloud?
+availability of resource on demand..
+
+
+
+Unit testing.. people have been telling unit testing is important. for a long time do people do unit testing, depends on the project.
+
+project success = process * technology * tools * culture..
+
+
+unit testing..
+1. documentation for the code.. (what is my code doing)
+2. expected to be fast...  ( identify parts of the code which is slow and learn to mock it) -- interface .. contract.. implementation class can change..
+3. you will have a set of events....
+
+before test do something
+after test do something.
+before all beginning all tests do something...
+
+4. with respect to unit testing, security.... it is better to find out in the project what it does..and imitate it first rather
+than going to google and get kidnapped..
+
+
+
+what is logic we are going to do in unit testing...
+1. what is input we are going to pass.
+2. what is expected output..
+3. what is got output.
+4. assert whether got output is same as expected output ....
+5. we can add lot of decorations to do it.. some mechanism to document...
+
+
+X+spring = X becomes easier... spring framework is telling hey look use things along with me only...
+
+which framework are you using for unit testing..in spring boot based world..what framework we are using for mocking..
+
+1. Mockito
+2. spring testing framework..
+3. small story telling on karate testing framework..
+
+
+Great Process  + Bad intent  = only intent will remain.. unit testing..
+
+unit test... intention not correct.. nothing can work..
+1. 
+
+
+simple case..
+
+front end side.. javascripot.. react/angular... javascript based unit testing framework...
+
+
+
+writing  unit test for restcontroller
+writing unit for test for service.
+writing unit for test for dao..
+
+customer tells give me two numbers and if one of number is negative  you must return -1
+in all other cases.. return sum of the numbers..
+
+
+Unit testing big issue is does project culture support it... for long time people are talking about test driven development...
+but can implement or not depends on mood of the project to what extent...
+
+
+
+today
+1. requestbody... 
+2. cloud... availability of resource on demand..  --all the thing in microservices will kick in..
+3. story telling on unit testing.. ( remember what is expected output, what is got output, then assert and which part of the code
+is slow try to mock it)  --if we are looking at syntax, from now onwards we will get kidnapped... look at the concept, and tell in this context
+syntax is X.
+
+
+
+if anybody has made the code work please let me know.. and share your screen...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

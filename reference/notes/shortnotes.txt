@@ -1,0 +1,2307 @@
+
+Softwares Required:
+1) JDK 17:
+https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
+OR  
+openJDK 17
+https://jdk.java.net/java-se-ri/17
+
+2) Eclipse for JEE  
+    https://www.eclipse.org/downloads/packages/release/2022-09/r/eclipse-ide-enterprise-java-and-web-developers
+
+Lombok
+Download:
+https://repo1.maven.org/maven2/org/projectlombok/lombok/1.18.28/lombok-1.18.28.jar
+install:
+java -jar lombok-1.18.28.jar
+
+3) MySQL  
+
+Install Docker Desktop
+https://www.docker.com/products/docker-desktop/
+
+MySQL installation on Docker steps:
+
+```
+a) docker pull mysql
+
+b) 
+For Windows:
+docker run --name local-mysql –p 3306:3306 -e MYSQL_ROOT_PASSWORD=Welcome123 -d mysql
+
+container name given here is "local-mysql"
+
+For Mac:
+docker run -p 3306:3306 -d --name local-mysql -e MYSQL_ROOT_PASSWORD=Welcome123 mysql
+
+
+c) CONNECT TO A MYSQL RUNNING CONTAINER:
+
+$ docker exec -t -i local-mysql bash
+
+d) Run MySQL client:
+
+bash terminal> mysql -u "root" -p
+
+mysql> exit
+```
+
+OOP 
+* Real world
+* Object --> State and Behaviour
+Object first approach
+Blue print / Prototype to create object
+class [Java / C++ / TypeScript], function [ JS ], Type
+
+class Tv {
+    int volume;
+}
+
+function Tv (volume) {
+}
+
+Type Tv
+End Type
+
+---------
+
+SOLID design Principle
+S --> Single Responsibility
+Object to perform CRUD operations [ CREATE / READ/ UPDATE/ DELETE] --> File / DB / NOSQL
+Object for UI
+Object for Business logic
+
+O --> Open Close Principle [ Closed for Change and Open for Extension]
+L --> Liskov Substitution Principle
+I --> Interface segregation
+D --> Dependency Injection
+
+-----------------
+
+Java: Technology
+Platform to execute bytecode [ portable ]
+
+ByteCode
+
+Source Code ===> Compiled ===> ByteCode
+JDK         ==> Java Compiler ==> bytecode
+KDK [ Kotlin] ==> Kotlin Compiler ==> bytecode
+Groovy DK ==> Groovy Compliler ==> bytecode
+
+============================
+visibility : public, private, protected and default scope
+
+```
+Book.java
+
+public class Book {
+    private String title; // state, instance varible
+    private double price; // state, instance varible
+
+    public void setTitle(String t) {
+        this.title = t;
+    }
+
+    public void setPrice(double p) {
+        this.price = p;
+    }
+
+    public double getPrice() {
+        return this.price;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+}
+
+javac Book.java ---> Book.class [ bytecode]
+
+Example.java
+public class Example {
+    public static void main(String[] args) {
+        Book java = new Book();
+        java.setTitle("Head First Java");
+        java.setPrice(560.00);
+
+        Book react = new Book();
+        react.setTitle("React Unleashed");
+        react.setPrice(890.00);
+
+        System.out.println(java.getTitle() + ", " + java.getPrice());
+    }
+}
+
+javac Example.java ---> Example.class
+
+Java Compiletime Environment
+
+Java Runtime Environment
+
+Classloader
+Default classloader, Network based classloader, Custom Classloader [ CISCO settop box, Samsung Harman, ..]
+
+bytecode from secondary storage to primary storage
+Search in current folder or CLASSPATH [ environment variable]
+set classpath=to which ever folder
+
+* findLoadedClass()
+* loadClass()
+* findSystemClass() --> platform has APIs loaded
+* defineClass()
+
+java Example 
+1) check Example.class if already present in JVM
+2) NO --> loadClass() is exectuted
+3) String.class --> findLoadedClass() --? false --> loadClass() --> false --> findSystemClass() --> load into JVM
+
+4) load Book.class ---> loadClass()
+5) System.class --> findSystemClass()
+
+Around 132+ files are loaded into JVM
+
+defineClass() ---> convert bytecode to system specific code [ architecture/os]
+
+bytecode --> Metaspace / Method Area [prior to java 8]
+
+-----
+java.setTitle("Head First Java"); 
+setTitle(java, "Head First Java"); // context becomes implicit first argument
+
+
+public void setTitle(String t) {
+        this.title = t;
+}
+becomes
+
+public void setTitle(Book this, String t) {
+        this.title = t;
+}
+
+java.getTitle() ==> on stack getTitle(Book this) {} ==> "this" --> context here is "java"
+
+```
+
+Logically grouping of class for enterprise application
+* entity class / domain class / model class
+business data, data is long lived beyond the life of application 
+they are used to map to persist store [ RDBMS / NoSQL / File ...]
+example:
+One entity Object maps to one table of RDBMS or Collection of MongoDB
+java fields --> map to columns of database table
+-> Uber application: Customer, Driver, Vehicle, Trip, Payment
+-> Swiggy: Customer, Product, Order, LineItem , ShipAddress, Payment, Supplier
+
+these classes are the simplest to create: --> no CRUD operations, no business logic,
+generally they only contain getters / setter
+
+* DAO --> Data Access object
+perform CRUD operations
+--> RDBMS : insert, select, update and delete SQL
+
+* Business 
+* Service 
+--> facade over DAO and business logic
+--> generally they contain atomic operations and make coarse grained operations over DAO fine grained operations
+
+* Exception classes --> to represent any abnormal condition
+* Utility classes --> Helpers
+* UI --> User interface / client code
+
+---
+
+Package --> folders for different types of logically grouped classes.
+
+DAO vs Service
+```
+public class AccountDao {
+    updateAccount(..)
+    createAccount(..)
+    deleteAccount(..)
+    lockAccount(..)
+    getBalance()
+    getTransactions()
+}
+
+public class CustomerService {
+    AccountDao accountDao = new AccountDao();
+
+    // this code should be Atomic in nature
+    public void transaction(Account from, Account to, double amt) {
+        getBalance();
+        run logic to check balance --> sufficient
+        updateAccount(from);
+        updateAccount(to);
+        insertIntoTxTable(..);
+        sendSMS();
+    }
+}
+
+Client calls transaction() one call which in turn has many fine grained operations
+
+public class ManagerService {
+     AccountDao accountDao = new AccountDao();
+
+    createAccount() {
+        accountDao.createAccount()
+    }
+
+    lockAccount()...
+}
+```
+
+Packages:
+1) logically group classes
+2) avoid collusions usage classes with same name --> by using fully qualified name
+Example:
+java.util.Date [ Date is a class in "java.util" package]
+java.sql.Date [ Date is a class in "java.sql" package]
+
+
+All instance variables [Heap area] will have it's default values in heap area when created.
+int, short, byte, long --> 0
+double/float --> 0.0
+char --> Null character
+object --> NULL
+boolean --> false
+
+No Garbage / junk data in heap area
+
+All local variables [ in stack ] should be initialized before using
+
+How many instances of Account are created?
+count variable
+
+=====================
+
+Task 1:
+```
+package com.adobe.prj.entity;
+Time.java
+
+public class Time {
+    private int hours;
+    private int min;
+    // constructors
+    // getters and setters
+    // other methods
+}
+
+
+package com.adobe.prj.client
+TimeClient.java
+
+public class TimeClient {
+    public static void main(String[] args) {
+        Time t1 = new Time(4,30);
+        Time t2 = new time(3,45);
+
+        Time t3 = Time.add(t1, t2);
+
+        System.out.println( t3.getHours() + " : " + t3.getMin()); // 8:15
+        System.out.println( t1.getHours() + " : " + t2.getMin()); // 4:30
+        System.out.println( t1.getHours() + " : " + t2.getMin()); // 3:45
+
+        Time t4 = t1.add(t2);
+        System.out.println( t4.getHours() + " : " + t4.getMin()); // 8:15
+        System.out.println( t1.getHours() + " : " + t2.getMin()); // 4:30
+        System.out.println( t1.getHours() + " : " + t1.getMin()); // 3:45
+    }
+}
+
+```
+
+Class & Object
+instance variables --> heap area, created for every object --> initialized with default values
+static variable --> Metaspace, created per class --> initialized with default values
+local variable --> stack --> need to initialize before we use
+
+instance method --> called with object context, first argument is implicit "this" --> context
+static method --> called with class contenxt, no implicit "this" is passed as argument
+
+--------
+
+Relationship between objects:
+1) Generalization and Specialization
+2) Realization
+3) Association
+4) Uses A
+
+Generalization and Specialization relationship --> Inheritance
+
+Java build tools:
+1) Maven / Gradle --> manage dependencies, compile, deploy, ...
+2) SonarQube or [Checkstyle / PMD / findBugs] --> static code analyis
+Checkstyle: naming conventions, comments
+PMD or FindBugs: Good programming practice [ find duplicate code [ Copy & Paste code], unreachable code, bad exception handling, empty catch blocks, ...]
+3) Jenkins: CI / CD
+4) JUNIT: Testing framework for Unit testing
+...
+
+```
+Constructor behaviour in inheritenace
+// Product inheritance from Object [ implicit]
+public class Product {
+    Product() {
+        s.o.p("P1");
+    }
+
+    Product(int id, String name, double price) {
+        s.o.p("P2");
+    }
+}
+
+public class Mobile extends Product {
+    Mobile() {
+        s.o.p("M1");
+    }
+
+    Mobile(int id, String name, double price, String connectivity) {
+        s.o.p("M2");
+    }
+}
+
+new Mobile(); // Object(), Product(), Mobile() ==> P1, M1
+new Mobile(331, "iPhone 14", 89000.00, "4G"); ==> Object(), Product(),  Mobile(int id, String name, double price, String connectivity) ==> P1, M2
+
+```
+
+How methods work in inheritance
+
+```
+public class Product {
+   public  double getPrice() {
+    return 1000;
+   }
+}
+
+public class Mobile extends Product {
+    // override
+   public double getPrice() {
+    return 9999;
+   }
+
+   public String getConnectivity() {
+    return "5G";
+   }
+}
+
+
+public class Tv extends Product {
+    public double getPrice() {
+        return 5555;
+    }
+}
+Mobile m = new Mobile();
+m.getPrice(); // 9999
+m.getConnectivity();  // 5G
+
+Product p = new Mobile();
+p.getPrice(); // 9999
+p.getConnectivity(); // ERROR
+
+p = new Tv();
+p.getPrice(); // 5555
+```
+
+All instance methods in Java are virtual by default --> dynamic binding
+
+Prefer:
+"4G".equals(connectivity) --> true or false
+over
+connectivity.equals("4G") --> true/false and can result in NullPointerException
+
+instanceof vs getClass()
+
+Product p = new Tv();
+
+p instanceof Tv ==> true
+p instanceof Product ==> true
+p instanceof Object ==> true
+p instanceof Mobile ==> false
+
+p.getClass() =====> Tv.class
+
+p.getId(); ==> context is "object" when method name is know in advance
+p.getPrice();
+
+===
+
+Day 2
+
+Recap: OOP, SOLID design principle, instance and static variables and methods
+
+Generalization and Specialization relationship --> inheritance "extends" in java
+
+* java.lang.Object is the root class for every object
+* Java doesn't support multiple inheritance [ extends A, B is not allowed]
+* override [ specialized class is going to suppress existing behaviour with new behaviour]
+* overload --> look into it. ==> based on arguments different methods are called
+
+To SalesGuy: I want to buy a Product?
+:-( 
+Which Product
+
+To Manager: I need to open a Account?
+:-(
+SA/CA/LA ?
+
+
+abstract class --> can't instantiate abstract class --> too generic, doesn't exist in real world. meant only for pushing common state and behaviour in generalized class
+
+abstract method --> can't provide logic, specialized ones should compulsorily override and provide appropriate logic.
+
+====
+
+Realization Relationship
+One Element (client) realizes the behaviour that the other element (supplier) specifies.
+Program to Contract
+
+in Java we implement this relationship with "interface"
+
+```
+interface EmployeeDao {
+    void addEmployee(Employee e); // methods are public and abstract by default
+    Employee getEmployee(int id);
+}
+
+public class EmployeeDaoDbImpl implements EmployeeDao {
+    // state and behaviour
+    public void addEmployee(Employee e) {
+        INSERT INTO ...
+    }
+    public Employee getEmployee(int id) {
+        SELECT * from ...
+    }
+}
+
+
+public class EmployeeDaoMongoDbImpl implements EmployeeDao {
+    // state and behaviour
+    public void addEmployee(Employee e) {
+        db.employees.insert({...})
+    }
+    public Employee getEmployee(int id) {
+        db.employees.findBy({...});
+    }
+}
+
+public class AppService {
+    EmployeeDao employeeDao = new EmployeeDaoMongoDbImpl();
+
+    public void insert(Employee e) {
+        employeeDao.addEmployee(e);
+    }
+
+    public Employee fetch(int id) {
+        return employeeDao.getEmployee(id);
+    }
+}
+
+```
+
+Why Program to Interface?
+1) DESIGN
+2) IMPLEMENTATION
+3) TESTING
+4) INTEGRATION
+5) LOOSE COUPLING
+6) OCP
+
+you can't instantiate a interface like abstract class.
+
+ClassLoader loads Book.class and Author.class into JVM metaspace
+Book b; 
+Author a;
+
+If we know class name in advance: new ClassName();
+
+If we don't know class name in advance, how to create object?
+variable = "java.lang.String";
+variable = "com.adobe.prj.entity.Book";
+
+Class.forName(variable).getDeclaredConstructor().newInstance();
+
+====
+package java.lang;
+public interface Comparable {
+    public int compareTo(Object o);
+}
+
+
+"Scarlett".compareTo("Angelina"); > 0
+
+Circle c1 ---
+Circe c2 ---
+c1.compareTo(c2) --> 0
+
+Each of these classes like Circle, Rectangle, String should realize Comparable
+
+========
+
+class can implement multiple interface [ implements] but can be specialized of only one [extends]
+
+```
+interface Comparable {
+    int compareTo(Object o);
+}
+interface Flyable {
+    void fly();
+}
+
+public class Eagle extends Bird implements Comparable, Flyable {
+
+}
+```
+Interface Segreggation:
+
+```
+interface Swim {
+    void swim();
+}
+
+interface Dance {
+    void dance();
+}
+
+interface Fight {
+    void fight();
+}
+
+class Actor implements Dance {
+    // state and behaviour
+    public void dance() {
+        ...
+    }
+}
+
+class Hero extends Actor implements Swim, Fight {
+    // state and behaviour
+    public void swim() {
+        ..
+    }
+    public void fight() {
+        ...
+    }
+}
+
+Fight f = new Fight();
+
+Fight f = new Actor();
+
+Fight f = new Hero();
+f.fight();
+f.dance();
+f.swim();
+
+Dance d = (Dance) f;
+d.dance();
+
+```
+
+Exception Handling
+Exception ?
+try / catch / finally 
+
+==================
+Anonymous class and Lambda --> InterfaceExample.java
+
+Generics
+```
+public class Rectangle {
+    int width;
+    int breadth;
+    //
+}
+
+public class DRectangle {
+    double width;
+    double breadth;
+    //
+}
+
+public class LinkedList {
+    Node[] nodes;
+}
+
+class Node {
+    int data;
+    int prev;
+    int next;
+}
+
+---
+public class Rectangle<T> {
+    T width;
+    T breadth;
+    //
+}
+
+Rectangle<Integer> r1 = new Rectangle<>(4,5);
+
+Rectangle<Double> r2 = new Rectangle<>(1.4,3.5);
+
+Rectangle<String> r3 = new Rectangle<>("1 inch","5 cm");
+
+Generics is limited to Object type in Java
+
+Rectangle<int> r1 = new Rectangle<>(4,5); // ERROR
+
+Integer, Double, Float, Long, Short, ... are type wrapper classes for primitive types
+
+int x = 10;
+Integer iX = x; // boxing
+..
+int y = iX; // unboxing
+y++;
+```
+
+Java Data Containers ===> Java Collection Framework
+Array is a datacontainer --> first choice as data container
+Limitations --> Size is fixed, adding / remove from arbitrary position, Contiguos memory
+
+JCF has:
+1) interfaces
+2) implementation classes
+3) Utility / Algorithim classes which as methods like sort(), max(), binearySearch(), shuffle(), reverse(), ....
+
+Comparable vs Comparator interface
+
+Common: both are used for Comparision for sort(), max(), min(), ...
+
+Difference:
+Comparable --> is part of Object which we are comparing, generally based on PK [ unique field]
+Comparator --> logic goes in client application and not in Object [ fields other than PK ]
+
+String --> Comparable compare on lexical ordering
+String --> compare based on length ---> Comparator
+
+ByteCode Instrumentation
+
+List is a interface --> JCF
+* ordered collection
+* index based operations
+* supports duplicate elements
+* re-order [ shuffle, reverse, sort]
+
+Implementations:
+ArrayList
+LinkedList
+Vector [ legacy ] --> slow because of locking mechanism --> methods are synchronized
+Stack [ legacy ] --> slow because of locking mechanism --> methods are synchronized
+* Apache collections
+* https://www.vavr.io/
+
+ArrayList
+* like array but can grow / shrink
+* internal mechaism takes care of moving objects if any arbitray add / remove operations
+
+LinkedList
+* doubly linkedlist
+
+ArrayList list = new ArrayList(); // avoid this , always program to interface
+
+List list = new ArrayList(); // avoid this, use generics for type-safety
+list.add("A");
+list.add(new Book());
+list.add(3);
+
+if(list.get(i) instanceof String) {
+    String s = (String) list.get(i);
+}
+
+Prefer:
+List<String> names = new ArrayList<>(); // type-safe collection
+List<Employee> employees = new ArrayList<>();
+
+
+Task:
+Set, HashSet and TreeSet
+
+java 8 streams:
+ streams are wrappers around a data source, allowing us to operate with that data source and making bulk processing convenient and fast.
+
+ HOF --> functions which accept function as argument
+ * map() --> transformFn
+ * filter() --> based on predicate
+ * skip()
+ * flatMap()
+ * reduce()
+ * forEach()
+ * collect()
+
+ map(transformFn) {
+    list[]
+    for( every elem from stream) {
+            list.push(transformFn(elem));
+    }
+    return list;
+ }
+
+Terminal functions:
+1) forEach()
+2) reduce()
+3) collect()
+
+Intermediate functions:
+1) filter()
+2) map()
+3) flatMap()
+4) skip()
+5) limit()
+
+https://rxmarbles.com/
+
+```
+1) Filter needs Predicate
+@FunctionalInterface
+public interface Predicate<T> {
+    boolean test(T t);
+}
+
+2) Map needs transform function
+public interface Function<T, R> {
+     R apply(T t);
+}
+
+3) forEach needs Consumer
+@FunctionalInterface
+public interface Consumer<T> {
+    void accept(T t);
+}
+```
+
+
+products.parallelStream()
+		.filter(p -> p.getCategory().equals("computer"))
+		.map(p -> p.getPrice())
+		.reduce((v1,v2) -> v1 + v2);
+
+====
+
+Day 2 Task:
+Set, HashSet, TreeSet
+Exception Handling
+Comments in Java, Naming Conventions
+
+------
+
+Recap: 
+interface and its uses.
+
+Comparable, Comparator interfaces
+Arrays and Collections utility classes --> sort(), max(), binarySerach(), ...
+Arrays can be used on array type of data container
+Collections can be used on List type of data container
+
+List interface
+* ArrayList
+* LinkedList
+
+Iterable : all collections are iterable
+
+```
+public interface Iterable<T> {
+    Iterator<T> iterator();
+}
+
+public interface Iterator<E> {
+    boolean hasNext();
+    E next();
+    void remove();
+}
+List<Product> products = new ArrayList<>();
+
+products.add(new Product(53, "Wacom", 5600.00, "computer"));
+products.add(new Product(61, "Sony Bravia", 298000.00, "tv"));
+products.add(new Product(891, "Logitech Mouse", 890.00, "computer"));
+products.add(new Product(4, "iPhone 14", 78000.00, "mobile"));
+products.add(new Product(62, "Oneplus Nord", 56000.00, "mobile"));
+
+Iterator<Product> iter = products.iterator();
+while(iter.hasNext()) {
+    Product p = iter.next();
+    if(condition) {
+        iter.remove();
+    }
+}
+```
+Set --> unique collection, not ordered, can't be re-ordered
+
+Map is a data container which produces collection; it's a key/value pair
+Examples: Dictionary --> key is the word and value is meaning
+unique --> key
+duplicate --> value
+
+any registry is a Map type of data container
+
+HashCode? --> numerical representation of Object
+* similar objects should have same hashcode
+* dissimilar objects can also have same hashcode [ collision ]
+* Hash based contaniers uses hashcode to find duplicates and positioning of element in container
+
+HashBased containers: HashSet, Hashtable [ legacy ], HashMap
+
+
+-----
+
+Day 3:
+Annotation, Maven, Database interaction and Web application
+
+Metadata can be in the form of XML or Annotation.
+java 1.5 introduced Annotation
+
+Annotation: Metadata
+
+1) Who uses it?
+* Compiler
+* ClassLoader
+* Runtime
+2) Where can I apply it?
+* Type --> class, interface, Enum, Annotation, Record
+* method
+* field
+* parameter
+* constructor
+
+built-in annotation --> override
+
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.SOURCE)
+public @interface Override {
+}
+
+RetentionPolicy.SOURCE --> who uses Source --> Compiler 
+Metadata is used by compiler and removes this metadata in .class
+
+```
+public class Base {
+    public void test() {}
+}
+
+public class Derived extends Base {
+    @Override
+    public void test() {}
+}
+```
+
+Derived.class won't have annotaion details
+
+===================
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.CLASS)
+public @interface Mobile {
+    String name();
+}
+
+@Mobile(name="Samsung")
+public class CandyCrush extends Game {
+    ///
+}
+
+@Mobile(name="iphone")
+public class CandyCrushPhone extends Game {
+    ///
+}
+
+javac CandyCrush.java ===> CandyCrush.class [ this class still has @Mobile metadata]
+
+Samsung devices contain there own classloader; these classloader can read this metadata and decide
+to allow the class to be loaded on the device or not
+
+==============
+
+Annotations  can't have state and methods, they contain only properties
+
+RUNTIME annotation <-- most of annotations used from today 
+
+We will create 2 annotations
+Table and Column
+
+```
+@Table(name="books")
+public class Book {
+    int id;
+    String title;
+    double price;
+    // constructors
+    //setters()
+
+    @Column(name="BOOK_ID", type="NUMERIC(10)")
+    public int getId() {
+        ..
+    }
+
+    @Column(name="BOOK_TITLE")
+    public String getTitle() {
+        ..
+    }
+
+     @Column(name="AMOUNT", type="NUMERIC(12,2)")
+    public double getPrice() {
+        ..
+    }
+}
+
+books
+
+BOOK_ID  BOOK_TITLE    AMOUNT
+
+```
+
+we will use Annotations to generate SQL for DDL [ create, alter, drop] and DML [insert, select, update, delete]
+
+Property
+property = x; // set property
+x = property(); // get property
+
+<?> is unknown type --> allows to read, but mutation is not allowed
+
+```
+	List<Product> products = new ArrayList<>();
+
+		products.add(new Product(53, "Wacom", 5600.00, "computer"));
+		products.add(new Product(61, "Sony Bravia", 298000.00, "tv"));
+		products.add(new Product(891, "Logitech Mouse", 890.00, "computer"));
+		products.add(new Product(4, "iPhone 14", 78000.00, "mobile"));
+		products.add(new Product(62, "Oneplus Nord", 56000.00, "mobile"));
+
+    getData(products);
+  
+    public void getData(List<?> products) {
+        products.get(0); // valid
+        products.set(3, new Product()); // fails --> ? allows read operation, but not write
+        products.add(new Product()); // fails --> ? allows read operation, but not write
+    }
+```
+
+String is immutable, use StringBuffer or StringBuilder to mutate a String.
+
+createStatement(Book.class);
+
+==================
+
+Maven / Gradle:
+Maven is a build automation tool used primarily for Java projects.
+* Manage dependencies --> 3rd party dependency library
+* compile
+* test
+* bundle
+* deploy
+* start server
+...
+
+
+3rd party dependencies --> "jar" files in repository --> Java Archive
+
+pom.xml --> Project Object Model --> all configuration about dependencies and goals are configured in the pom.xml [ shared to all team member]
+
+pom.xml
+<dependencies>
+    <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>8.1.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.28</version>
+    </dependency>
+</dependencies>
+
+https://repo1.maven.org/maven2/
+
+Maven also manages trasitive dependencies
+mysql-connector-j depends on "google protobuf --> GRPC" --> download protobuf.jar with correct version
+
+-------------
+
+JDBC --> Java Database Connectivity --> Integration API for integrating JAVA <---> RDBMS
+
+JDBC provides set of interfaces to perform CRUD operations on RDBMS
+
+implementation classes are provided by database vendors
+mysql-connector-j-8.1.0.jar --> MySQL
+ojdbc-7.jar --> Oracle
+
+Steps to interact with RDBMS:
+1) Load database vendor provided drivers
+
+Class.forName("com.mysql.jdbc.cj.Driver");
+Class.forName("oracle.jdbc.Driver");
+
+2) Establish a database connection
+
+java.sql.Connection con = DriverManager.getConnection(URL, USERNAME, PWD);
+
+getConnection() is a factory method; 
+if URL points to MySQL --> creates MySQLConnection
+if URL points to Oracle --> creates OracleConnection
+
+Connection is a interface
+
+Examples of URL:
+jdbc:mysql://192.24.134.11:3306/employee_db
+jdbc:oracle:@thin:@192.24.134.11:1521/employee_db
+...
+
+3) use Statement, PreparedStatement, CallableStatement to Send SQL to database
+3.1) Statement
+    use this if SQL is fixed; same SQL for all requests
+    Example: select * from products
+3.2) PreparedStatement
+    use this if SQL depends on IN parameter [?]
+
+    select * from products where id = ?
+
+    insert into products values(?, ?, ?);
+
+4) ResultSet
+    is a cursor to fetched records
+
+5) close resources in finally block
+
+
+
+Docker is a container to run applications
+
+image --> software
+container -> application running image
+
+docker run -p 3306:3306 -d --name local-mysql -e MYSQL_ROOT_PASSWORD=Welcome123 mysql
+
+mysql --> image
+run --> pull mysql image from docker hub onto localmachine and run as --name local-mysql <<container>>
+
+-p --> mysql on docker container runs on "3306" port expose it to other application on "3306"
+
+-p 1234:3306 ==> mysql running on "3306" port in container is accessable on "1234" port for other application
+
+====
+
+docker run --name local-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=Welcome123 -d mysql
+
+% docker exec -it local-mysql bash
+# mysql -u root -p
+Enter password: Welcome123
+
+mysql> create database NCG_DB;
+
+mysql> use NCG_DB;
+
+mysql>  create table products (id int PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), price double, quantity int);
+
+mysql> insert into products values (0, 'Wacom', 4500.00, 100);
+mysql> insert into products values (0, 'Microsoft Mouse', 1500.00, 100);
+
+mysql> select * from products;
+
+executeUpdate() for INSERT, DELETE and UPDATE SQL
+executeQuery() for SELECT statement
+
+=============
+
+Web Application development using Java
+JSE --> Java Standard Edition --> core java
+JEE --> Java Enterprise Edition
+* enterprise application ==> large scale, heterogenous clients
+* Web application
+* Distributed computing
+* Naming service
+* mail service
+...
+
+Dynamic content
+ASP engine, PHP engine, Servlet engine
+
+Servlet --> server side java application --> Servlet engine
+
+Servlet engines -> Jetty , Tomcat, Netty, ...
+
+
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+
+}
+
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
+
+}
+
+http://localhost:1234/register
+
+HttpServletRequest encapsulates all data from client [ client data / form data + Browser + OS]
+
+HttpServletResponse is used to write data back to client
+
+Once Response is commited to client, HttpServletRequest and HttpServletResponse objects are destroyed
+and Thread is released back to the pool
+
+Servlet engine manages:
+1) creating instance servlet
+2) creates HttpServletRequest , HttpServletResponse
+3) Dependency injection: HttpServletRequest , HttpServletResponse are passed to appropriate Servlet which has a matching URL
+4) Once Response is commited to client, HttpServletRequest and HttpServletResponse objects are destroyed
+and Thread is released back to the pool
+
+---------
+
+@WebServlet("/register") --> used to map URL to Servlet
+
+Http Methods:
+1) GET --> READ
+2) POST --> CREATE
+3) PUT --> UPDATE
+4) DELETE --> DELETE
+5) PATCH --> PARTIAL UPDATE
+
+GET: address bar and hyperlink --> default GET request, no payload
+POST: generally FORM data, payload contains user data
+
+POST and PUT/ PATCH contains payload --> NOT SAFE METHODS
+
+GET, DELETE --> No Payload --> SAFE METHODS
+
+IDEMPOTENT 
+
+```
+
+@WebServlet("/products")
+public class ProductServlet extends HttpServlet {
+    public void doGet(HttpServletRequest req, HttpServletResponse res) {
+
+    }
+    public void doPost(HttpServletRequest req, HttpServletResponse res) {
+        
+    }
+}
+
+```
+GET http://localhost:1234/products
+
+POST http://localhost:1234/products
+
+=========
+
+Servlet engine metadata can be XML or Annotation
+Deployment descriptor:
+
+SAXParser
+1)
+public class ProductServlet extends HttpServlet {}
+web.xml
+<web>
+    <servlet>
+        <servlet-name>First</servlet-name>
+        <serlvet-class>com.adobe.prj.web.ProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>First</servlet-name>
+        <url-pattern>/products</url-pattern>
+    </servlet-mapping>
+</web>
+
+2) Annotation
+
+@WebServlet("/products")
+public class ProductServlet extends HttpServlet {
+}
+
+
+
+
+				
+
+        <dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
+		</dependency>
+
+Day 4
+
+Reacap: Database connectivity ==> JDBC [ integration API]
+
+Java <---> RDBMS
+
+java.sql package --> interfaces
+implementation classes are provided by database vendors [jar file]
+Class.forName(), DriverManager, Statement, PreparedStatement, ResultSet
+finally block ---> to release resources [ like close file, connection, socket]
+
+Task: getProduct by Id, update Statement.
+
+Web application development using Servlet technology.
+
+Web Server : which works on Request / Response based on HTTP protocol
+
+Servlet engine / web container [ Tomcat / Jetty / Netty / ..]
+these engines manages life-cycle of object
+Things what Servlet engine does:
+1) instantiate Servlets --> Singleton object
+2) instantiate HttpServletRequest and HttpServletResponse per request from client
+3) handle DI: inject HttpServletRequest and HttpServletResponse objects to HttpServlet
+4) destroys HttpServletRequest and HttpServletResponse when response is commited to client
+5) Manage Thread pool and assign one thread per client request.
+6) Once response is commited, threads are released back to the pool.
+
+
+Converting Standalone application to web application.
+
+packaging: war ==> Web archive [ only "war" files are deployable on Servlet engine]
+
+packaging can be "jar", "war", "ear", "sar" 
+
+War and jar
+
+for "jar" compiled code will be in "bin" folder
+for "war" compiled code will be in "WEB-INF/classes" folder
+"war" also contains static resources like "html", "css" and "js"
+
+1) <packaging>war</packaging>
+2) need Servlet API [ classes with "HttpServlet", "HttpServletRequest", ...]
+ <dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
+</dependency>
+3) We need "war" plugin
+<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.4.0</version>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+				</plugin>
+
+4) Embedded Jetty Server instead of installing a Servlet engine explicitly
+<!-- embedded JETTY server -->
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>11.0.15</version>
+				</plugin>
+
+Save "pom.xml" --> application should update, else Project --> Maven --> Update Project --> Force Update
+
+src / main / webapp folder --> static resources are created here.
+
+src/main/java --> servlets are created.
+
+Project --> Run As --> Maven build --> Goals
+jetty:run
+
+
+http://localhost:8080
+
+==============================
+
+Spring Framework
+Lightweight Container with Dependency Injection capabilities for building enterprise application.
+
+Bean: any object managed by spring container --> bean
+
+* Life-cycle management of beans
+* Wires dependencies using Inversion Of Control
+
+UI --> service --> DAO --> Database
+
+Advantages: Loose Coupling and easy to test
+
+Spring Framework instantiates classes which has one of these annotations:
+1) @Component
+2) @Repository
+3) @Service
+4) @Configuration
+5) @Controller
+6) @RestController
+7) @ControllerAdvice
+
+
+public interface EmployeeDao {
+    void addEmployee(Employee e);
+}
+
+@Repository
+public class EmployeeDaoJdbcImpl implements EmployeeDao {
+     public void addEmployee(Employee e) {...}
+}
+Spring creates instance of EmployeeDaoJdbcImpl as "employeeDaoJdbcImpl"
+
+@Service
+public class AppService {
+    @Autowired
+    private EmployeeDao empDao; // interface
+}
+Spring creates instance of AppService as "appService"
+employeeDaoJdbcImpl is wired to appService instance
+
+@Controller
+public class EmployeeController {
+     @Autowired
+    private AppService service; 
+}
+Spring creates instance of "EmployeeController" as "employeeController"
+appService is wired employeeController instance
+
+Eclipse --> Help --> Eclipse Martket Place --> Search "STS" --> GO --> install Spring Tools 4
+
+Spring Boot Framework on top of Spring Framework
+
+Spring Boot is highly opiniated Framework.
+1) If we choose to connect to RDBMS, Spring Boot provides DataSource out of the box --> Pool of database connection
+
+Use DataSource instead of DriverManager.getConnection() in enterprise application
+
+Latency in opening and closing connection if  DriverManager.getConnection() is used
+
+2) If we choose to build web application --> Tomcat Embedded WebServer is configured out of the box.
+
+3) RESTful: Java <--> JSON library [Jackson] is provided out of the  box
+
+--------
+SpringApplication.run() starts the Spring Container
+
+@SpringBootApplication is made of 3 features:
+1) @ComponentScan
+    scans for above mentioned 7 annotations and creates instance of classes
+2) @EnableAutoConfiguration
+    this takes care creating "DataSource", "EmbeddedTomcatContainer", "Jackson", ... based on type of project
+3) @Configuration
+
+-----------
+```
+
+Bean: -> Any object which is managed by spring container is a bean.
+employeeDaoMongoImpl
+
+
+Field employeeDao in com.adobe.prj.service.AppService required a single bean, but 2 were found:
+	- employeeDaoJdbcImpl
+	- employeeDaoMongoImpl
+
+Solution 1:
+1) @Primary
+@Primary
+@Repository
+public class EmployeeDaoJdbcImpl implements EmployeeDao {
+
+2) @Qualifier
+@Repository
+public class EmployeeDaoMongoImpl implements EmployeeDao {
+
+@Repository
+public class EmployeeDaoJdbcImpl implements EmployeeDao {
+
+@Service
+public class AppService {
+	@Autowired
+	@Qualifier("employeeDaoJdbcImpl")
+	private EmployeeDao employeeDao; // interface
+
+3) Based on Profile
+
+@Profile("prod")
+@Repository
+public class EmployeeDaoJdbcImpl implements EmployeeDao {
+
+
+@Profile("dev")
+@Repository
+public class EmployeeDaoMongoImpl implements EmployeeDao {
+
+Run As --> Run configuration --> Arguments
+Program arguments
+--spring.profiles.active=prod
+
+```
+
+Factory Method in Spring?
+1) We might need to instantiate objects of classes provided by 3rd party library which won't have any of the above mentioned "7" annotations
+Spring has to mange the instance
+
+2) Generally Spring uses default constructor for creating instances of class; sometimes we might need to pass our own values to constructor for creating instances.
+
+=============
+JPA and ORM
+
+ORM --> Object Relational Mapping [ Java Object <----> RDBMS table, Java Fields <---> table columns]
+ORM Frameworks:
+1) Hibernate
+2) Toplink
+3) KODO
+4) JDO
+5) openJPA
+6) EclipseLink
+...
+
+ORM Frameworks help in DDL and DML operations based on Mapping
+
+JPA --> Java Persistence API is a specification for ORM [ think interfaces for ORM]
+
+EntityManager em;
+
+public void addProduct(Product p) {
+    em.persist(p);
+}
+
+public List<Product> getProducts() {
+    Query query = em.createQuery(Product.class);
+    return query.getResultResult();
+}
+
+===
+
+PersistenceContext: Environment where entities [@Entity] are managed [ sync with DB]
+EntityManager is a class which manages PersistenceContext environment.
+EntityManager uses db connection from db pool [ DataSource] and uses provided JPAVendor[ Hiberate/ Toplink/ OpenJPA]
+
+===
+
+Spring Data Jpa ==> Simplifies using ORM;
+Spring Data Jpa which comes with Spring Boot; highly opinated
+* Creates DataSource --> Pool of database connection using HikariCP using configurations persent in application.properties [ DRIVER, URL, USERNAME, PWD]
+* uses Hibernate by default as ORM --> JPAVendor
+* just create interface; implementation classes are created by Spring Data JPA
+Example:
+```
+public interface ProductDao extends JpaRepository<Product, Integer> {
+}
+
+public interface CustomerDao extends JpaRepository<Customer, String> {
+}
+```
+No need for @Repository class if JPA is used with Spring Data Jpa
+Basic CRUD operations are created by class which inturn implements this interface.
+
+New Spring boot starter project:
+Screen 1:
+groupId
+artifactId
+version
+package
+
+Next>>
+Screen 2:
+lombok, MySQL Driver, Spring Data Jpa
+
+-----
+
+Setup database details in application.properties [ src/main/resources]
+
+to learn about which key to use --> look into global application.properties of spring boot
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
+
+1) ORM generates SQL, we need to tell ORM to generate SQL for MySQL
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
+2) spring.jpa.hibernate.ddl-auto=update
+update --> Map java class to existing table or if table is not present create it, if required alter
+create -> drop table on application exist, create it when application starts
+validate --> check if classes matches with existing table, if doesn't match application fail
+
+3) spring.jpa.show-sql=true
+logging SQLs generated
+
+---
+
+Only classes which has @Entity is managed by ORM/JPA
+@Id --> to mark as PRIMARY KEY
+@GeneratedValue(strategy = GenerationType.IDENTITY) ---> AUTO INCREMENT
+
+Task:
+CustomerClient
+addCustomer() and listCustomer()
+
+
+http://localhost:8080/api/orders/byDate?orderDate=2023-06-22
+
+application.properties
+spring.mvc.format.date=yyyy-MM-dd
+
+@GetMapping("/byDate")
+public List<Order> getByDate(@RequestParam("orderDate")  Date date) {
+		log.info("order date " + date );
+		return orderService.getOrder(date);
+}
+@DateTimeFormat(pattern = "dd-MM-YYYY") Date date
+===============
+Custom Queries, RESTful Web Service
+
+
+
+Recap:
+
+Spring Container and 7 annotations at class-level
+
+@Autowired, @Qualifier, @Primary, @Profile
+
+@Bean for a factory method
+
+ORM and JPA
+@Entity, @Id --> compulsory annotation
+
+@Table, @Column, @GeneratedValue
+
+JpaRepository --> contains most of the CRUD methods
+
+Day 5:
+
+How to write custom queries?
+
+SQL
+
+1) select * from customers;
+2) select * from customers where first_name = 'Raj'
+3) select first_name, last_name from customers;
+
+JP-QL --> Java Persistence API Query Language
+1) from Customer
+2) from Customer where firstName = 'Raj'
+3) select firstName, lastName from Customer
+
+=====
+
+Entity Association Mapping:
+1) one-to-many
+2) many-to-one
+3) one-to-one
+4) many-to-many
+
+customer --> Order [ one-to-many] --> one customer can place many orders
+
+Order --> Customer [ many-to-one] --> many orders are placed by a customer
+
+order --> LineItem [ one to many] -> one order can have many items
+LineItem --> Product [ many to one] --> Many lineitems can refer to a product
+
+https://martinfowler.com/tags/domain%20driven%20design.html
+
+A DDD aggregate is a cluster of domain objects that can be treated as a single unit. 
+An example may be an order and its line-items, these will be separate objects, but it's useful to treat the order (together with its line items) as a single aggregate.
+
+
+@ManyToOne introduces FK in owning table
+@OneToMany introduces FK in child table
+
+@Temporal
+
+java.util.Date ====> How to store in database table 
+
+new Date();
+
+@Temporal(DATE) ==> in database ==> 2023-8-23
+@Temporal(TIME) ==> in database ==> 11:26:00
+@Temporal(TIMESTAMP) ==> in database ==> 2023-8-23 11:26:00
+
+------
+
+Primary Key:
+1) we need to programatically assign id from application
+@Id
+int id;
+
+2) Database uses AUTO INCREMENT for id, no need to set id in application
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+int id;
+
+=======
+```
+Without Cascade:
+1 order has 4 items;
+@OneToMany
+@JoinColumn(name="order_fk")
+private List<LineItem> items = new ArrayList<>();
+
+DAO operations:
+orderDao.save(order);
+itemDao.save(i1);
+itemDao.save(i2);
+itemDao.save(i3);
+itemDao.save(i4);
+
+Delete:
+orderDao.delete(order);
+itemDao.delete(i1);
+itemDao.delete(i2);
+itemDao.delete(i3);
+itemDao.delete(i4);
+
+With Cascade:
+	
+@OneToMany(cascade = CascadeType.ALL)
+@JoinColumn(name="order_fk")
+private List<LineItem> items = new ArrayList<>();
+
+1 order has 10 items;
+
+orderDao.save(order); --> takes care of saving order and its items in line_items table
+orderDao.delete(order); --> takes care of deleting order and its items
+
+With this we might not require LineItemDao.java interface
+```
+
+EAGER and LAZY Fetching
+```
+1)
+one-to-many is LAZY fetching by default;
+
+orderDao.findAll();
+select * from orders;
+
+i get orders with id 5,11,83,12,6
+
+itemDao.findOrderByOrderId(5);
+itemDao.findOrderByOrderId(11);
+itemDao.findOrderByOrderId(83);
+itemDao.findOrderByOrderId(12);
+itemDao.findOrderByOrderId(6);
+
+2) 
+with EAGER fetching
+@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+@JoinColumn(name="order_fk")
+private List<LineItem> items = new ArrayList<>();
+
+orderDao.findAll();
+select * from orders;
+ORM framework will fetch all items belonging to orders implicitly
+
+```
+Many-to-one by default is EAGER fetching
+
+orderDao.findAll();
+select * from orders; also gets select * from customers where customer_fk = ?
+
+=============
+
+Transactional 
+1) for making atomic operations
+
+below code, everything commits or if any action throws Exception, rollback all operations
+@Transactional
+public void doTask() {
+
+}
+
+2) any changes done to enitity in @Transactional method will be flushed to database [ sync],
+this feature is called as Dirty Checking
+
+Entity become dirty --> update database
+```
+@Transactional
+public void updateProduct(int id, double price) {
+    Optional<Product> opt = productDao.findById(id);
+    if(opt.isPresent()) {
+        Product p = opt.get();
+        p.setPrice(price); // here product become dirty --> ORM issues UPDATE SQL
+    }
+}
+```
+JSON data from client
+
+{
+    customer:{"email": "sam@adobe.com"},
+    "items": [
+        {"product": {id:3}, qty: 1},
+        {"product": {id:1}, qty: 2}
+    ]
+}
+
+========
+
+Vehicle Rental application:
+Entities:
+1) Vehicle
+2) Customer
+3) Rental
+
+Entities are available.
+```
+Task:
+1) Add Customer [ do it from mysql command prompt]
+2) Add Vehicle [ do it from mysql command prompt ]
+3) Application
+3.1) Rent a Vehicle --> DAO save() method
+    use system_date for rental_start_Date
+    rentals
+    id   rental_start_date  rental_end_date customer_fk         rental_amount
+    23   22-AUG-2023        NULL            peter@adobe.com     0.0
+
+3.2) Return a vehicle --> use dirty checking to update
+
+    user passes "rental" id for returning a vehicle
+    pass date for returning the vehicle [24-AUG-2023]
+    
+    calculate rent based on number of days and cost/day of vehicle
+
+    rentals
+    id   rental_start_date  rental_end_date         customer_fk             rental_amount   vehicle_fk
+    23   22-AUG-2023        24-AUG-2023            peter@adobe.com          7997.00         UP12EA2341
+
+```
+
+Task 2:
+Ticket Tracking application:
+Assumptions "employees" data exists in database
+
+tickets
+ticket_id   raised_by   issue  raised_date  resolved_by  resolve_text  resolved_date
+
+```
+1) Raise a Ticket
+
+tickets
+ticket_id   raised_by           issue           raised_date  resolved_by  resolve_text  resolved_date
+423         harry@adobe.com     Docker crash    19-AUG-2022  NULL         NULL        NULL
+
+2) Resolve the ticket
+
+
+tickets
+ticket_id   raised_by           issue           raised_date  resolved_by    resolve_text  resolved_date
+423         harry@adobe.com     Docker crash    19-AUG-2022  kim@adobe.com   reinstall        20-AUG-23
+
+```
+
+Task3:
+Meeting Room booking application -> decide entites and association
+
+==============================================================
+
+RESTful Web Services
+
+Representational State Transfer
+
+Resource: what resides on server [ database / file / printer/ ...]
+
+State of Resource: current state of resource
+
+Representation: state of resource can be served in various formats [ XML/JSON/CSV/..]
+
+REST uses URL to identify resource and HTTP methods for actions [CRUD] operations
+
+POST --> CREATE a record
+GET --> READ 
+PUT/PATCH --> UPDATE
+DELETE --> DELETE
+
+Example:
+1)
+GET http://localhost:8080/api/products
+to get all products
+
+2) 
+GET http://localhost:8080/api/products/4
+use PathParameter [/] to get based on "ID" or sub-resource
+get a product whose id is "4"
+
+3) 
+GET http://localhost:8080/api/products?category=mobile
+Use QueryParameter [ ? ] for filtered data [ sub-set]
+get all mobile products
+
+4)
+POST http://localhost:8080/api/products
+payload from client contains a new product to be added to "products" resource
+
+5) AVOID this --> BAD restful call
+DELETE http://localhost:8080/api/products/3
+delete a product whose id is "3"
+
+6)
+PUT http://localhost:8080/api/products/2
+payload from client contains a new product data to be modified in "products" resource with an id of "2"
+
+
+POST and PUT contains payload --> Not Safe Methods
+GET and DELETE --> No payload --> Safe Methods
+
+====
+
+RESTful uses HttpHeaders to identify what representation to be sent to client and type of payload sent from client
+
+1) Client needs resource in "json" format
+Accept: application/json
+
+2) ContentType: text/xml
+client is sending xml data to server
+
+=========
+
+Libraries for Java <--> JSON:
+1) jackson [default]
+2) GSON
+3) jettison
+4) Moxy
+
+
+POST http://localhost:8080/api/products
+ContentType:application/json
+Accept:application/json
+
+{
+    "name": "Panasonic Tv",
+    "price": 89000.00,
+    "quantity": 500
+}
+
+
+Download POSTMAN
+
+Task:
+
+CustomerController
+
+GET all Customers
+Get by email
+add customer
+
+===============
+
+
+Placing Order thro POSTMAN
+POST http://localhost:8080/api/orders
+{
+    "customer":{"email": "george@adobe.com"},
+    "items": [
+        {"product": {"id":4}, "qty": 1},
+        {"product": {"id":2}, "qty": 2}
+    ]
+}
+
+"orderDate": "2023-08-22T06:53:37.476+00:00",
+
+@JsonFormat(pattern = "dd/MMM/yyyy")
+Date orderDate;
+
+"orderDate": "22/Aug/2023",
+
+
+Task 1, 2 and 3 --> RESTful Web Services.
+
+============
+
+Exception handling in RESTful Web Services
+Input validation
+Testing
+Security
+
+
+Day 6
+-----
+
+Recap:
+
+JPA association Mapping
+1) @OneToMany
+2) @ManyToOne
+3) @JoinColumn introduces Foreign key
+a) @ManytoOne FK is introduced in owning table
+
+public class Order {
+    @ManyToOne
+    @JoinColumn(name="customer_fk")
+    Customer customer;
+}
+
+customer_fk will be in orders table
+
+b) @OneToMany FK is introduced in child table
+public class Order {
+    @OneToMany
+    @JoinColumn(name="order_fk")
+    List<ListItem> ...
+}
+
+order_fk was added in "line_items" table
+
+----
+
+@Transactional: when placed on method, we make the operations in method as atomic [ commit / rollback]
+Also any changes done to the enitity in the method marked with @Transactional, dirty checking happens and updates are sent to DB [ no need for explict UPDATE call]
+
+* Built-in methods of JpaRepository are @Transactional by default, any custom operations involvig save, delete or update we need to explictly mark @Transactional
+
+----------
+
+Building RESTful Web Services: --> HTTP protocol
+Resource --> URL
+actions --> HTTP methods [ GET, POST, PUT/ PATCH , DELETE]
+Accept: text/xml
+Accept: application/json [ default enabled with Jackson library to convert java --> json]
+
+ContentType:application/json [ default enabled with jackson library to convert json --> java]
+ContentType:text/xml
+
+Any other representation other than JSON we need to configure ContentNegotiationHandler, example configure JAXB for XML
+
+@RestController
+@RequestMapping
+@GetMapping, @PostMapping, @PutMapping, @DeleteMapping 
+@RequestBody [ to inform HttpMessageConvertor to convert payload to Java]
+@ResponseBody - to inform HttpMessageConvertor to convert java to representation paylod to be sent to client] ==> Optional
+
+@RequestParam is used to read Query Parameters from URL [ http://localhost:8080/api/products?category=mobile] ==> method(@RequestParam("category") String category)
+
+@PathVariable to read Path parameter
+http://localhost:8080/api/products/4
+
+@GetMapping("/{pid}")
+method(@PathVariable("pid") int id)
+
+--------------------
+
+Day 6:
+
+Bi-directional association [ Avoid this, use it judically]
+
+```
+public class Customer {
+	@Id
+	private String email;
+	
+	@Column(name="first_name")
+	private String firstName;
+	
+	@Column(name="last_name")
+	private String lastName;
+
+    @OneToMany(mappedBy = "customer")
+	private List<Order> orders = new ArrayList<>();
+}
+
+public class Order {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int oid;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "order_date")
+	private Date orderDate = new Date(); // system date
+
+	private double total; // computed
+
+	@ManyToOne
+	@JoinColumn(name = "customer_fk")
+	private Customer customer;
+
+```
+Order o = ...
+Customer c = o.getCustomer();
+
+Customer will login
+Display all orders of the customer
+List<Order> orders = c.getOrders();
+
+======================================
+
+@OneToOne
+
+Employee and Laptop
+```
+@Entity
+@Table(name="employess")
+public class Employee {
+    @Id
+    int eid;
+    String name;
+
+    @OneToOne(mappedBy="employee")
+    Laptop laptop;
+}
+
+@Entity
+@Table(name="laptops)
+public class Laptop {
+    @Id
+    String serialNo;
+
+    String make;
+
+    @OneToOne
+    @JoinColumn(name="employee_fk")
+    Employee employee;
+}
+```
+
+============
+
+@ManyToMany
+
+Assume Employee <-----> Project is many to many
+Employee can work in multiple projects; project can have many employees
+
+Movie <---> Actor
+Movie has many actors
+Actor can work in many movies
+
+Student <--> Course
+Student enrolls for many courses.
+Course can have many students
+
+```
+employees
+eid   name       start_date      end_date
+423   Asha      20-01-2002       NULL
+522   Usha      15-4-2020       NULL
+
+projects
+pid   name  start_date   end_date   client
+1     AEM   26-10-2011   4-5-2015   HARMAN
+2     GOVT  ..          ...
+
+Link table
+employees_projects
+eid  pid
+423   1
+423   2
+522   1
+
+```
+I need to keept track of from duration of employee assocaited with project and role played in project
+
+Link table
+```
+employees_projects
+eid  pid start_date  end_date    role
+423   1  20-01-2002 23-02-2003  JR.DEVELOPER
+423   2  26-02-2003 NUL         LEAD
+522   1
+```
+Where are you going to have these extra fields?
+Solution
+
+Association Class: 
+```
+@Entity
+@Table("employees_project")
+public class EmployeeProject {
+    @Id
+    int id;
+
+    @ManyToOne
+    @JoinColumn("eid")
+    Employee employee;
+
+    @ManyToOne
+    @JoinColumn("pid")
+    Project project;
+
+    Date startDate;
+    Date endDate;
+    String role;
+}
+```
+Now assocation becomes;
+
+Employee --> OneToMany : <--- ManyToOne --- EmployeeProject ----> OneToMany; <--- ManyToOne -- Project
+
+----
+
+Movie and Actor --> extra fields are when did actor work in movie and role played in movie
+
+```
+actors
+aid   name
+1     John Travolta
+2     Uma Thurman
+3     Bruce Willis
+
+movies
+mid     name
+1       Pulp Fiction
+2       Broken Arrow
+3       Die Hard
+4       Kill Bill
+
+movie_actors
+mid   aid   role
+1     1     Main
+1     2     Short role
+1     3     
+2     1     Antogonist
+4     2 
+
+```
+=========================================
+
+Valdiation:
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
+
+```
+public class Product {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@NotBlank(message = "Name is required!!!")
+	private String name;
+	
+	@Min(message="Price entered ${validatedValue} should be more than {value}", value = 0)
+	private double price;
+
+	@Min(message="Quantity entered ${validatedValue} should be more than {value}", value = 10)
+	private int quantity;
+}
+
+@RestController
+@RequestMapping("api/products")
+@Validated
+public class ProductController {
+    @PostMapping
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public Product addProduct(@RequestBody @Valid Product p) {
+		return service.addProduct(p);
+	}
+
+```
+
+MethodArgumentNotValidException: 
+```
+Validation failed for argument [0] in public com.adobe.prj.entity.Product com.adobe.prj.api.ProductController.addProduct(com.adobe.prj.entity.Product) with 3 errors: 
+
+[Field error in object 'product' on field 'price': rejected value [-120000.0]; codes [Min.product.price,Min.price,Min.double,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.price,price]; arguments []; default message [price],0]; default message [Price entered -120000.0 should be more than 0]] 
+
+[Field error in object 'product' on field 'name': rejected value []; codes [NotBlank.product.name,NotBlank.name,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.name,name]; arguments []; default message [name]]; default message [Name is required!!!]] 
+
+[Field error in object 'product' on field 'quantity': rejected value [2]; codes [Min.product.quantity,Min.quantity,Min.int,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.quantity,quantity]; arguments []; default message [quantity],10]; default message [Quantity entered 2 should be more than 10]] ]
+```
+
+RESTful API Documentation
+* How will client [React / Angular / FLutter or other applications] come to know about end-points available?
+* Which Http methods are supported
+* What is the payload?
+
+RAML and OpenAPI [ Swagger ]
+
+yml --> YAML
+```
+/orders:
+  displayName: Orders
+  get:
+    is: [ assets.paging ]
+    (monitoringInterval): 30
+    description: Lists all orders of a specific user
+    queryParameters:
+      userId:
+        type: string
+        description: use to query all orders of a user
+  post:
+  /{orderId}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: assets.Order
+            application/xml:
+              type: !include schemas/order.xsd
+```
+
+The OpenAPI Specification is a specification language for HTTP APIs that provides a standardized means to define your API to others.
+
+Scan classes with @Controller and @RestController and generated documentation.
+
+@Controller ===> Server Side Rendering [ look into Servlet example in database project]
+
+@RestController ==> sending JSON / XML ==> Client side rendering
+
+<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
+<dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>2.2.0</version>
+</dependency>
+
+http://localhost:8080/v3/api-docs ==> use this JSON to create custom Documentation Page using React/ Angular/ vue /... / Flutter
+
+http://localhost:8080/swagger-ui/index.html#/
+
+https://www.baeldung.com/swagger-operation-vs-apiresponse
+==================
+
+Security
+
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+
+RESTful Web services has to be Stateless
+JSESSIONID is not apt for RESTful Web Services
+Solution: TOKEN based authorization
+
+Authentication and Authorization
+
+opaque token and JWT token
+
+JWT Token
+JSON Web Tokens
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+HEADER:ALGORITHM & TOKEN TYPE
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+
+PAYLOAD:DATA
+{
+    "subject": "xyz@rediff.com",
+    "roles": "ADMIN", "MANAGER", "GUEST", // Authorities
+    "iat": 35343552, // issued at
+    "exp": 44555523, // expire
+    "iss": "http://security.amazon.com/iam" // issuer
+}
+
+VERIFY SIGNATURE
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  "mytopsecretsaltkey", --> String key, prefer using PRIVATE key and Public KEY
+)
+
+Private Key --> to generate Token --> Used by Authorization Server
+Public Key --> to verify Token --> used by Resource Server
+OpenSSL / Keytool
+
+==========
+
+HttpHeader
+Authorization:Bearer <<token>>
+
+
+Files:
+DTO:
+JwtAuthenticationResponse,SigninRequest, SignUpRequest
+
+Service:
+AuthenticationService, JwtService
+
+cfg:
+JwtAuthenticationFilter, SecurityConfiguration
+
+api
+AuthenticationController
+
+pom.xml --> jsonapi and security
+
+=========
+
+UsernamePasswordAuthenticationFilter
+
+attemptAuthentication(...)
+
+
+
+

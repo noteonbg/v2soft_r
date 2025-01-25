@@ -1,0 +1,244 @@
+1. one more example of JWT security
+2. look at code samples of microservices..
+
+hopefully people are able to get practicals jwt
+accscneario or archcode.. core java code.. are we able to write unit test cases..
+
+to do the thing(X), x == jWt, web service..., there are multiple steps.. important to have a checklist..
+in form an excel sheet.. we get repeatability..
+
+
+day 1 story.
+
+1. loyalty is towards a project...
+1.1 we respect architecture.
+1.2 architecture... abililty of project to adapt to change.. time perspective..
+
+
+any design is a tradeoff. disadvantages  of something should be known before we start using it...
+
+web applciations.. what is disadvantage
+mobile app.. what is disadvantage
+
+
+just knowing advantages using something is a bad design...
+
+"opinion".. that is what you will see today when we talk about microservices.. architecture..
+
+kids favourite words.. unique, creative, challenging... all these words need a process and not heroism if we think
+about them seriously..
+
+why use microservices..
+we are able to split our applcitions into tiny parts and each tiny part can be provided resource as and when needed.
+cloud basis... avaialiblity of resource on demand...  2003 to 2005.... that is era when people started about microservices...
+
+calculator program..
+
+monolith...
+add
+subtract
+multiply
+divide
+
+split this into 4 applications...
+someday lot of people need add. ok provide resources add.
+someday lot of people need subtract, ok remove resources from add and provide to subtract..
+
+
+somebody tells I like X. he is telling I like the X plus also X minus also..
+
+why do i Like java, jvm
+what I hate java .. jvm
+
+drawback.. AWS... drug business.. first way give it free and then keep on increasing pricess.
+
+
+microservices.. we are writing applications for whom resoures can given on demand...
+
+because there are lot of components. how we will communicate becomes complex...
+how you deal with this failure between components.. 
+
+if we know architecture.. then each layer can be coded independently..
+if we our web services function is working. then try to convert that into microservice is relatively easier job.. only.. 
+
+proof of anything valuable is will the customer pay for it...
+
+
+xml ... not a configuration... it has wide spread applications..
+properties.. configuration
+json.. configuration
+yaml one more opinon on how to configure...
+
+
+
+lower the cost of failure.. because of me project wont succed project wont fail....==system
+tolerate uncertainty...  writing a poc..
+
+
+in the resume. xml under web technology category.. horrible. who said xml is   web technology. it is not..
+xml is very generic in terms of usage...
+
+Design is non deterministic.. that means there will be many ways to do the correct thing...
+what does all these things mean... when something subjective dont have strong opinion on it...
+
+microservices good.. but telling spring boot microservices is only way to do it.. bad...
+
+things will keep repeating itself.. --SOAP based web services..
+
+
+
+
+moral of the story...
+1. avaiablity of resource on demand.. that is selling point of microservices..
+2. each application needs to communicate with other... so lot of other component needed..
+service registry
+config server
+some kind of distributed logging.
+api discovery...
+3. each thing in any framework will have its own dependency and configurations...
+
+
+
+web services story... we make our service layer more usable to lot of people..
+
+somebody would have a product called X which lot of people are using..
+some other person will make the same product called X and tell it is better...he will change the name from X to Y..
+and tell Y is good.
+craziness of  "sales pitch"
+
+as a technical person how do we cut down English noise..
+
+can we generalize learning...
+what we are doing...
+1. callinga  web service.. ok.. we know RestTemplate,Restclient,WEbClient..
+2. declaring a web client...
+
+
+core java theory..
+if dont define the method for the interface, it means most of times we are going to caller of the function
+rather than definer of the function..
+
+if people keep telling things keep on changing, somebody ask tell in last 40 years what has not changed
+in computer science.. distributed computing theory has not changed.. it is still the same...
+
+
+in every company we need English professors to name things only.. so technical people can be busy
+if we dont generalilze..
+
+don bother about the terminolgoies...
+
+1. worry about the architecture
+2. when it comes to coding.. since multiple steps are there.let us operate thru a checklist..
+
+a pattern strategy design pattern, plug and play of algorithms..
+profiles
+when i create for spring boot or spring how will it resolve..
+B should be wired with A.
+but we have two B obejcts with us....
+
+syntax is a function of time...
+concept is not..
+
+
+docker is platform with respect to cloud...solving this great problem called
+"it was working on my system" 
+
+
+
+
+
+quick summary.
+1. once we know how to write web services function.. we have think in terms of how to split the application services
+into smaller onces so that we can provide resouces to them on demand...
+2. becusae of this splitting.....
+
+JWT role based application..
+
+if a company called X gives a offer  letter. how do we judge that company is legal or not..
+mca..
+
+oauth...
+sign in with google
+sign in with microsfft
+
+as  an applicatin owner i dont want to share user passwords, i will outsource authentication to somebody else.
+
+
+
+oauth..
+1. who is aouth provider..
+
+
+I want to work on X, X needs Y and I dont know Y... so question is can learn Y quickly with intent of solving
+X and not doing phd on Y.
+
+x= jwt security..
+y== one to many mapping in JPA
+
+one to many in RDBms based world..
+foreign key...
+
+which is unqiue
+primary
+forign
+both
+
+our code ok.. to learn some basic syntax, proof of knowing is always other person code...
+1. spring.io.guides..
+2.
+
+
+{
+
+
+"role":["admin","user","mod"]
+}
+
+
+in terms of practicals..
+
+1. oauthpoc... ( see it whether it works your gmail account or GitHub account)
+2. spring-boot-spring-security-jwt-authentication , make it work in your system and understand the code.
+3. https://spring.io/guides/tutorials/spring-boot-oauth2#_social_login_simple try to make it work..
+4. archcode  or account scenario..
+can try to implement some role based JWT security..
+
+please take a break till 10.10Am and join back..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

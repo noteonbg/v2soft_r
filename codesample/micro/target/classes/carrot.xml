@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+   
+   <bean id="obj2" class="testhelloworld.B"/>
+   
+   
+   <bean id="obj1" class="testhelloworld.A">
+   		<property name="junk" ref="obj2"/>
+   </bean>
+   
+   
+   <!-- 
+   <bean id="x" class="basics.spring.A" >
+   <property name="abc" ref="y"/>
+   </bean>
+   
+   
+   <bean id="y" class="basics.spring.B" /> 
+   
+   
+   
+   
+   <bean id="yobj" class="basics.spring.B" />
+   
+   -->
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  <!--  <bean id="x"    class="poc.springbasics.A"></bean>
+   
+   <bean id="y"    class="poc.springbasics.B"></bean>
+   
+       <bean id="why"    class="poc.springbasics.B"></bean>
+          <bean id="where"    class="poc.springbasics.B"></bean>
+          
+             <bean id="when"    class="poc.springbasics.B"></bean>
+     -->
+     
+     
+     <!-- 
+     <bean id="s1"    class=" poc.springbasics.Sim">
+     <property name="simno" value="1"/>
+       </bean>
+
+
+     <bean id="s2"    class="poc.springbasics.Sim">
+     <property name="simno" value="2"/>
+       </bean>
+       
+       
+     <bean id="m1"    class=" poc.springbasics.Mobile">
+     <property name="s" ref="s1"/>
+       </bean>
+       
+       
+       
+
+
+   <bean id="x"    class="poc.springbasics.Presentation">
+   <property name="s"  ref="y"></property>
+   </bean>
+
+   <bean id="y"    class="poc.springbasics.ServiceLogic">
+   <property name="d" ref="z"></property>
+   </bean>
+
+   <bean id="z"    class="poc.springbasics.DAOLayer"></bean>
+
+
+ -->
+
+</beans>

@@ -1,0 +1,230 @@
+multiple choice test good for evaluation ... but in real life 
+
+1. tolerate uncertainty
+2. when we get a doubt can we write  a small program
+
+
+1. security in spring boot hello world simple authentication..
+2. validation and how you handle exceptions.
+3. quickly summarize junit and look some  more syntaxes on Mockito..
+
+hands on.
+1. you have the programs work.
+2. controller program which is working, 
+you have to write service part
+you have to write dao part.
+you have unit test for service and controller part..
+
+security.
+1. who are we
+2. what we can access.
+3. availability of standards..
+
+yesterday rant... java enterprise edition.
+consistant theme ever since.. RestTEmplate, RestClient,Webclient.. opinions..
+
+x+spring learn x independently..
+
+folder structure depends on the project type you are building
+
+spring boot project for web services will have some type X.
+angular project structure have some type y.
+
+
+x
+x.config @bean
+x.security.. security
+x.dao
+x.model
+x.service
+x.dto
+
+in our case it is just a poc... so ok..we are keeping everything in same package..
+
+
+controller is place where security is applicable..starts from...
+
+service.
+dao..
+ok .. no security.. it is core java...
+
+spring boot..depending on what is present in classpath spring boot will autoconfigure..
+spring boot security it will try to autoconfigure..
+
+"opinion"
+jwt opinion
+aoauth opinion
+simple opinion.
+
+classes...not worth byhearting on need basis we can learn..
+
+
+
+@bean.
+object created by programmer
+used by spring for wiring..
+
+all of you by now must know spring tells dont use any thing independently
+get addicted to me and use it thru me only... standard product strategy..
+as a user of the product we should keep our focus as to not to get addicted
+to any particular thing...
+
+IT industry is notoriouis for starting from place X and telling X is bad
+and going to Y and coming  back to X and calling X as Z telling Z is the best.
+
+1970's .. every it vendor was addicted IBM.. then one day IBM kept a gun
+at the customer head and everybody ran but could not escape and they surrendered
+till Microsoft ame..
+
+
+day 1 theory...
+when you define a function, relax and think who is going to call it
+in this case it is system..spring framework
+
+security in a project is not decided individually... overall approach
+which the entire project will stick with..
+
+how to deal with exceptions thrown from the controller functions...
+we cant put try and catch .. 
+
+if we are on the server side.. rule no 1 never trust the client..
+input validation you do it by yourself first.. 
+how to validation at controller level...
+
+validation, do put something called pom.xml validation related dependency...
+
+keep your poc small..when you are doing validation..
+
+1. validation of controller funtions inputs... 
+2. each member in the project should not think how to do it.. project ..nightmare..
+project specific approach
+
+any project in need of a hero shows there is a horrible process..
+key skill how can i have stupid person and still get a good job done.. maturity of a process.
+
+
+
+
+project securitypoc, see whether program works in yoru system..
+project webservciespoc, 
+	package validationadventure.. see we understand the code here..
+	package anothervalidationexample.. see we understand the code here..
+	package com.clients.. LoanRestclient.java... have a look at it..
+	RestClient. REstTemplate and WEbClient
+	
+
+
+come to the package another validationexample...
+here change the getloan method to have a loan id as an input
+implement service
+implement dao..
+implement security.. where applyloan itshould be secured.
+getloan no security needed.
+write unit test cases for the same..
+split createloan and getloaninfo into two separate spring boot applications...
+
+
+quick story telling on unit testing.
+we already told a story..
+
+when compared to their technical fields IT people can use adjectives liberally...
+
+on subjective things having strong opinion is a sin...
+
+what is important thing
+we need to some api to call the web service... RestXX (requst/response ) or WebClient( reactive programming)
+
+-----------------------
+ok we told all this things in context of architecture of code
+repeat the same thing context of frameworks used in unit testing..
+
+testingweb-complete
+
+generally making a mock of an interface is bad idea...
+
+interface called List...
+how to use List.. we cannot use...
+we have to use ArrayList
+so mockArrayList and not List..
+
+
+https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#verify-T-
+
+when you are using spring + Mockito .. use Mockito the spring way... whatever spring
+tells.. but you people think what it means in your project..
+
+1. mock X
+2. think where to use the X
+3. asserts
+
+what all things do you want to test...
+
+1.unit testing to be faster.
+2. we will mock whichever is slow..
+3. some function should never have been called...
+
+partial mocking...   English is free.. so many words will keep coming
+if we want to generalize ..learn design patterns..
+
+all mocking.. proxy design pattern...
+
+
+what is spy.
+any readmade function if i am calling, i will open documentation and see
+rather than to listen to somebody opinion of what it goes..
+
+
+Creates a spy of the real object. 
+The spy calls real methods unless they are stubbed. 
+
+partially mock the behavior then consider using spy..
+
+i did mock and where did i use the mock
+
+----------------------------------------------
+understand the following code
+project securitypoc, see whether program works in yoru system..
+project webservciespoc, 
+	package validationadventure.. see we understand the code here..
+	package anothervalidationexample.. see we understand the code here..
+	package com.clients.. LoanRestclient.java... have a look at it..
+	RestClient. REstTemplate and WEbClient
+project testing-web-complete
+	package.. mockitopoc of test ...folder
+	see are you able to understand the code..
+	
+then attempt the following code
+come to the package another validationexample...
+here change the getloan method to have a loan id as an input
+implement service
+implement dao..
+implement security.. where applyloan itshould be secured.
+getloan no security needed.
+write unit test cases for the same..
+split createloan and getloaninfo into two separate spring boot applications...
+you can look at the class WebMockTest called com.example.testingweb 
+
+please attempt the practicals given in the chat window.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

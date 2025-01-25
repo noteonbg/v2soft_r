@@ -1,0 +1,76 @@
+
+
+Loan Approval System
+
+In a financial institution,
+ a Loan Approval System is responsible for evaluating loan applications from customers and deciding whether to approve or reject a loan request based on certain criteria. 
+
+You are tasked with implementing a program that automates the loan approval process. The system should evaluate loan requests for various types of loans (e.g., Personal Loan, Home Loan, Car Loan) based on the following factors:
+
+1. Customer Information:
+   - Name
+   - Age
+   - Annual Income
+   - Credit Score
+
+2. Loan Request Information:
+   - Loan Type (Personal, Home, Car)
+   - Loan Amount Requested
+   - Loan Term (in years)
+   
+3. Approval Criteria:
+   - For Personal Loan:
+     - The applicant's age should be between 21 and 60.
+     - The credit score must be 650 or higher.
+     - The requested loan amount should not exceed 50% of the applicant’s annual income.
+   - For Home Loan:
+     - The applicant's age should be between 25 and 55.
+     - The credit score must be 700 or higher.
+     - The requested loan amount should not exceed 60% of the applicant’s annual income.
+   - For Car Loan:
+     - The applicant's age should be between 23 and 60.
+     - The credit score must be 600 or higher.
+     - The requested loan amount should not exceed 40% of the applicant’s annual income.
+
+4. Loan Term Validation:
+   - The loan term should be between 1 and 20 years for all loan types.
+
+5. Output:
+   - If the application meets all the approval criteria, the system should approve the loan and display the loan details.
+   - If the application fails any of the approval criteria, the system should reject the loan and provide a rejection reason.
+
+Sample Input:
+java
+Customer Details:
+- Name: X
+- Age: 30
+- Annual Income: 60000
+- Credit Score: 720
+
+Loan Request Details:
+- Loan Type: Home Loan
+- Loan Amount Requested: 35000
+- Loan Term: 15 years
+
+
+Sample Output:
+
+Loan Application Status: Approved
+Loan Details:
+- Loan Type: Home Loan
+- Loan Amount: 35000
+- Loan Term: 15 years
+- Monthly Payment: Rs 250.12 (calculated using interest rate for home loan)
+
+
+ Additional  Features (Optional):
+1. Interest Calculation: Implement simple interest or compound interest calculation for the loan repayments.
+2. Loan Repayment Schedule: Display a repayment schedule for the approved loans, showing the amount to be paid each month over the loan term.
+3. Loan Rejection Reasons: Provide detailed rejection reasons based on the specific criteria that were violated.
+
+Steps to Implement:
+1. Create `Customer` and `LoanRequest` classes.
+2. Implement loan validation logic in a `LoanApprovalSystem` class.
+3. Use conditional checks to evaluate loan requests against the approval criteria.
+4. Implement interest calculation and loan repayment schedule logic.
+

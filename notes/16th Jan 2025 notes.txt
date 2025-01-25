@@ -1,0 +1,322 @@
+yesterday story.
+
+1. I had entertainment in setup of the properties file and spring maven
+project was giving problem what was good news.. since I had a problem
+I did  not go writing further any code.. all these problems will get resolved
+in real life because somebody else would have already a project..
+
+2. in problem hell or heaven does not matter, repeatability matters..
+
+
+3. intent first and language next..
+if intent is repeatability.. then it is better to have a checklist
+than trust our "instinct" to solve the problem..
+
+4. until I open other person code.. i wont know whether i know technology
+or not..
+
+generalize your learning.. we want to reduce remembering things..
+
+List<Object[]> splitUpNames = Arrays.asList("John Woo", "Jeff Dean", "Josh Bloch", "Josh Long").stream()
+        .map(name -> name.split(" "))
+        .collect(Collectors.toList());
+
+process a datastructure
+intermediate operations
+collect the results.
+while doing this you dont change the content of the datastructure  any way...
+
+
+splitUpNames.forEach(name -> log.info(String.format("Inserting customer record for %s %s", name[0], name[1])));
+
+old style and old school thinking.. i see a function, dont assume i know the function
+i read the documentation..
+
+Lamda expression.
+they are creating an object of a class which implements an interface.
+remember in java
+
+f1(x);
+x has to be an object of a class.
+x has to be an object of a class which implements an interface
+x is a primitive type.. ie int, short.....
+apart from this x cannot be having anything else...
+
+learning is non deterministic..
+
+I know all things but i dont know folder structure ok nice entertainment..
+
+in all this process our day  1 theory.. tolerate uncertainty and lower the cost of failure..
+
+
+
+
+
+
+JPA examples.. telescope... why...
+
+1. we have a problem to solve (X)
+
+1.1 for X have identified the models and service functions... ( input, return type, i know
+meaning of failure, i know meaning of success)
+
+1.2 we identified database part and did the databse thing..
+
+1.1 or 1.2 we were using spring or spring boot.
+
+show patience and show
+
+1.1 and 1.2 is working..
+
+if a model is mapped to database table. model becomes entity class.
+
+
+yesterday sin i commited.
+copy pasting things from notepad of windows is pathetic.. notepad of windows
+is a  notepad.. it is not great texteditor...
+
+ok we have layers.
+presentation x
+service y
+dao. z
+
+which layer has got minimum lines of code... it is 100% z. dao layer...
+dao layer will almost have no lines of code why framework will take care, because the job
+is generic.
+
+we can learn design patterns to generalize our understanding of frameworks rather
+than telling other people I know design patterns.. intent issue...
+
+proxy design pattern..
+I think x is doing the job but X is not doing y is doing the job..
+
+while doing JPA with spring boot..
+we will just write an interface... implementation class we will not write who writes
+it... spring will write it. i wont know the classname also.. or rather I dont need
+to know the classname also.. why.. welcome to the power of interface..
+
+
+List l =new ArrayList();
+I dont care for arrayList..
+
+
+JPA mechanism.
+we have to select the entity.. typically from a Model..
+
+1. tell it is a entity  @Entity
+2. tell which is primary key for the entity @Id or @composite key
+3. create an interface.
+
+
+
+
+when people write this kind of code in java it is a sin.. 1947 story..
+
+private String username,password,email;
+
+
+class extends class.  (product extend a product)
+interface extends interfaces..  ( standard extends another standard)
+
+
+Performance should be measured by data and not adjectives...
+helmet called "best practices" is a sin...
+
+println... what is it it is IO function... ever since dinosaur were programming
+IO has never improved, IO is always bottleneck..
+
+//approach 1  --this should be slow
+for(int i=o;i <3; i++)
+   system.out.println(i);
+
+//approach 2 --should be faster
+StringBuilder s =new StringBuilder();
+for(int i=0; i < 3; i++)
+   sb.append(i);
+System.out.println(sb);
+
+how much time are you saving...if you are saving 3 nano seconds..
+
+
+suddenly some one will come and tell .. hey look jdbctemplate is faster
+when compared jpa ok.. let us measure and see what is tradeoff..
+
+not doing unnecessary thing is a good way to improve performance..
+
+
+what did we do in coding.
+
+1. in the model class, converted that to an eTntity. by using two annotations
+@Entity
+@id
+we can use more also...
+
+2.we wrote an interface.. remember the object of the class which impelments the interface.
+is created by spring 
+
+3. it is our day1 on jpa.. ok so dont assume things work, check..
+
+when we see ready made function being used.. not opening documentation and assuming
+about the function is a sin...
+
+save.. save and updating..
+
+insert.. i dont want to update..
+
+we can tell frameworks simplify things.. ok.. but how about experiencing it..
+how.
+
+1. do things without framework
+2. do things with framework..
+in all this what matter is our "intent"
+
+to solve customer problem or improve my technical skills
+
+telescope welcome to world of code reviewers from world of programmers..
+
+we are in spring boot and we are in "core java only"
+we are learning dao layer.. how only by writing dao layer..
+
+in jpa world.
+
+save .. insert and update
+findAll  -- to select all rows..
+
+remember about the product...(framework) it will deviate your from the standard
+and tell hey look at "my way of doing things and get addicted later on I will
+think how to torture you"...
+
+all the code I showed you are examples of spring framework telling hey get addited
+to my way of doing things.. as a technical person your job is to find out
+you want to get addicted or not... not addicted is a good way to go..
+
+
+X+spring = x becomes easier..
+I will learn x without spring also first and then learn how to use it with spring..
+
+JPA makes things more easier than the jdbc based stuff...even including JDBCTemplate..
+no I hate jpa it makes thigns slow.. ok.. show me data.. show me measurement..
+
+currently our program is kids program.. because in kids world only one table...
+and with table whole world will run...
+
+familiar with syntax
+of jdbc template.
+jpa
+that is good enough...
+
+
+web services what is this..
+web services.. two words are there..
+
+web 
+services is important
+web is next...
+
+web services..
+
+1. is our service layer or business layer working or not.. no It is not working
+ok then forget web services..
+
+2. ok our service layer is working.. we have proved it.. why write webservice.
+ok  we wrote service layer. i want this ervice layer function to be called
+from 
+
+1. other technologies  -- heterogenous
+2. other computers..  --distributed..
+
+service layer is on laptop 1
+dao layer is on laptop1
+
+i want to call this service function from laptop 2..
+how to call it as of now not possible ot call it.
+write a webservice on your service function then you can call it...
+
+
+my service
+my dao.
+ok...
+
+web services..
+what is meaning of web...  web means http usage.. or its cousin..
+http or https....
+
+we have comp1 in blore we have comp2 in mysore.
+these are connected does it mean it is a web no...
+need not be...1960's computers  but we did not use the word web...
+
+if computers connected by using http then we can call it as a web...
+
+web...
+
+web services means.
+
+1. we take a service function
+2. put a cover on it.
+3. once we put a cover on it, the function now respond to http requests..
+4. calling a web servie, calling a function of the service..
+5. we need input and output that will come via json... usually...
+6. json... standard for representing variables.. acceptable to all langauges..
+
+
+calling of a service function via http and input and ouput getting represented
+via some standard like json is what web services is all about
+
+what is benefit we get.
+
+1. heterogenous... i wrote logic in java, let python guy call it, .net guy call it, jvascript guy
+call it...
+2. distributed... service can run on system 1 and calling can happen on system 2...
+
+all this possible because
+of http and its cousins.. https..
+and json..
+
+
+ok. you can try the practicals now..
+
+1. run the existing code of mine in your system and see
+whether it works.
+2. convert Task program of yesterday into jpa program.
+3. https://spring.io/guides/gs/accessing-data-jpa
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

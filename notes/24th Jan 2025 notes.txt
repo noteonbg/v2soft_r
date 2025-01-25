@@ -1,0 +1,217 @@
+today we will look at JWT
+and then there will be some assignments on JWT
+and unit testing .
+
+hopefully you could get assingments working..
+
+1. corejava code..
+accscenario is a package... figure out how to write junit tests and Mockito in this code
+based on syntax what we know..
+
+2. share you a link.. patience to get that link working and understand the code..
+JWT
+
+see whether you can get a random number 
+https://api.random.org/json-rpc/4/basic
+https://razorpay.com/docs/api/
+
+what kind of security people prefer..
+
+Those who insult security as just a technology will suffer...
+security  = technology + process.
+
+In the coding there will be lot of stuff.. we should not get confused.. framework opinion..
+
+JWT
+
+1. on what logic will you issue a token..
+2. what will token contain, where all you plan to read the token..
+3. what will be expiry of the token..
+
+how is user authenticated, that has got nothing to with JWT
+yesterday example.. we put the user and password information in the code itself
+it come from a database, it could come from naming server...
+
+
+Session.. this has nothing with JWT..
+
+we know meaning of
+1. event 
+2. web  --http usage
+3. cloud availability of resource on demand, distributed.. calling functions between two systems..
+4. session.. in http
+
+HttpSession
+1. some information that needs to survive over multiple requests of a particular user..
+
+example i making a request 1, i am giving an information called X. we get response.. Y
+from Y we are making another request... at time point of time if we want X to be available . we must
+have put X into a session..
+
+when in doubt dont use a session.
+if we use a session, then 100% we have to prove.
+
+1. for a particular client.
+2. there are multiple requests.
+3. information needs to survive over the multiple requests..
+
+at some point may be we will remove the session data or it may not be available
+if we close the browser... or invalidate the session..
+
+
+login.. we give userid... login request is processed, may be userid is put into a session..
+postlogin page.. in postlogin page we tell compose mail.. this is a new request... at this time
+we have to see whether userid is present in session or not... if present then we assume we logged in
+
+for issuing JWT token also.
+
+1. at what point of time you want to issue a JWT Token.
+2. where all  plan to check this jwt token.. the person who is giving the request...
+must supply the token..
+3. at some point of token needs to be invalidated..
+
+zoom out.. who will take responsibility for security
+not every programmer in a project... there project wide process as to what security
+code needs to adher to..
+
+usually it is independent of our logic..
+f1
+f2
+f3
+
+f1 should accessed without logging in
+f2 should be accessed by userX who is not an admin
+f3 should be accessed by user who is an admin
+
+coding of JWT..
+there will be lot of classes.. nearly most of these function in this classes will not be called
+by us, it will called by the system... Event driven...
+
+
+
+
+
+
+
+
+
+
+
+
+
+Day 1... rule no 1 for coding do know the architecture.
+what is meaning of knowing architecture I know the models.
+
+
+who are you , how will i know.
+
+1. user information is present in some database..
+table name is userstry 
+
+
+if you see , we have written this.. it is understood that function of Y which we defined
+we are not going to call it system will call it under some circumstance..
+class X implements Y.. 
+
+we are using spring boot 3.x and 2.x...if you tell 2.x.. again syntax will change..
+
+whenever we see interface being implemented by us, what method does we cannot predict
+so open documentation..
+
+general way of reducing risk in domain is risky, is gamifying the domain..
+2000
+
+when we see many functions I will get confused which function will start first...
+correct answer leanr the architecture.. no i wont learn. ok then atleast write logs
+inside function and see for consistency..
+
+
+how do you prove your service function is business specific service function
+
+
+where will the service function be called from.. 1947 answer.. controller funtions..
+
+whenever you see function definition, think who is going to call it..
+
+
+if your webservice is running in www.abc.com
+somebody www.def.com should invoke the web service...
+rule no 1 is never trust the client.. if security is important..
+
+subjective opinion
+yaml is one more way of configuring things...
+properties.
+xml
+
+Spring creates objects and wires them... theory
+order of object creation is not guaranteed. you should not be bothered about that but
+wiring should happen correctly we should check..
+
+with respect to any process. in a company
+best to imitate first and later on think of improving it.. so we know the context..
+
+
+
+{
+    "id": 152,
+    "fullName": "ramesh suresh",
+    "email": "ramesh@suresh.com",
+    "password": "$2a$10$80qdAZKj2JPY7Ncp5EXsa.Hwh5.Q4wZnRwOEVsc3eg2YE7gyKxgJ.",
+    "createdAt": "2025-01-24T03:33:31.928+00:00",
+    "updatedAt": "2025-01-24T03:33:31.928+00:00",
+    "authorities": [],
+    "username": "ramesh@suresh.com",
+    "enabled": true,
+    "credentialsNonExpired": true,
+    "accountNonExpired": true,
+    "accountNonLocked": true
+}
+
+today accumulation of information has lost value, so question what are we doing with the information..
+
+please attempt the following.
+
+1.jwtpoc project, import and make it work and see whether it runs..
+2.adding of two numbers controller, copy the controller into same package where you existing code
+is working and see add works thru jwt token and subtract does not need any security
+			1 and 2 is our own "pet" code
+
+3. Random number   ( how people are implementing security)
+https://api.random.org/json-rpc/4/basic  --low risk
+https://razorpay.com/docs/api/
+
+4. pain killer..
+pleaseworkij folder has got a folder called accscenario, this is package...
+figure out how to write unit test case for it based on whatever we know in JUnit and Mockito.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

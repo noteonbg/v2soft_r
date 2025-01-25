@@ -1,0 +1,35 @@
+Unit testing is a software testing technique in which individual units or components of a software application are tested in isolation to ensure that they function correctly. The goal of unit testing is to validate that each part of the program performs as expected before integrating it with other parts of the system.
+
+
+
+ 1. Test Case
+    A test case is a set of conditions or inputs used to test a specific functionality of a unit. It defines what needs to be tested, including input data, expected results, and the behavior being verified.
+
+ 2. Test Method
+    This is a function or method that contains the logic for executing the test. A test method typically includes setting up inputs, invoking the unit of code being tested, and asserting the expected output or behavior.
+
+ 3. Assertions
+    Assertions are statements that check whether the actual output of a function matches the expected output. If the assertion fails, it indicates that the unit being tested did not work as intended. Common assertions include checking for equality, null values, greater than or less than comparisons, etc.
+
+ 4. Mock Objects (or Stubs)
+    Mock objects are used to simulate dependencies or external systems that a unit relies on. In unit testing, this allows isolating the unit of code being tested from its dependencies (e.g., databases, APIs), ensuring that the unit’s behavior is tested in isolation.
+
+ 5. Test Runner
+    A test runner is a tool or framework that automates the execution of unit tests. It organizes and runs the test methods, collects results, and reports success or failure. Popular test runners include JUnit (Java), NUnit (.NET), and PyTest (Python).
+
+ 6. Test Setup and Teardown
+    Setup: Before running a test, test setup ensures that the environment is properly configured (e.g., initializing variables, objects, or database connections).
+    Teardown: After a test completes, teardown ensures that the environment is cleaned up (e.g., closing database connections or deleting test data) to avoid side effects on other tests.
+
+ 7. Code Coverage
+    Code coverage is a measure of how much of the code is tested by unit tests. Tools like JaCoCo, Istanbul, and Cobertura provide insights into the percentage of the code covered by tests, helping developers identify areas of the code that lack sufficient test coverage.
+
+ 8. Test Fixtures
+    Test fixtures are reusable setups of necessary objects or conditions for tests. For instance, you might have a fixture that prepares a database with sample data before running tests that involve database interactions.
+
+ 9. Isolation
+    In unit testing, isolation refers to testing individual units in a way that external factors (like database, network, file systems) don't interfere with the test results. Mocks, stubs, and fakes are used to achieve isolation.
+
+ 10. Test Assertions Framework
+    A testing framework often includes an assertion library or utility that provides predefined functions to verify conditions in the tests (e.g., `assertEqual`, `assertTrue`, `assertNotNull`).
+

@@ -1,0 +1,227 @@
+yesterday summary
+1. spring framework... 
+1.1 how spring will create objects.
+1.2 wiring..
+
+
+spring project should work.
+in terms of practicals..
+
+
+telescope..
+
+1.we know the architecture
+2. we have core java code working....
+3. convert this into spring framework code..
+4. we add whatever things are needed.. database, securuity, web services.
+5. once 4 is working then figure out how to move it to the cloud.
+
+object being created
+wiring is done
+two senteneces meaning we should know..
+
+
+dependency injection  -- we are givng one object of one class,in some function of
+the other class.
+two kind of dependany injection exists
+1. setter injection
+2. constructor injection.
+
+inversion of control
+instead of we creating objects, spring will create objects.
+
+a mechanism for doing dependency injection and inversion of control
+-- IOC container..
+
+basic thing in spring framework.
+
+1. do you know architecture.
+2. did spring create objects which you asked it to create.
+3. was the wiring done.
+4. did you get the object from spring.
+5. in this adventure be conscious about which object is created by spring
+
+annotations..
+user of annotation.
+
+1. I use annotation given by X.
+2. i know the benefit and on what the annotation should be used.
+3. i also when the benefit comes.
+4. my code will interact with code of X... 
+
+example
+1. i  am using @component given by spring framework
+2. i know @component tells spring hey create the object of the class.
+@component should be used at class level.. open documentation.
+3. spring framework should process my class only the benefit will come.
+4. 
+
+
+we will keep getting lot of doubts while coding.. uncertainty will be there
+are we willing to write a small program to clarify our doubt on
+concept or syntax is the question.. this skill will help us a lot in a project.
+
+
+@componentScan
+@component
+@Autowired
+
+while using annotations what we should remember is. you should
+own the code to use the annotation..
+
+this error is coming because I was unconscious in terms of
+which objects spring should have to complete my code..
+
+when we are busy in java, hardest question do we know which part
+of the project will change, which part of the project will not change
+that will give us data how to use interfaces..
+
+x+ spring = x becomes easier... ok that is template design pattern at work..
+event handling== observer design pattern at work..
+
+
+spring can create objects and wire it..
+we should know what is meaning of it when done thru xml and also thru annotations.
+
+when a doubt comes java guys should create a package..
+
+experience may give syntax, but concept is not a function of time..
+
+we should not care for the order in which object is getting created.
+only care whether the objects were created and wired properly
+we should be conscious which object spring has got..
+in our current case we know.
+
+1. Presentation
+2. Service object
+3. Dao object is also there with spring..
+
+i know architecture means we can test any layer indendently becusae
+that is meaning of architecture.
+
+why we could these things..
+we were conscious which objects are there with spring framework *******
+very important for any programmer who works on spring.
+
+
+
+1. 
+first see whether this programs are working in your system
+archcode example...how to do with xml how to do with annotations.
+home loan application, calculator ( xml version , annotation version of it)
+
+practical checklist.
+1. 3 tier  application working archcode.
+2. home loan program working ... 
+3. 3 tier task program working.
+4. make a copy of 1, 2 and 3 
+and thenspring based xml an spring based annotation program
+
+Event handling.. this one topic which will never out of fashion
+
+"new, unique, creative" ... kids words if we dont provide details..
+
+1. Event handling.. what is meaning of Event?
+
+Event source
+
+1. change in a variable value.  ( state change)
+2. somebody should be informed about the change. ( notification mechanism)
+3. registration mechanism.
+
+Event Listener.
+1. agree to the gun... put by event source.
+2. write a function and we wont call it event source will call it.
+
+explain cloud = event +containers
+
+Observer design pattern..
+
+X+ spring = x becomes easier..
+template pattern...
+
+super class  --written by X
+rigidity (final 
+)+ flexibility. ( non final functions)
+
+subclass --written by Y
+flexibility can be changed by subclass.
+rigidity has to be sticked onto..
+
+intent of template design pattern.
+we know overall there is an approach 
+x -- open database 
+y  --issue sql command
+z  --close database
+in x, y, z something is flexibility and something is rigid
+x and z are rigid and y is flexible.
+ok enforce that oo design..
+
+ x +spring = x becomes easier.. this is an application of template design pattern.
+
+1. observer ( event handling is the boss everytime and at all time)
+2. template pattern ( x+spring = x becomes easier)
+3. proxy design pattern 
+4. strategy design pattern ( plug and play of algorithms)
+5. factory design pattern
+6. singleton design pattern.
+
+
+
+
+
+
+
+
+
+
+
+1. Ui events clicking.
+2. database...trigger.
+3. http protocol ... get, post
+4. os . interrupt handling..
+
+
+
+
+
+
+
+
+
+2. distributed computing.
+
+when you tell event hanlding.
+
+1. what are we.
+2. are we event source or event listner thru data..
+3. if we are event lisnter focus on the gun.... shown by the event source..
+4. entire concept of event handling is genralized by  design pattern called
+Observer design pattern.
+please continue your practicals..
+
+1. home loan and calculator into spring...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

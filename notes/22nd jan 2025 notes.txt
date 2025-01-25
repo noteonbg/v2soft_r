@@ -1,0 +1,251 @@
+yesterday summary in one word   == opinion..
+
+RestTemplate
+RestClient
+WebClient  -- different need.. reactive spring  --Mono, Flux..
+
+Unit Testing...
+@Test
+junit 4 .. @Test lot of attributes
+
+
+@Test( i am expecting this exception...)
+junit 1.
+@Test .. it wont have any attributes..
+
+Enterprise application.
+
+1. multi users
+2. storage needs..
+3. transaction and security needs..
+4. variety of clients...( presentation can be in many formats.. other devices, other applciations)
+5. legacy interaction...( how to interact with the existing softwares...)
+
+java became popular because of enterprise... 1998 to 2024
+companies which have low risk profile can experiement with other things..
+
+X+ spring = x becomes easier.. spring will hide X and tell get addicted to me..
+
+we should know what applies at what layer...
+security...
+
+1. security is applicable at the controller layer only...
+there will lot of opinions on this.. how to configure the controller..
+
+observer -- event hanlding
+stragegy == plug and play of algorithms.
+template == overall fixed structure with some flexibility..
+proxy = pre and post processing of requests.
+factory== create a family of objects without exposing underlying class.
+singleton == just create only one object in the entire application.
+...
+
+Security.. it is combination of technology + process, we dont want to insult it only as technology..
+
+JDK8.  -- features..
+JDK11 -- module system.
+JKD17  --projects are freezing here..
+JDK21..
+
+collect some data which version of spring boot your project is using
+which version of java your projext is using if you tell X version identify where
+taht X version features are being used or not..
+
+JDK1.8 main features..
+0. lamda expressions
+1. streams
+2. threading related changes.. Fork and Join
+4. makeup to tell I am alive... List having a sort function...
+
+in any design...what is most important..
+
+1. time persective... how does the project evolve with time.. if .. we can answer hardest question
+in the project what will change, what will not change... funeral has already began.. lot of people
+will coding it will be scrapped finally..
+
+2.based on 1 layering will get determined, interface design will kick in.
+
+3. how will we communicate between layers.. super important...
+
+4. consistency in design...
+
+5.then comes other things...
+
+if I begin with a Design intent  called "X" after 100 years no matter whatever I change
+"X" intent will remain.
+
+windows after 100 years will never an enterprise operating system, it will be user operating system
+Linux, after 100 years will never be a user operatoring system, it will enterprise operating system..
+Java -- began an opinion called things should be object oriented, we should force users to be object
+oriented... intent.. suddently... java sees some language Y has got features called Z which everybody
+likes java will copy Z...and ofcourse change the name of Z.. to something else...
+
+passing functdions as input arguments to another functions is very old concept..
+example C programming alngauge...
+
+java guys told we will have functions being passed as input argument to another functions...
+but initial intent of design is still applicable...
+
+lamda expression in java, what it is...
+
+1. we are passing lines of code while calling the funxtion...
+lamda .... it is applicable only during calling of functions..
+
+2. when we call a function, the function must be defined...
+function definition, input will  always be an interface reference...
+
+version 1.0 in java.   == jdk30.0 this cant change...
+
+X f1(Y temp)
+
+X and Y can be only three things..
+
+1. reference of class.
+2 reference of interface.
+3. primitive type
+
+It looks "neater and cleaner to read"... English professors, it does not matter from a technical point
+of view..
+
+Lamda expression what does it mean for me..
+
+1. we are calling a function and we are passing input argument as (lines of code.)
+2. these lines of code will eventually become a class which implements an interface and forced
+to define a method because of interface.. and we are having the object of the class.
+
+lamda   == calling of function
+
+1. class which implements the interface
+2. defines the method
+3. we create an object of the class.
+
+I am defining a function how to use lamda... not possible..
+all you can do is create an interface.. and that reference of interfae is the input..
+
+
+those who read program in terms of variables names and not variable data types can have
+non stop entertainment in real life..
+
+what does lamda expressions do for us. in terms of coding
+reduce the lines of code.. that 's it..
+
+whenever you see a function take input argument as interface reference... 
+that interface has got only one function inside it...
+
+1. instead of writing a class that implemetns the interface and defines that one function
+do everything at the same place.. lamda expression..  
+as a programmer i will reduce lines of code i write..
+
+lamda expression in java is just style of coding..
+finally it becomes an object whose class implements an interface that interface has got
+only one method inside it..
+
+
+Datastructure... measure performance dont assume...
+
+Stream... operation in jdk1.8
+
+run thru the datastruxture without changing things,
+process it and collect the results..
+
+1. you are streaming. --streaming
+2. what are you processing.  --Intermediate operations
+3. show me what are you collecting... (till you collect the operations wont execute.. lazily evaluated..) --Terminal operation..
+
+
+
+most of times this code will use lamda expression.. that means we are seeing function calls
+and lot of interface usage...
+
+some random streaming code X...
+
+people who are totally new to streams, intermediate operations and terminal operations...
+try the program without using lamda and then use lamda...
+
+
+with lamda and without lamda ... main advantage.. 
+
+why streams.
+
+1. until we call terminal operation, dont evaluate things.. lazy evaluation..
+on need basis evaluation..
+
+we are using http protocol.
+we are making a request
+and we are sending a response...
+tell the request processing component, what kind of input we are sending
+send the program which is receving the esponse, what kind if output we are sending..
+the way we can do it by using mime types...
+
+XML...
+1. it is a data exchange format older than the web.. and its purpose is to describe information..
+not insult as  web technology.. xml is more generic...
+
+xml is used for data exchange between applications..
+
+
+only one root.
+all tags must be closed
+when we have a model class we have to tell it how this can be done..
+for this we use java to xml framework... jaxb...
+
+1. learn a little bit about JEE. it will help if we are in java based world..
+2. jdk1.8... lamda and streams, intermediate operations and terminal operations..
+3. in context of 2.. if we people are telling performance measure it..
+4. road side story... security... ok i have a controller.. ok... then how do i try
+to identify who is person, what he can access. various ways most of them are standards..
+
+in assignment folder ,phase 2 a09codesample_lamda.txt .. make these code work
+in your system and try making some programs not use lambda and measure how much
+it takes to execute..
+
+in assignment folder phase2.
+a10assignment.jpg file attempt it and see can we make the code work..
+this is a test on datastrutures..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,116 @@
+1. Health Checks
+Endpoint: /actuator/health
+Purpose: Provides information about the application's health status. It can be configured to check various aspects like database connectivity, disk space, and custom health indicators.
+Use Case: Helps to ensure that the application is running correctly and is ready to handle requests. Useful for integration with monitoring systems and alerting when something goes wrong.
+2. Metrics
+Endpoint: /actuator/metrics
+Purpose: Exposes a range of metrics related to the application's performance and behavior, such as JVM metrics, request statistics, and custom metrics.
+Use Case: Helps monitor the application's performance, identify bottlenecks, and optimize resource usage.
+3. Environment Information
+Endpoint: /actuator/env
+Purpose: Provides information about the application's environment, including configuration properties, system properties, and environment variables.
+Use Case: Useful for debugging and understanding the application's configuration.
+4. Application Configuration
+Endpoint: /actuator/configprops
+Purpose: Displays all the configuration properties available to the application, including their current values and sources.
+Use Case: Helps in understanding and verifying configuration properties and their values.
+5. Thread Dump
+Endpoint: /actuator/threaddump
+Purpose: Provides a snapshot of the thread activity in the application.
+Use Case: Useful for diagnosing performance issues and understanding thread usage in the application.
+6. Loggers
+Endpoint: /actuator/loggers
+Purpose: Allows you to view and modify the logging levels of the application at runtime.
+Use Case: Helps in dynamically adjusting logging levels without restarting the application, which is useful for troubleshooting issues in production.
+7. Audit Events
+Endpoint: /actuator/auditevents
+Purpose: Provides audit events related to security and application activities.
+Use Case: Helps track and analyze events for security auditing and compliance purposes.
+8. Application Info
+Endpoint: /actuator/info
+Purpose: Exposes application-specific information like build version, description, and custom metadata.
+Use Case: Provides a quick overview of the application's metadata and build information.
+9. Custom Endpoints
+Purpose: Allows you to create custom actuator endpoints tailored to your application's specific needs.
+Use Case: Enables exposing application-specific data and functionality through custom management endpoints.
+10. Security and Access Control
+Purpose: Spring Actuator endpoints can be secured and restricted to authorized users.
+Use Case: Ensures that sensitive management information is protected and only accessible by authorized personnel.
+
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+
+Configure Endpoints: By default, only a subset of actuator endpoints is exposed. You can customize this in the application.properties or application.yml file.
+
+management.endpoints.web.exposure.include=health,info,metrics
+
+
+
+-------------------------------------------------------
+Monitoring our app, gathering metrics, and understanding traffic or the state of our database becomes trivial with this dependency.
+
+Actuator mainly exposes operational information about the running application — health, metrics, info, dump, env, etc. It uses HTTP endpoints or JMX beans to enable us to interact with it.
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+
+Actuator comes with most endpoints disabled.
+
+@Bean
+public SecurityWebFilterChain securityWebFilterChain(
+  ServerHttpSecurity http) {
+    return http.authorizeExchange()
+      .pathMatchers("/actuator/**").permitAll()
+      .anyExchange().authenticated()
+      .and().build();
+}
+
+/auditevents lists security audit-related events such as user login/logout. Also, we can filter by principal or type among other fields.
+/beans returns all available beans in our BeanFactory. Unlike /auditevents, it doesn’t support filtering.
+/conditions, formerly known as /autoconfig, builds a report of conditions around autoconfiguration.
+/configprops allows us to fetch all @ConfigurationProperties beans.
+/env returns the current environment properties. Additionally, we can retrieve single properties.
+/flyway provides details about our Flyway database migrations.
+/health summarizes the health status of our application.
+/heapdump builds and returns a heap dump from the JVM used by our application.
+/info returns general information. It might be custom data, build information or details about the latest commit.
+/liquibase behaves like /flyway but for Liquibase.
+/logfile returns ordinary application logs.
+/loggers enables us to query and modify the logging level of our application.
+/metrics details metrics of our application. This might include generic metrics as well as custom ones.
+/prometheus returns metrics like the previous one, but formatted to work with a Prometheus server.
+/scheduledtasks provides details about every scheduled task within our application.
+/sessions lists HTTP sessions, given we are using Spring Session.
+/shutdown performs a graceful shutdown of the application.
+/threaddump dumps the thread information of the underlying JVM.
+
+
+{
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/actuator",
+      "templated": false
+    },
+    "features-arg0": {
+      "href": "http://localhost:8080/actuator/features/{arg0}",
+      "templated": true
+    },
+    "features": {
+      "href": "http://localhost:8080/actuator/features",
+      "templated": false
+    },
+    "beans": {
+      "href": "http://localhost:8080/actuator/beans",
+      "templated": false
+    },
+    "caches-cache": {
+      "href": "http://localhost:8080/actuator/caches/{cache}",
+      "templated": true
+    },
+    // truncated
+}

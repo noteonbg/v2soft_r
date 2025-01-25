@@ -1,0 +1,281 @@
+hope that you are able to code some basic examples in jpa
+and check whether it works in spring boot..
+
+all the applications we have built are core java applications...
+
+why write web services.
+1. people who write code in other languages will be able to call it..
+2. it is distributed.. your service in one comp and calling can happen from other computer.
+
+spring and spring boot.
+1. we take a call on architecture.
+2. we decide which object should be created by spring.
+3. we decide the wiring.
+4. we tell spring or spring boot hey give me the object..
+
+while working spring boot or spring.
+we should be conscious which objext is there with spring or spring boot
+that we can autowire..
+
+intent... to keep things simple because we want to apply.. and not telling other
+people I know this...
+
+expand JSOn.. JavaScript Object Notation... 
+what is it.. standard for variables..
+variables ... data type and its value
+json gives you a standard for doing this..
+standard advantage, every language agrees with it..
+
+
+I have json with me.. it means he has a string with him {"key":3,"key":4 }  // map
+in every programming language we have to learn how to convert
+
+json into that programming language object.
+and that programming language object into json..
+
+we have an object belonging to a data type called X in our java code.
+we should know how to convert this object into JSON and vice versa..
+good news frameworks will take care of it most of times..
+
+I am building web services program in language X
+which framework of language X are you using.
+
+X= java, python
+framework == spring boot, 
+
+X=java,python
+framework = apache cxf, 
+
+if our service function takes X as input and Y as output..
+then web service function also will take X as input and return Y as output...
+if our service function is not ready... then we will not have clarify on X and Y
+and obviously web service writing would not make sense..
+
+most common problem we are going to get is..
+how do we pick input needed from http request.
+how do we return output as a part of http response..
+
+
+http.. expansion. hyper text transfer protocol.
+
+basic things. 
+you make a request..  by the client ==modes of request... get, post,put, delete. 
+request has to be processed.  ( web services function which will process http request)
+response generated..  ( this return type of the function...convention is we return
+http status code and the data) .. i am adding two numbers.. i will send the result +
+http status code... why....
+
+web services when called from the client.
+client wants to know whether things succeeded or not..
+way client will judge that usually by looking at http status codes..
+4xx.. clients mistake.
+5xx.. server mistake..
+
+
+
+get, post,put, delete.   == Events in http request...
+we are going to register for these events... this is what is called as a web service function..
+
+
+simple explanation
+1. think of web service like a cover on your service layer..
+2. if service takes x as input and y as output.. web service function will take x as input
+and return y as output  + status codes (preferable)
+3. why web service. distributed + my service function becomes usable for all people..
+4. remember architecture. that means we know that our service and dao is working already..
+
+in the first phase of web service.
+people can have entertainment for reading inputs returning outputs.. thru http request
+and response.. since this doubt is there.. first phase dont think of database service...
+focus on reading things property from http request.. and returning some hard coded values
+in http response..
+
+Tomcat... tomcat is not a server.. it is a container...  plugin...
+
+apache http server  + tomcat ===   http server which supports java web server  side.
+IIS +tomcat =http server..
+
+web services.. function we write is a slave to the service function...
+
+web service function will directly call dao.. bad idea.. and bad architecture
+
+in any programming language service and dao should be "core language " level and should
+be tied to any presentation..
+
+"write like this onlyh then it will work" --very bad state..
+
+
+@GetMapping("/generalize")  -- register for the event.. what event
+
+in http mode of request is get.
+generalize is the URI.. http URI used to identify this function..
+
+	public String think() // kids satisfaction of seeing
+	//inbuilt data types.. lik
+
+
+WEB SERVICES FUNCTION NICE WORD... GENERALIZE .. ONE MORE EVENT HANLDING SCENARIO..
+
+
+day 1 theory... 
+when we define a function think who is going to call it. in case we are not sure
+then dont define the function..
+
+why hello how are you is not getting printed.
+because function is not getting called.
+
+why is the think function not getting called.?
+think function is event listener function.. so it will get called only
+event occurs..
+
+which event..
+get mode of request
+with the uri..generalize..
+
+
+open the browser and check whether web service function works. pathetic.. person..
+not respecting architecture..
+
+browser is to check makeup .. presentation with html.... and not for checking
+web services..
+
+before doing bad things always tell good things and then bad things..
+example.. postman was light weight...kept on adding features and made an ant into elephants
+
+in real life web services function will be called from some other
+function written in some other programming language..
+
+
+postman
+swagger
+insomnia
+are all clients which can be used by the web services  function definer to check
+whether function is working or not.. but in real life.. consumer of web services
+function is another function written by some other person...
+
+web services.
+service is chocolate
+web service function we are writing is just a cover for the chocolate..
+
+logic is not inside web services function it is inside the service function..
+
+when we call the function we use the name of the function...
+when system is calling except in freaky cases.. like java beans naming convention
+the function is getting called beucase it has used annotation...
+
+hey this is all stupid why are not going any logic.. relax...logic doing
+is already done in service layer and dao layer..
+
+currently we are just focusing on how to read input via http
+and how to return response propertly once we know this
+then we can wire service inside the web services function and then
+call the service function from the web services function..
+
+intent... when there are multiple steps to do something, will I depend on checklist
+or will I depend on my "memory"... memory will fail checklist will give repeatability..
+
+
+
+
+
+what is responseEntity, simple answer inbuilt class..
+that means open documentation and read it...I dont understand it is ok read it..
+
+we see a ready made class and we want to create an object of this class.
+look at constructor documentation..
+
+
+
+ResoponseEntity r =new ResponseEntity();
+
+any object, good to know whether things are mutable or not mutable..
+
+ResponseEntity object..is immutable..
+ at time of creation decide what you want to do...
+
+when we are writing web service function do make use of httpstatus code also..
+to do that. we need ResponseEntity class in spring framework..
+
+i am doing all this things without thinking what I will write in service, what i will write in DAO
+web services is not the time to think about service.. that should be already done before we come
+to web service..
+
+I will write a stupid web services program.
+what is proof of the stupidity
+answer i will do logic inside the web services program..
+
+
+when we come to web services program...
+1. we know our service function is working..
+2. but if we are new to web services. http can create lot of entertainment...
+we dont know how to pick an object from http request.
+we may not know how to set security
+we may not know how to set a http status code.. along with response... 
+when this entertainment comes. stay away from the service and write  a simple web services
+function and just focus on the entertainment got..
+
+
+when we get a doubt can we write smallest program possible to clarify the doubt...
+poc writing..
+
+String s ="hello";
+String s1 = s.toUpperCase();
+system.out.println(s1);
+
+hello will appear in lower case only.. why...
+
+1. we did not open stirng class documentation
+2. we did not see documentation of touPpercase..
+
+
+all web services program in any programming language
+is a simple event handling program.. for http based request..
+
+only things..
+figure out how to take input from http request.. pathvariable, request param, requestbody, file upload
+while returning response.do ensure you return http status code.. because caller of the function
+expects it...
+
+ok we reached 3/5 in web services
+
+1. we are able to read http requests.
+2. we are able to send response.
+3. we are able to validate input
+4. we are able to apply some security...
+
+ok... next job.
+wire service in the web services class.
+and call service functions from the web services function...
+it is over..
+
+practically
+0. webservicespoc  project works in your system or not..
+1. calculator as a web service..
+2. try to understand the code present in
+\v2soft\codesample\phase4restwithmockservice
+
+checklist
+
+1. database jpa
+2. spring boot programming
+3. postman..
+
+programmer must able to convert English into functions and variables
+
+Thank you
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

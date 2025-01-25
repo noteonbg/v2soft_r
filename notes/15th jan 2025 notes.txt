@@ -1,0 +1,189 @@
+there is a model called as Task taskid,taskame,priority, status.
+task id is an int
+taskname is a string
+priority is an int
+status is a Boolean..
+
+there is a table called Task..
+it already has some rows..
+
+1. get Task information based on Task id
+2. update Task ( priority , status can be updated)
+
+1. you have spring jdbc template that we need to get.
+2. for this put the dependancies.
+3. start using the spring jdbc template methods...
+4. when we are doing select command, think of this concept called RowMapper.
+which will map row into an object... BeanPropertyRowMapper
+5. we can write our own custom class.. which implements RowMapper..
+
+what is proof that we did by using spring...
+1. we created the Datasource and we created the jdbc template object..
+
+No we will use Spring boot...
+jdbc template will be automatically by spring boot.
+
+
+
+List l =new ArrayList();// we are telling I dont care for what is ArrayList, linkedlist.. depends
+on need, my project needs List..
+
+
+spring boot program on jdbc template.
+
+spring boot another opinion.. it will have own views how to do things..
+
+Framework = opinion.. == challenge lies in... generalizing so that we dont get addicted
+to any framework..
+
+any database project.. we should try to find out how does the project
+come to know about our database..
+
+
+properties file.. typically used for configuration, today you have lot of options..
+yaml... xml way of doing things at the end of day it is just a configuration
+
+properties.. map with key and value both as strings..
+
+
+Patience.. for what.
+
+1. which dependancies to put in spring boot.
+2. how to tell spring boot which database we are using.
+3. knowing that spring boot gives jdbc template automatically.
+4. patiently checking jdbctemplate was autowired..
+
+we use spring boot along with spring framework... it means we reduce
+configuration time.
+whatever theory you learn in spring will never go a waste..
+
+
+web services.. same thing again..
+
+ok we talked with database.. by using spring, and spring boot..
+code will not change, only how you get jdbc template will change...
+
+
+ORM ... JPA.
+
+what is ORM expad Object Relational Mapping..
+ORM is a superset... you can do orm in any programming language.
+.net
+python
+javascript
+java
+
+JPA .. java persistence API.. ORM standard in java 
+Hiberante... JPA product 
+
+any company must know who its revenue is coming.. why are customers paying it
+if confused on this.. then company will have lot of non stop entertainment..
+
+Intent first language next..
+I want to act like open source.but secretly I am complaining that how to make money
+big conflict.. products will suffer.. who company had  this disease.. Red Hat
+JBoss.. that company once upon time made HIbernate..
+
+Apache..
+
+how to deal with database in an orm based way... very common in projects.. I am assuming
+your company uses this way...
+
+what do we do in orm...
+
+Spring boot way dealing with JPA ( easiest..  preferred way ) --X
+spring way of doing Y  
+raw jpa code.. Z
+
+effort
+ X  < Y < Z if our intent is to solve customers problems we prefer X..
+
+no I want to do things by Z only ok.. do it.. but first tell why you want to do it by Z...
+justify it..
+
+age old rule in design..
+all rules can be violated nothing wrong.. but before violation justify why you are violating
+the rule..
+
+when i telling you this.. remember opinion and product is secretly telling dont use anything
+independently.. use it along with me only ... thereby you get addicted to me..
+
+products  == addiction
+
+JDBC is a standard
+spring jdbc is product
+
+
+database part.
+
+1. raw jdbc  ( have not shown)
+2. jdbctemplate with spring 
+3. jdbc template with spring boot.
+4. jpa with spring boot.  ( preferred...)
+5. jpa with spring.
+6. raw jpa
+	
+
+I have a doubt on dao
+I have a doubt on service layer
+I have a doubt on presentation layer
+can we write a code in an isolated way to clarify doubt on that layer only...
+
+
+
+you have to give the database dialect so that framework can optimize queries needed
+for tht particular database..
+
+
+how do you create a new version of sthe software. if no anything keep change configuration names...
+welcome to versions of frameworks..
+
+
+we will take 9.50AM and join back..
+
+
+
+
+
+
+
+Try this program
+
+there is a model called as Task taskid,taskame,priority, status.
+task id is an int
+taskname is a string
+priority is an int
+status is a Boolean..
+
+there is a table called Task..
+it already has some rows..
+
+1. get Task information based on Task id
+2. update Task ( priority , status can be updated)
+
+https://spring.io/guides/gs/relational-data-access
+try this program and convert the database usage to MySQL usage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,220 @@
+database part how to approach in spring and spring boot.
+web services part..
+
+
+As of now the expectation is.
+people know how to write a core java program move it to spring or spring boot.
+spring or spring boot...
+
+1. do we know architecture.
+2. do  we know which object spring needs to create and wire.
+3. ok are we asking spring to create objects and wire ( xml or annotation)
+4. how do you get this object created by spring in your code..
+
+code base.  need to practice..
+1. calculator
+2. loan code...
+3. archcode  ( cuser..)
+4. Task...
+
+Database.
+coming to spring and learning database concepts bad idea..
+we should know database concepts before we touch database programming..
+
+we know that
+1.database server
+2. database. ( physical and logical independence of data )
+3. table..
+insert -- constraint violation
+update
+delete
+constraint violation +  where condition failure..(logical error programmer should handle it)
+
+
+select single select -- query based on primary key
+select multiple select  -- query based on non primary key...
+4. constraint
+5. transactions.. commit and rollback
+6. trigger.
+7. sequence.
+8. stored procedure...
+
+there is a topic called X
+ask 
+X is objective--every can agree
+X is subjective.  -- let everybody have an opinion no problems..
+we dont need have strong opinion on subjective things..
+
+when in doubt assume X is subjective..
+
+
+practically...subjective.
+how are you viewing the database
+how are you seeing the table contents...
+
+a programmer should know table structure ... that is minimum to work on the table
+
+
+insert,update or whatever you do with database happens in the DAO layer...
+
+in design.. we have 1000 rules but we should some basic rules..
+
+1. know the tradeoff.
+2. basis for layering... ( interface design)
+3. consistency in the usage..
+4. all other rules..
+
+insert command.
+
+input to the function return type from the function of the dao layer.
+easy thing thinking of the name of the function
+difficult thing is thinking what the function should return or take as input.
+
+	
+Status	insertUser(CUser user) throws DatabaseNotResponding
+
+   true =-= insrt succeeded
+   false = constraint violation
+if you get the exception DatabaseNotREspondingException . then it database is not running
+as expected.
+
+any kid hates creating new classes.. because he is afraid of treating like a data type..
+
+
+
+single select.
+
+CUser getUserBasedonIdFromDB(String userid) 
+
+multi select.
+List<CUser> getUserBasedonSomeNonPrimarykeycritera(int pincode)
+
+
+how to deal with database..
+
+1.intent...if X is easy way of doing it, and Y is a difficult way of doing it.
+prefer X.
+I wont prefer X because it makes things ( slow  .. performance... when people tell performance
+ask them to relax and tell let us measure ... words never mean performance)
+
+
+using this moral science word called "best practices" is a never performance..
+
+
+databse.
+1. raw jdbc.. (pathetic nobody uses it)
+2. jdbc +spring .. (ok some of them use it... but again not preferred)
+3. orm ,JPA   --preferred in most projects.. but again some of them may not prefer..
+
+how does the code work.
+
+1. some how get in touch with the database... ( company specific way of doing it)
+( you talk thru os or talk directly with database...) -- Connection getting.
+you have to load a driver... Driver dictates how you talk with the database..
+you should observe two things.
+1. driver which it is using.
+2. URL.. this will have database information
+
+I got connection it means.. that we are able to contact a particular database
+on a particular databse server...
+
+Statement.. or its cousins.. are used to issue sql command go the database and get feedback.
+
+Statement
+Prepared Statement -- preferred
+callableStatement  -- preferred to call stored procedure...
+
+get feedback..
+select command you get a feedback via ResultSet...Cursor
+if Cursor is empty it means that no rows where found.
+else you have process the cursor.. 
+take each row convert that into an object and put that object into a list..
+return the List..
+
+connection opening
+connection closing
+statement opening
+statement closing
+all are generic things.. that means independent of project. so what spring tells
+hey relax you dont need to do this... I will take care...
+
+what we need to be bothered about...
+1 . what sql command we plan to issue
+2. what we plan to do with the feedback...
+
+while doing all this things, spring will tell one secret thing..
+hey get addicted to me....spring will have  opinion on how to do things..
+we should tell ok spring that is your opinion opinion means subjective things..
+
+if you want create an object of somebody else class. first thing we should do is
+look at documentation especially constructor documentation, without looking
+at it trying to create object bad idea..
+
+
+what is spring opinion?
+1.to do database programming, you need something called JdbcTemplate..
+2. we have to create this object and start using its funtions..
+3. to tell jdbc template what is our database.. we have to use something
+called Datasource... datasource is an interface. so use some implementation
+class... which one find out which your project uses and use it..
+
+phase 1, did you get jdbc template object properly based on your database.
+if yes, great go to next phase else relax and get the jdbctemplate object..
+
+I am creating a JDBCTemplate object, means we are in spring..
+
+if we are using spring boot , jdbcTemplate object will get created automatically
+we dont need to create it..
+
+welcome to spring boot. spring boot autoconfigures lot of things depending
+
+
+on what library is found in your classpath..
+web library.. http server is configured..
+database librarty.. jdbctemplate or its equivalents are autoconfigured..
+
+we have not worked on spring jdbc template so instead of writing code in architecture
+start writing orphan code.. (code that works without any architecture)
+
+syntax is a function of time
+concept is not.
+
+whenever i get slapped because of core java I should tell sprng boot problem..
+
+when problems comes differentiate whether it is because of user or independent of user
+and ensure we communicate the same...
+
+what is BeanPropertyRowMapper
+simple answer hey look it is a inbuilt spring based class so why are you asking me
+open the documentation and see it..
+
+have no details of the problem first collect the details then solving will happen.
+
+BeanPropertyRowMapper.
+
+you have class with variables let x, y, and z.
+you have  table those columns should be x,y and z.
+then it will transfer content of databse cursor each row into an object.
+
+standard problem of design...
+before doing a bad tell good things and then do a bad thing..
+
+
+1. springpoc project.. you see pom.xml file..
+2. in your spring project, copy the databasepoc package..
+3. make it work.. after checking database information relevant to your system..
+4. copy paste any random jdbc template example from google and prove it works
+in your system..
+dont focus on architecture just focus on jdbctemplate usage..
+
+
+
+
+
+
+
+
+
+
+
+

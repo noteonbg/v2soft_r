@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+   
+   
+   
+    <bean id="lbd"    class="cjbasics.ListImplementation">
+    </bean>
+    
+    <bean id="mbd"    class="cjbasics.MapImplementation">
+    </bean>
+    
+    <bean id="jbd"    class="cjbasics.JDBCImplemntation">
+    </bean>
+    
+    <bean id="sero" class="cjbasics.Service">
+    <property name="d" ref="jbd"/>
+    </bean>
+    
+    <bean id="po" class="cjbasics.Presentation">
+    <property name="service" ref="sero"/>
+    </bean>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- 
+    <bean id="gc"    class="cjbasics.Mobile">
+    </bean>
+    
+    
+    
+   
+   
+   
+   <bean id="obj1"    class="whenconfusedstickwithbasics.X">
+   <property name="horror"  ref="obj2"/>
+   
+   </bean>
+
+
+<bean id="obj2"    class="whenconfusedstickwithbasics.Y"></bean>
+ 
+ 
+ <bean id="wc"    class="cjbasics.Sim">
+ <property name="simno" value="1"/>
+ </bean>
+ 
+ <bean id="nc"    class="cjbasics.Sim">
+ <property name="simno" value="2"/>
+  </bean>
+ 
+ <bean id="gc"    class="cjbasics.Mobile">
+ <property name="sim" ref="nc"/>
+ </bean>
+ -->
+
+</beans>
+
+
+ 
