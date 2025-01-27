@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@EnableDiscoveryClient
+
 @RestController
 @RequestMapping("/service1data")
 public class Service1 {
@@ -33,7 +33,9 @@ public class Service1 {
     {
     		System.out.println("calling web service" + freak);
     		System.out.println("are we getting the class " + service2client.getClass());
+    		
     		return service2client.someLogic(freak);
+    		
     	
       }
     

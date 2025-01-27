@@ -32,7 +32,7 @@ public class CfgExample {
 			
 			
     		        
-
+			System.out.println("service 2 client implementation getting generated in service 1");
 		
 		HttpServiceProxyFactory httpServiceProxyFactory =
 		        HttpServiceProxyFactory.builderFor(WebClientAdapter.create(getClient())).build();
