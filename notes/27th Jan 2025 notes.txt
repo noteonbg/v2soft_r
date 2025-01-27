@@ -1,0 +1,196 @@
+summary of Saturday..
+
+1. we just saw some microservices code.."opinion" ... it becomes
+more important to generalize the code..even for people who tell I am using
+on spring framework...  spring boot versions there will be lot of variations
+in terms of how to do things..
+
+even in spring boot. each version has an opinion how to do things.. this will
+cause syntax anxiety.. that should be avoided..
+
+but what is important how things look in terms of code when we do microservices
+vs non microservices based code..
+
+can we build microservices code by using spring cloud components..
+and eventually deploy it to the cloud..
+
+what happens in real life project, pom.xml is settled.. we are not
+any doing any adventures on it...
+
+when we want to know the concept, we dont need to prioritize logic building..
+
+1. DiscoveryServer.. this will keep all the servies with it..
+how do you do with spring boot.
+
+long long back.. Rmi programs in java. .core java 
+
+we should not write poems... write everything and then tell it is not working..
+
+
+opinion is that you should keep configuration from repository...
+GitHub...
+
+
+spring..
+beans.xml
+carrot.xml....
+go to your code if you are referring to beans.xml anywhere..
+file name can be changed..
+
+web.xml.  I hate web.xml i want to keep it as spider.xml.
+you cant do it why jee standards I need web.xml..
+
+if you are building a web services function
+
+1 . ensure you can pick up configuration rom some config server..
+2. what is syntax. what is configuration on need basis
+
+
+
+what is approach may be preferable.
+
+1.discovery server running.
+2. configuration server running.
+3. check whether application is running
+
+
+discovery application: 8769
+config server :8088
+Service2appliation: it is picking things from config server what is proof.
+8090, where thru the config server...
+
+patience to figure out the dependancies, configuration and the classes we need
+to use...
+
+1. is our discovery server running.. checked out
+2. get the configuration server working and follow its opinion on how to give
+applications configuration..
+3. we wrote our application restcontroller service2... we told this application
+hey pick up the configuration from the config server...
+
+if we want distributed logs... different companies different softwares..
+zipkin..
+
+
+1. discovery server.
+2. configuration server..
+3. what are you doing distributed logging... zipkin in the company
+they may be something. else what configuration are they doing
+in web services applcaition to tell use this zipkin...
+4. you want to call one application from another...
+5. gateway
+6. security...
+7. cloud deployment...
+
+how do you call one service from another... in a web services based world...
+observe we are not using ip address portnumber... because who knows
+which instance is given to us .. in a cloud based world..
+
+
+
+
+
+
+
+service1 is running
+service2 is running
+
+I want to call service 2 function from service1... RestClient,REstTemplate
+WebClient...
+
+again welcome favourite word last 8 days  ="opinion"
+
+zoom out
+somebody makes a product and tell it is open source..and he wants more people
+to use it. so tell he tells we will not keep it as product let us all agree
+on a standard and let us see how many people accept it..
+
+product == HIbernate... open source people were using..
+slowly to make it more popular let us make a standard :JPA
+
+product RDBMS product... IBM made it to stdard.. lot of databses..
+
+choosing technology needs a telescope view..
+
+Httpexchange..
+
+JPA repository..
+we created a declarative way to deal with the database...
+we wrote an interface, implementation class was decided by spring boot.
+
+
+want to call service 2 function from servie 1..
+
+1. create an interface use httpexchanger.
+2. declarae  a function.. use @getExchanger, @postExchanger..
+3. write a configuration file which will help you in getting an implementation
+of the interface.. we do this by using various proxies..
+4. get this interface wired in your controller where you want to call the function..
+5. in controller function call the other functionas though you are calling
+a local function.
+
+proof we are in micrservices world.
+phase 1 job of writing microsrvices
+
+1. discovery server
+2. configuration server
+3. rest service whih has registered with discovery server and pickeup
+configuration from configuration server..
+4. our rest service is able to call other rest service applications..
+
+phase 2
+1. api gateway.. hundred opinions..
+2. security...
+3. resiliency application
+
+
+serviceDiscovery project --1 st thing we will code or run.
+service2 application write it run it and show it works... let it have some configuration...
+config server.. write it...
+and prove that servie2 picks up information from config server...
+service 1 application... ensure it works.it pickups configuration from
+config server...
+ensure service 1 rest controller function calls service 2 rest controller function... here opinions will kick in.. see how the code is done by using
+webclient.... think how to convert this code in RestClient...
+
+get the application working...
+
+simple service function called Service3.. which has just one function, take a number
+and return the string called hello in number times..
+input is 3.
+Hello Hello Hello
+
+ensure this is registering with the server.
+ensure that service is working in postman
+
+in Service1
+write call a function repeat... which will call the service 3 function
+
+please take a break till 9.45AM and join back..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
