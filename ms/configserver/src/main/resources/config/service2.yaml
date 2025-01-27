@@ -3,7 +3,7 @@ managemement:
   sampling:
     probability: 1	
 server:
-  port: 8085
+  port: 8090
 eureka:
   client:
     serviceUrl:

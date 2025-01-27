@@ -205,8 +205,9 @@ can try to implement some role based JWT security..
 
 try 2 first if you want to so that 4 can be completed..
 
+repository name has changed to v2soft_r.. 
 
-
+Thank you
 
 
 

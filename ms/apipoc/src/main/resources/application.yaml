@@ -1,0 +1,26 @@
+managemement:
+ tracing:
+  sampling:
+    probability: 1	
+server:
+  port: 7000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8769/eureka/
+spring:
+ application:
+    name: apipoc
+ config:
+    import: optional:configserver:http://localhost:8088
+ cloud:
+  gateway:
+   routes:
+    - id: service1
+      uri: http://lb:service1
+      predicates:
+       - Path=/service1data/*
+    - id: service2
+      uri: http://lb:service2
+      predicates:
+      - Path=/anotheroperation/**
