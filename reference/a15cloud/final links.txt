@@ -1,0 +1,44 @@
+https://code-maven.com/jenkins-pipeline-hello-world
+
+https://www.tutorialspoint.com/jenkins/jenkins_unit_testing.htm
+
+https://github.com/oracle/cloud-native-devops-workshop/tree/master/containers/docker001
+
+
+Docker practicals
+
+
+
+https://howtodoinjava.com/library/docker-hello-world-example/
+
+
+https://www.opencodez.com/how-to-guide/improve-code-quality-with-sonarlint.htm
+
+
+
+
+sonar lint
+https://www.tatvasoft.com/blog/introduction-to-sonarqube-sonarlint/
+
+
+
+sonar cube
+https://medium.com/linagora-engineering/using-sonarqube-to-analyze-a-java-project-abeee15e3779
+
+
+lamda expressions.
+https://www.geeksforgeeks.org/lambda-expressions-java-8/
+
+microservices story telling
+https://howtodoinjava.com/microservices/microservices-definition-principles-benefits/
+
+
+https://www.logicbig.com/tutorials/spring-framework/spring-cloud/hello-world.html
+
+
+
+
+
+
+
+

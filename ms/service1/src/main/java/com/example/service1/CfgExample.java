@@ -19,7 +19,7 @@ public class CfgExample {
 		{
 			
 	        return WebClient.builder()
-	        		.baseUrl("http://service2/anotheroperation")
+	        		.baseUrl("lb://service2/anotheroperation")
 	                .filter(filterFunction)
 	                .build();
 	    }

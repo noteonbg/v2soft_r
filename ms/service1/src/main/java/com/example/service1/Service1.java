@@ -32,9 +32,10 @@ public class Service1 {
     public String f2(@PathVariable("freak") String freak)
     {
     		System.out.println("calling web service" + freak);
-    		System.out.println("are we getting the class " + service2client.getClass());
-    		
+    		//System.out.println("are we getting the class " + service2client.getClass());
+    		// service3client.whateverufnction(3);
     		return service2client.someLogic(freak);
+    	//	return "hi";
     		
     	
       }
