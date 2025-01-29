@@ -1,5 +1,5 @@
 // BankAccountSpec.js
-const BankAccount = require('./BankAccount');
+const BankAccount = require('../src/BankAccount');
 
 describe('BankAccount', () => {
   let account1, account2;

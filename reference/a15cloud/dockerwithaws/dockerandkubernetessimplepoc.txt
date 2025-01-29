@@ -1,0 +1,369 @@
+
+
+
+
+Spring Boot Application: Payment Service
+
+
+PaymentController.java
+
+package com.example.paymentservice;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
+
+@SpringBootApplication
+@RestController
+public class PaymentServiceApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(PaymentServiceApplication.class, args);
+    }
+
+    @PostMapping("/pay")
+    public String processPayment(@RequestBody PaymentRequest request) {
+        // Simulate payment processing
+        return "Payment processed for amount: " + request.getAmount();
+    }
+
+    static class PaymentRequest {
+        private double amount;
+
+        // Getters and Setters
+        public double getAmount() {
+            return amount;
+        }
+
+        public void setAmount(double amount) {
+            this.amount = amount;
+        }
+    }
+}
+
+
+ application.properties
+
+server.port=8080
+
+
+
+
+ Dockerize the Spring Boot Application
+
+
+
+dockerfile
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:17-jdk-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the application JAR file into the container
+COPY target/payment-service-0.0.1-SNAPSHOT.jar payment-service.jar
+
+# Expose port 8080
+EXPOSE 8080
+
+# Run the application
+ENTRYPOINT ["java", "-jar", "payment-service.jar"]
+
+
+Steps to Build and Run the Docker Image
+1. Build the Spring Boot application:
+   bash
+   ./mvnw clean package
+   
+2. Build the Docker image:
+   bash
+   docker build -t payment-service:1.0 .
+   
+3. Run the Docker container locally:
+   bash
+   docker run -p 8080:8080 payment-service:1.0
+   
+4. Test the API:
+   bash
+   curl -X POST http://localhost:8080/pay -H "Content-Type: application/json" -d '{"amount": 100.0}'
+   
+
+---
+
+3. Deploy to Kubernetes
+Now, let’s deploy the containerized Spring Boot application to Kubernetes.
+
+Kubernetes Deployment File: payment-service-deployment.yaml
+yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: payment-service
+  template:
+    metadata:
+      labels:
+        app: payment-service
+    spec:
+      containers:
+      - name: payment-service
+        image: payment-service:1.0
+        ports:
+        - containerPort: 8080
+
+
+Kubernetes Service File: payment-service-service.yaml
+yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment-service
+spec:
+  selector:
+    app: payment-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
+
+
+Steps to Deploy to Kubernetes
+1. Apply the deployment:
+
+   kubectl apply -f payment-service-deployment.yaml
+   
+2. Apply the service:
+   bash
+   kubectl apply -f payment-service-service.yaml
+   
+3. Check the status of the deployment:
+   bash
+   kubectl get pods
+   kubectl get services
+   
+4. Access the service:
+   - If using a local Kubernetes cluster (e.g., Minikube), get the service URL:
+     bash
+     minikube service payment-service --url
+     
+   - Test the API:
+     
+     curl -X POST http://<service-ip>/pay -H "Content-Type: application/json" -d '{"amount": 100.0}'
+     
+
+
+
+4. Scaling and Updates
+-Scaling: To scale the payment service to 5 replicas:
+  bash
+  kubectl scale deployment payment-service --replicas=5
+  
+-Rolling Update: To update the application to a new version (e.g., `payment-service:2.0`):
+  1. Build the new Docker image:
+     bash
+     docker build -t payment-service:2.0 .
+     
+  2. Update the Kubernetes deployment:
+     bash
+     kubectl set image deployment/payment-service payment-service=payment-service:2.0
+     
+
+
+
+5. Summary
+-Spring Boot: Provides the payment processing logic.
+-Docker: Containerizes the application for consistency and portability.
+-Kubernetes: Manages the deployment, scaling, and availability of the application.
+
+---------------------------------------------------------------------------
+
+Deploying a Dockerized application with Kubernetes on AWS involves usingAmazon Elastic Kubernetes Service (EKS). 
+EKS is a managed Kubernetes service that simplifies running Kubernetes on AWS. 
+Below is a step-by-step guide to deploying a Spring Boot application (like the payment service from the previous example)
+on AWS using Docker and Kubernetes.
+
+
+
+1. Prerequisites
+Before starting, ensure you have the following:
+1.AWS Account: Access to AWS services.
+2.AWS CLI: Installed and configured with your credentials.
+3.kubectl: Kubernetes command-line tool.
+4.eksctl: A CLI tool for creating and managing EKS clusters.
+5.Docker: Installed locally to build and push Docker images.
+
+
+2. Build and Push Docker Image to Amazon ECR
+Amazon Elastic Container Registry (ECR) is used to store Docker images.
+
+Steps:
+1.Create an ECR Repository:
+   bash
+   aws ecr create-repository --repository-name payment-service
+   
+2.Authenticate Docker to ECR:
+   bash
+   aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+   
+3.Build the Docker Image:
+   bash
+   docker build -t payment-service:1.0 .
+   
+4.Tag the Docker Image:
+   bash
+   docker tag payment-service:1.0 <aws_account_id>.dkr.ecr.<region>.amazonaws.com/payment-service:1.0
+   
+5.Push the Docker Image to ECR:
+   bash
+   docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/payment-service:1.0
+   
+
+3. Create an EKS Cluster
+Use `eksctl` to create an EKS cluster.
+
+
+1.Install eksctl:
+   Follow the [eksctl installation guide](https://eksctl.io/).
+2.Create an EKS Cluster:
+   bash
+   eksctl create cluster \
+     --name payment-cluster \
+     --region <region> \
+     --nodegroup-name payment-nodes \
+     --nodes 3 \
+     --nodes-min 1 \
+     --nodes-max 5 \
+     --node-type t3.medium
+   
+   This creates a cluster with 3 worker nodes.
+
+3.Update kubectl Context:
+   bash
+   aws eks update-kubeconfig --name payment-cluster --region <region>
+   
+4.Verify Cluster Access:
+   bash
+   kubectl get nodes
+   
+
+4. Deploy the Application to EKS
+Deploy the Spring Boot payment service to the EKS cluster.
+
+Kubernetes Deployment File: payment-service-deployment.yaml
+Update the image to use the ECR repository:
+yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: payment-service
+  template:
+    metadata:
+      labels:
+        app: payment-service
+    spec:
+      containers:
+      - name: payment-service
+        image: <aws_account_id>.dkr.ecr.<region>.amazonaws.com/payment-service:1.0
+        ports:
+        - containerPort: 8080
+
+
+Kubernetes Service File: payment-service-service.yaml
+Expose the service using a LoadBalancer:
+yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment-service
+spec:
+  selector:
+    app: payment-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
+
+
+Steps:
+1. Apply the deployment:
+   bash
+   kubectl apply -f payment-service-deployment.yaml
+   
+2. Apply the service:
+   bash
+   kubectl apply -f payment-service-service.yaml
+   
+3. Verify the deployment:
+   bash
+   kubectl get pods
+   kubectl get services
+   
+4. Access the service:
+   - Get the LoadBalancer URL:
+     bash
+     kubectl get service payment-service
+     
+   - Test the API:
+     bash
+     curl -X POST http://<loadbalancer-url>/pay -H "Content-Type: application/json" -d '{"amount": 100.0}'
+     
+5. Scaling and Updates
+-Scaling: Scale the deployment to 5 replicas:
+  bash
+  kubectl scale deployment payment-service --replicas=5
+  
+-Rolling Update: Push a new version of the Docker image to ECR and update the deployment:
+  1. Build and push the new image:
+     bash
+     docker build -t payment-service:2.0 .
+     docker tag payment-service:2.0 <aws_account_id>.dkr.ecr.<region>.amazonaws.com/payment-service:2.0
+     docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/payment-service:2.0
+     
+  2. Update the deployment:
+     bash
+     kubectl set image deployment/payment-service payment-service=<aws_account_id>.dkr.ecr.<region>.amazonaws.com/payment-service:2.0
+     
+6. Clean Up
+To avoid unnecessary charges, delete the EKS cluster and ECR repository when done.
+
+1.Delete the EKS Cluster:
+   bash
+   eksctl delete cluster --name payment-cluster --region <region>
+   
+2.Delete the ECR Repository:
+   bash
+   aws ecr delete-repository --repository-name payment-service --force
+   
+Summary
+-Docker: Used to containerize the Spring Boot application.
+-Amazon ECR: Stores the Docker images.
+-Amazon EKS: Manages the Kubernetes cluster for deploying and scaling the application.
+-kubectl and eksctl: Tools for interacting with Kubernetes and EKS.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

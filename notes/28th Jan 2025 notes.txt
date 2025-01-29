@@ -1,0 +1,265 @@
+we have simple core java code..
+
+archcode
+loan
+calculator
+architecture was decided here itself..
+
+when we are adding framework let us try spring framework..
+1. create objects and wire it 
+2. template pattern at work.. (whenever somebody spring is used along with something.
+...
+3.  aop... exceptions from the controller @ControllerAdvice..
+
+Spring boot..
+since we  know architecture.. dao, service at core java level by using CommmandLIne
+Runner..
+
+
+Microservices.  -- 
+1.Discovery server... any service with register with 
+2. we need some centralized configuration .. config server..
+3. lot of opinions in terms of how to do it.. dependency changes.. configuration changes..
+
+
+core java code...  microservices...
+
+Testing...  events you want to react to.., any thing which are trying is slow... mock it..
+
+Jasmine testing.. big challenge... javascript.. javascript is a nightmare for java 
+people .. crazy naming.. but people work will know java and javascript have nothing
+in common...
+
+rule no 1 for javascript.. respect javascript as a new langaue which we dont know..
+and dont compare it with other languages..
+
+full stack programmer..
+1. what is that full stack programmer cannot do?
+
+full stack programmer we cannot be zero in anything. aiming for 5/5 in everything
+can cause problems..
+
+1. coding part ( 3.5/5)
+2. unit testing ( 4/5)
+3. devops .... (2/5)
+
+1. get discovery server working.
+2. get config server working.
+3. write a simple application and ensure it picks configuration from config server
+4. check in the discovery server, where your application was registered..
+5. write another service and prove you can call earlier service..
+remember we cannot use hardcoded portnumbers in distributed computing.
+6. some api gateway.. services are discovered thru the gate way and not directly reaching
+the service..
+
+
+avoid coding if you can configure.. theme..
+kids are afraid of coding.. adults are afraid of compiling..
+
+
+intent conflict... old story..
+example of intent conflict  Red hat....
+
+want to tell open source.. language
+intent.. how to make money..
+provided poor documentation so you have to take support...
+
+if you are seeing code base older than5 yeas in any repository that code
+base .. is a scary code base..
+
+test of uncertainty test..
+
+wont clue what a filter is..
+
+process question..
+ok all developers will know
+
+discovery server.
+config server
+api gate way
+
+will each developer try to configure on his  own.. process issue.. it wont be..
+unit testing
+security
+transaction
+
+
+
+Resliencecy in microservices..
+
+when the application how you want to handle it..
+RestControlelr is failing... ControllerAdvice..
+
+
+Designed for functional programming.. in java context.
+
+we need to have mechanism to pass functions as input argumetns to other functions
+that means welcome to lamda expressions
+
+functional programming in java... lamda expressions..
+
+
+How do we plan to deal with exceptions that occur at the controller level.
+or functions which are called by the system...
+
+public String toString()
+{
+ throw new RuntimeException("entertainment gurnated")
+}
+
+public Boolean equals(Object o)
+{
+
+}
+
+
+closed state --no problems calls are going
+open state  --mcb be switched off... try again to connect after sometime..
+half open state..  --
+
+broad theme.
+
+1. ok in our controller function how are we handling exception..s
+2. where are they using resliencecy4j .... 
+at controller level
+at service level..
+3. what properties of reslience4j are they are using...
+
+my code.. imitate what they are doing...
+
+while learning anythird party api we encounter other person design...
+other person has an opionion how to do things... RowMapper 
+timeLimiter... 
+
+see function works within some n seconds else treat it as a failure and come out...
+
+
+
+today in terms of pratcicals
+gateway works. 
+resilience4j program works.. copy paste some reslience4j see whether works..
+
+jasmine... javascript platform sits on our head tells respect me...
+javascript platform.
+
+maven work , so what works npm... .. npm module system.. it will have its opinion...
+spring framework  --copy paste cousin.. nodejs..
+
+nodejs is almost completely inspired by spring framework (java)
+language changed to javascript.. event loop...  fancy words to deal with restrictions
+of javascript..
+
+
+
+pom.xml file.... 
+
+javascript
+package.json...
+
+in any real lilfe project if we dont know folder structure we are dead 
+tools are expecting those things...
+
+src
+spec
+
+all the people who never learnt javascript as a new langague without comparing
+it java or c++ or php... will succeed other people will get shocks..
+
+when we run away from the problem , problem will follow us..
+i run away javsacript. saying TypeScript. but javascript will follow me..
+because finally the boss... presentation.. browser... browser will understand
+old javascript... so called modern javascript...
+
+old entertainment... person problem with variables and functions..
+
+I am calling describe function what will it do...
+i cam caling function what will it do.. why ask open documentation and see it...
+
+what is second argument of describe...
+
+it is call back function...
+
+function assignment != function calling..
+
+function assignment ... usually means one day during some circumstance function
+will get called...
+
+once upon a time and even today.. Jenkins... but what has happened
+lot of cloud providers are providing there own ways of doing the same thing...
+
+explain todays world == event handling  +containerization..
+
+try to figure how to write a hello world java program
+get a docker image of it 
+
+1. without maven.
+2. with maven...
+
+checklist.
+
+1. did discovery server work yesterday in your sytem..
+2. config server
+3. service register with discovery server.. can you prove it..
+4. could you call one service from another
+
+please try the following
+5. gateway let it work..
+6. reslience4j.. don't need to write copy see whether code works copy paste one random example.
+7. jasmine.. try to see whether it works in your system.
+8. hello world java program docker image with maven and without maven ( uncertainty...)
+
+https://github.com/noteonbg/v2soft_r.git
+
+ms folder has got microservices code
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+intent first language next..
+
+what tools wht plugins we generally prefer while working on java applications..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

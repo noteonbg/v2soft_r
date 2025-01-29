@@ -1,0 +1,57 @@
+Kubernetes is a  open-source platform for automating the deployment, scaling, and management of containerized applications. It provides a way to manage containerized workloads and services across a cluster of machines. 
+
+ 1. Pod
+   - The smallest and most basic deployable unit in Kubernetes.
+   - A Pod is a logical host for one or more containers (like Docker containers).
+   - Containers in the same Pod share the same network namespace, which means they can communicate with each other using `localhost`.
+   
+ 2. Node
+   - A machine (physical or virtual) that is part of the Kubernetes cluster.
+   - Each Node has the services necessary to run Pods, such as the container runtime, Kubelet, and Kube Proxy.
+   - There are two types of nodes:
+     - Master Node: Controls the cluster, managing the API server, scheduler, etc.
+     - Worker Node: Runs the actual applications in Pods.
+
+ 3. Cluster
+   - A collection of nodes that run containerized applications.
+   - The master node controls and manages the worker nodes, ensuring applications run smoothly.
+
+ 4. Service
+   - A Kubernetes Service defines a logical set of Pods and a policy by which to access them.
+   - It acts as an abstraction layer over Pods, providing load balancing and stable networking.
+   - Services are necessary because Pods are ephemeral (they can be destroyed and recreated), but services provide a consistent endpoint to access the Pods.
+
+ 5. Deployment
+   - A Deployment is a higher-level abstraction that manages the creation and scaling of Pods.
+   - It ensures that a specific number of Pods are running at any time and handles updates to the Pods.
+
+ 6. ReplicaSet
+   - Ensures that a specified number of Pod replicas are running at any given time.
+   - It is typically managed by Deployments, which ensure that the number of Pods is maintained even in case of failures.
+
+ 7. Namespace
+   - A way to divide cluster resources between multiple users or teams.
+   - Namespaces allow you to create isolated environments within a single Kubernetes cluster.
+
+ 8. ConfigMap & Secret
+   - ConfigMap: Stores configuration data in key-value pairs that Pods can reference.
+   - Secret: Similar to ConfigMap but specifically used to store sensitive data, like passwords or API keys, in an encrypted format.
+
+ 9. Volume
+   - A Volume provides a way for Pods to store data that persists beyond the lifecycle of individual containers.
+   - Kubernetes supports various types of volumes, including hostPath, NFS, and cloud-based volumes.
+
+ 10. Kubelet
+   - An agent that runs on each worker node in the cluster.
+   - It ensures that containers are running in Pods and reports the node’s status back to the master node.
+
+ 11. Kube Proxy
+   - Manages network routing for Pods and Services.
+   - It maintains network rules to allow communication to Pods from other Pods or external networks.
+
+ 12. Ingress
+   - Manages external access to the services in a Kubernetes cluster, typically HTTP/HTTPS.
+   - It allows you to define routing rules and manage SSL termination and load balancing.
+
+ 13. Helm
+   - A package manager for Kubernetes that helps you define, install, and manage Kubernetes applications in the form of Charts.

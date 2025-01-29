@@ -1,0 +1,115 @@
+Here are some basic Docker commands that will help you get started with containerized applications:
+
+ 1. docker --version
+   - Displays the current version of Docker installed on your system.
+   bash
+   docker --version
+   
+
+ 2. docker pull <image>
+   - Pulls a Docker image from Docker Hub (or another registry).
+   bash
+   docker pull ubuntu
+   
+
+ 3. docker build -t <tag> <path>
+   - Builds an image from a Dockerfile located at <path>.
+   - The -t flag assigns a tag to the image.
+   bash
+   docker build -t my-image .
+   
+
+ 4. docker images or docker image ls
+   - Lists all the locally available Docker images.
+   bash
+   docker images
+   
+
+ 5. docker ps
+   - Lists all the currently running containers.
+   bash
+   docker ps
+   
+
+ 6. docker ps -a
+   - Lists all containers (running and stopped).
+   bash
+   docker ps -a
+   
+
+ 7. docker run <options> <image>
+   - Runs a container from a Docker image.
+   - Some common options:
+     - -d: Run in detached mode (in the background).
+     - -p <hostPort>:<containerPort>: Maps a port from the host to the container.
+     - --name <name>: Assign a name to the container.
+   bash
+   docker run -d -p 8080:80 --name web-container nginx
+   
+
+ 8. docker exec -it <container_name> <command>
+   - Runs a command inside a running container.
+   - -it allows you to interact with the container.
+   bash
+   docker exec -it web-container bash
+   
+
+ 9. docker stop <container_name>
+   - Stops a running container.
+   bash
+   docker stop web-container
+   
+
+ 10. docker start <container_name>
+   - Starts a stopped container.
+   bash
+   docker start web-container
+   
+
+ 11. docker restart <container_name>
+   - Restarts a running or stopped container.
+   bash
+   docker restart web-container
+   
+
+ 12. docker rm <container_name>
+   - Removes a stopped container.
+   bash
+   docker rm web-container
+   
+
+ 13. docker rmi <image>
+   - Removes a Docker image.
+   bash
+   docker rmi nginx
+   
+
+ 14. docker logs <container_name>
+   - Shows the logs of a running or stopped container.
+   bash
+   docker logs web-container
+   
+
+ 15. docker network ls
+   - Lists all Docker networks.
+   bash
+   docker network ls
+   
+
+ 16. docker volume ls
+   - Lists all Docker volumes.
+   bash
+   docker volume ls
+   
+
+ 17. docker-compose (if using Docker Compose)
+   - Docker Compose allows you to define and run multi-container Docker applications.
+   - Example commands:
+     - docker-compose up: Starts containers as defined in docker-compose.yml.
+     - docker-compose down: Stops and removes containers defined in docker-compose.yml.
+
+   Example:
+   bash
+   docker-compose up
+   
+

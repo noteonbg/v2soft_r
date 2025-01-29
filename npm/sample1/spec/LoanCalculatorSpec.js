@@ -1,6 +1,6 @@
 //LoanCalculatorSpec.js
 
-const LoanCalculator = require('../LoanCalculator');
+const LoanCalculator = require('../src/LoanCalculator');
 
 describe('LoanCalculator', function() {
   it('should calculate the correct monthly payment', function() {

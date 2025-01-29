@@ -1,0 +1,10 @@
+{
+    "spec_dir": "spec",
+    "spec_files": [
+      "TransactionSpec.js",
+      "BankAccountSpec.js"
+    ],
+    "helpers": [
+      "helpers/**/*.js"
+    ]
+  }
