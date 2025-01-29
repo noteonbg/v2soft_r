@@ -1,0 +1,231 @@
+architecture point of view.
+
+intent first and language next... how people choose platforms is a real skill..
+
+core java application..
+spring application
+spring boot application.. with core java only..
+spring enterprise application..
+spring enterprise application when we claim it is microservices..
+
+concepts are generic and we have to move from one provider to another if need be..
+that means we cannot afford for byhearting configuration..
+
+I want to be  technical person only but we get impacted by business decisions taken by the company..
+
+theme.
+
+1. we built the application.
+2. we have coded our microservices.. 
+3. we have to ensure we create a docker images of all these applications..
+4. we push this to Kubernetes..
+5. we check the application works or not..
+
+starting from 3 , 4,5 how you do depends on the cloud provider..
+
+docker is platform for the cloud...
+docker applications are language independent... it is our web services which ensures distributed computing
+and language independence in terms of calling.
+
+c++ program
+java program
+python progam
+
+I want to create a docker file... opinion of platform...
+how do you interact with docker runtime and get your application working..
+
+in the docker platform
+
+1. telling what you want..
+2. telling which is start of your application
+3. mapping the port inside the container to your system...
+
+only you make things very light is talk to the os directly..-- everything costs in the cloud
+C/C++
+
+
+microservices
+
+1. Discovery server. -- loadbalancer
+2. api gateway..
+
+usual story in the company..
+1. i build the application
+and push my repository things are automated..
+
+
+
+1. how to write a hello world controller program.
+2. figure out what is company specific way of creating a docker image..
+3. figure out how the naming service... discovery service.. is configured..
+4. figure out how the api gate way is configured.
+5. figure out how the security is configured..
+6. AWS..  -- CICD 
+
+
+file upload. -- Decorator design pattern
+
+1. you will get the file, what you want do with file is the logic which we have to figure out..
+
+file.. IO operations..
+
+IO.. memory or persistant storage.. I file just in memory...
+
+
+PrintWriter pw =new PrintWriter(fw);
+pw.println("hello");
+pw.close();
+pw.close();
+
+
+you want to store it in the databse.. separate logic...
+
+file... content of file can just be memory and not necessarily a file with a name..
+
+in terms of process.
+
+the application has been moved to the cloud..
+1. we know what is discovery server, config server, api gateway... docker image..
+2. depending on how you want to allocate resources, Kubernetes configuration files are created.
+3. deployed on Kubernetes platform whoever provides...
+
+Jasmine...
+1. we can test javascript code.. we should be with npm build sytem...
+
+npm init
+npm test..
+based on 
+
+
+
+do something. then. catch
+
+when you click on eh button do something.. scary.. 
+
+scope of Beans in spring..
+
+1. singleton.  --have only object in the context
+2. prototype -- each request gives you a new object
+web application context
+3. request scope --during each request , the notice boards gets cleaned up
+4. session scope  -- it will remain for the session.. multiple requests for a particular client and information will survive
+
+how do you think about them.. notice boards... ( Map where key is a string and value is an object)
+
+Map<String,Object> x =...
+Object x = x.get("key");
+
+
+
+1. when the notice board is available.
+2. who is going to write to it.
+3. who is going to read from it.
+4. when things will be removed from the notice board...
+
+
+
+
+
+
+HttpSession...
+
+
+caching...
+
+
+
+
+
+
+
+
+
+
+cloud environement..
+
+cloud meaning of cloud...
+
+1. we have microservices application
+2. we converted that into a docker image..
+3. we configured docker images what resources they need and how are they exposed to outside world thur kuberetes
+configuration
+4. make it available via Kubernetes runtime..
+5. focus on how discovery server and api gateway is configured..
+6. what is your company specific way of deploying things ... in AWS
+how are you transferring data between AWS and your system...
+
+Unit testing..
+1. controller.. how are you mocking mvc find out in the project.
+2. service layer and dao layer.. core java mocking..
+
+Jasmine..
+1. in multiple file scenario think what will be folder structure how are they running the jasmine tests..
+
+file upload...and download..
+file can be a resource in memory....
+mime types...
+multipart file...
+
+practically please try the following
+1.demo project.. run the tests.. and deploy it as a docker image.. in two ways.
+1.1 use docker file.
+1.2 think which maven plugin you want to use 
+
+2. F:\v2soft\npm\sample1
+run this jasmine test...
+
+3. dockerandkubernetessimplepoc.txt file present in F:\v2soft\reference\a15cloud\dockerwithaws
+and relate it your project in case you have info..
+
+4. project called upload see whether it works.
+
+5. take code sample present in
+F:\v2soft\codesample\phase5restwithrealservcieandrealdao , this particular project
+and write a complete unit test for service, dao and controller using Mockito.. mvc.. spring related testing class.
+
+try to use
+aws code pipeline.
+aws code build
+
+
+Plugins you can consider
+File settings plugin
+1. spring boot
+2. spring 
+2. spring security
+4.spring data tools.
+5. code style idea.
+6. sonar lint
+7. pmd plugin
+8.findbugs/spotbugs.
+9.kubernetes by jet brains.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
